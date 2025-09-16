@@ -1,0 +1,6 @@
+.wp-block-group.is-linked {
+	text-decoration: none;
+}
+.wp-block-group.is-layout-constrained.is-linked {
+	display: block;
+}

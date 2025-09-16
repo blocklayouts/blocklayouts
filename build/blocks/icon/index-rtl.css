@@ -1,0 +1,450 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/modal/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
+  width: 300px;
+  margin-left: 20px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs {
+  display: flex;
+  gap: 8px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__refresh-button,
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__account-button {
+  border-radius: 8px;
+}
+.blocklayouts-modal .components-modal__content {
+  overflow: unset;
+}
+.blocklayouts-modal .components-modal__content div:has(> div.blocklayouts-modal__container) {
+  height: 100%;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+  width: 220px;
+  padding-top: 16px;
+  margin-left: 12px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content {
+  flex: 1;
+  height: 100%;
+  padding: 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper {
+  container: dataviews-wrapper/inline-size;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  height: 100%;
+  line-height: 1.4;
+  scroll-padding-bottom: 64px;
+  padding: 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews__view-actions {
+  padding: 16px 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+  container-type: inline-size;
+  grid-template-rows: max-content;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: auto;
+  padding: 24px 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card {
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card:hover {
+  border-color: #d1d5db;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media {
+  aspect-ratio: unset !important;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media:after {
+  display: none !important;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview {
+  height: 280px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  background-color: #f4f4f4;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview .blocklayouts-modal__pattern-license {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 999;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  line-height: 1;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__title-actions {
+  padding: 12px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .blocklayouts-modal__scrollable {
+  padding-right: 4px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__screen-overlay {
+  position: absolute;
+  z-index: 999;
+  top: 72px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable {
+  padding-left: 6px;
+  margin-left: -14px;
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0);
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: #7f7f7f;
+}
+
+.blocklayouts-modal__overlay {
+  z-index: 9999 !important;
+}
+
+.blocklayouts-modal__styling-content {
+  min-width: 240px;
+}
+
+.blocklayouts-modal__spinner {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.blocklayouts-modal__filters-content .components-popover__content {
+  width: auto;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blocklayouts-modal.is-pages .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .blocklayouts-modal__pattern-preview {
+  min-height: 360px;
+}
+
+@media (max-width: 779px) {
+  .blocklayouts-modal .components-modal__content {
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+    display: block;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar h4 {
+    display: none;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__scrollable {
+    overflow: auto hidden !important;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+    display: inline-flex;
+    flex-direction: row;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button {
+    white-space: nowrap;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+@media (min-width: 780px) and (max-width: 1024px) {
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/quick-inserter/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons {
+  display: grid;
+  gap: 2px;
+  padding: 16px 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto !important;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button .icon-title {
+  font-size: 12px;
+  margin-top: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button:hover {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected .icon-title {
+  font-weight: 600;
+  color: #000;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ */
+.justify-center {
+  justify-content: center;
+}
+
+.justify-left {
+  justify-content: flex-start;
+}
+
+.justify-right {
+  justify-content: flex-end;
+}
+
+.blocklayouts-icon-preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  height: auto;
+  min-height: 160px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 4px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3E%3Ccircle cx=%276%27 cy=%276%27 r=%271%27 fill=%27%23CBCBCB%27 opacity=%27.6%27/%3E%3C/svg%3E");
+  background-size: 12px 12px;
+  background-position: center center;
+  color: rgb(51, 51, 51);
+}
+
+/**
+ * =================================================================
+ * Modal
+ * =================================================================
+ */
+.blocklayouts-modal__icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 24px;
+}
+.blocklayouts-modal__icons-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  border-radius: 6px;
+  height: auto;
+  min-width: 160px;
+  max-width: 200px;
+  flex: 1;
+}
+.blocklayouts-modal__icons-button .icon-title {
+  color: #757575;
+  font-size: 12px;
+  margin-top: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.blocklayouts-modal__icons-button:hover {
+  background-color: #f9fafb;
+}
+.blocklayouts-modal__icons-button.is-selected {
+  background-color: #f9fafb;
+}
+.blocklayouts-modal__icons-button.is-selected .icon-title {
+  font-weight: 600;
+  color: rgb(51, 51, 51);
+}
+
+.blocklayouts-modal__custom-svg {
+  display: flex;
+  padding: 24px 0;
+  gap: 24px;
+  height: 100%;
+}
+.blocklayouts-modal__custom-svg-editor {
+  height: 100%;
+  flex: 1;
+}
+.blocklayouts-modal__custom-svg-editor .components-base-control {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.blocklayouts-modal__custom-svg-editor .components-base-control__field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.blocklayouts-modal__custom-svg-editor .components-base-control__field textarea {
+  flex: 1;
+}
+.blocklayouts-modal__custom-svg-preview {
+  height: 100%;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+.blocklayouts-modal__custom-svg-preview .blocklayouts-icon-preview-container {
+  flex: 1;
+}
+.blocklayouts-modal__custom-svg-preview h3 {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  display: block;
+  margin: 0 0 8px 0;
+  padding: 0px;
+}
+.blocklayouts-modal__custom-svg-controls {
+  padding: 24px 0;
+}
+
+.blocklayouts-icon-settings {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown {
+  position: relative;
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown-toggle {
+  width: 100%;
+  gap: 12px !important;
+  padding-right: 4px !important;
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown-more {
+  position: absolute;
+  transition: opacity 0.1s ease-in-out;
+  opacity: 0;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown:hover .blocklayouts-icon-settings__dropdown-more {
+  opacity: 1;
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown .blocklayouts-icon-settings__indicator {
+  background-color: #f3f3f3;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown .blocklayouts-icon-settings__indicator.disabled {
+  background: #fff linear-gradient(45deg, rgba(0, 0, 0, 0) 48%, #ddd 0, #ddd 52%, rgba(0, 0, 0, 0) 0);
+  display: inline-block;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.blocklayouts-icon-settings .blocklayouts-icon-settings__dropdown .blocklayouts-icon-settings__dropdown-label {
+  text-transform: capitalize;
+}
+
+/**
+ * =================================================================
+ * Block Content
+ * =================================================================
+ */
+.wp-block-blocklayouts-icon .blocklayouts-custom-svg-container svg {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-blocklayouts-icon .icon-container {
+  line-height: 0;
+}
+
+/**
+ * =================================================================
+ * Inline Icon Tabs
+ * =================================================================
+ */
+@media (max-width: 779px) {
+  .blocklayouts-modal__icons-button {
+    min-width: 100px;
+  }
+}

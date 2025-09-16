@@ -1,0 +1,25 @@
+.wp-blocklayouts-inline-icon {
+	vertical-align: middle;
+	display: inline-block;
+}
+.wp-blocklayouts-inline-icon svg {
+	height: 100%;
+	width: 100%;
+}
+.wp-blocklayouts-inline-icon.is-fill svg {
+	fill: currentColor;
+}
+.wp-blocklayouts-inline-icon.is-line svg path {
+	stroke: currentColor;
+}
+.wp-element-button:has(span.wp-blocklayouts-inline-icon) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.wp-element-button.has-text-align-left:has(span.wp-blocklayouts-inline-icon) {
+	justify-content: start;
+}
+.wp-element-button.has-text-align-right:has(span.wp-blocklayouts-inline-icon) {
+	justify-content: end;
+}

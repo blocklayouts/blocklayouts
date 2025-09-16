@@ -1,0 +1,35 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/marquee/editor.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Editor styles for the marquee block
+ */
+.wp-block-blocklayouts-marquee {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+.wp-block-blocklayouts-marquee.is-style-horizontal-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 200px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 200px), transparent 100%);
+}
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items > * {
+  flex: 1;
+  margin: 0;
+}
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items > p,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h1,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h2,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h3,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h4,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h5,
+.wp-block-blocklayouts-marquee .blocklayouts-marquee-items h6 {
+  margin: 0;
+  white-space: nowrap;
+}

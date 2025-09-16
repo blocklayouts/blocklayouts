@@ -1,0 +1,73 @@
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/marquee/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Front-end styles for the marquee block
+ */
+.wp-block-blocklayouts-marquee {
+  overflow: hidden;
+}
+.wp-block-blocklayouts-marquee.is-style-horizontal-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 200px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 200px), transparent 100%);
+}
+.wp-block-blocklayouts-marquee .marquee-container {
+  will-change: transform;
+  display: flex;
+  width: 200%;
+  animation-duration: var(--animation-duration, 30s);
+  animation-name: var(--animation-name, marquee-scroll-left);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content > * {
+  flex: 1;
+  margin: 0;
+}
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content > p,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h1,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h2,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h3,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h4,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h5,
+.wp-block-blocklayouts-marquee .marquee-container .marquee-content h6 {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+/* Mobile devices (up to 779px) */
+@media (max-width: 779px) {
+  .wp-block-blocklayouts-marquee .marquee-container {
+    width: 400%;
+  }
+  .wp-block-blocklayouts-marquee .marquee-container .marquee-content {
+    width: 200%;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

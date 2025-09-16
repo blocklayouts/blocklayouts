@@ -1,0 +1,5 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "description": "Registers block editor extensions.",
+  "editorScript": "file:./index.js"
+}

@@ -1,0 +1,875 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/hover-colors/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.has-hover__color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__color:not(.wp-block-button):hover {
+  color: var(--hover-color) !important;
+}
+
+.has-hover__background-color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__background-color:not(.wp-block-button):hover {
+  background-color: var(--hover-background-color) !important;
+}
+
+.has-hover__border-color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__border-color:not(.wp-block-button):hover {
+  border-color: var(--hover-border-color) !important;
+}
+
+.wp-block-button.has-hover__color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__color:hover .wp-element-button {
+  color: var(--hover-color) !important;
+}
+
+.wp-block-button.has-hover__background-color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__background-color:hover .wp-element-button {
+  background-color: var(--hover-background-color) !important;
+}
+
+.wp-block-button.has-hover__border-color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__border-color:hover .wp-element-button {
+  border-color: var(--hover-border-color) !important;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/additional-css/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-css-editor {
+  border: 1px solid #e2e4e7;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.blocklayouts-css-editor .CodeMirror {
+  height: auto;
+  min-height: 100px;
+}
+.blocklayouts-css-editor .CodeMirror-scroll {
+  min-height: 100px;
+}
+
+.blocklayouts-css-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.blocklayouts-css-help {
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.blocklayouts-css-example {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+.blocklayouts-css-example h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.blocklayouts-css-example pre {
+  background: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/effects/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-tools-panel-effects-settings__item {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.blocklayouts-effects-settings {
+  width: 100%;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown {
+  position: relative;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-toggle {
+  width: 100%;
+  gap: 12px !important;
+  padding-left: 4px !important;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-reset {
+  transition: opacity 0.1s ease-in-out;
+  margin: auto 8px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown:hover .blocklayouts-effects-settings__dropdown-reset {
+  opacity: 1;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator {
+  background-color: #f3f3f3;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+}
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator.disabled {
+  background: #fff linear-gradient(-45deg, rgba(0, 0, 0, 0) 48%, #ddd 0, #ddd 52%, rgba(0, 0, 0, 0) 0);
+  display: inline-block;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/wrapper-link/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts__link-popover .components-popover__content {
+  min-width: 350px;
+  box-shadow: 0 0 0 1px #ccc, 0 2px 3px rgba(0, 0, 0, 0.0509803922), 0 4px 5px rgba(0, 0, 0, 0.0392156863), 0 12px 12px rgba(0, 0, 0, 0.031372549), 0 16px 16px rgba(0, 0, 0, 0.0196078431);
+}
+.blocklayouts__link-popover .block-editor-link-control__field {
+  margin: 8px;
+}
+.blocklayouts__link-popover .block-editor-link-control__search-item {
+  padding: 8px;
+}
+.blocklayouts__link-popover-menu {
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+.blocklayouts__link-popover-menu .components-button.has-icon {
+  height: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: left;
+}
+.blocklayouts__link-popover-menu .components-button.has-icon > svg {
+  margin-right: 8px;
+}
+.blocklayouts__link-popover-post-selected {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+}
+.blocklayouts__link-popover-post-selected-label {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.blocklayouts__link-popover-post-selected-icon {
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  position: relative;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/modal/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
+  width: 300px;
+  margin-right: 20px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs {
+  display: flex;
+  gap: 8px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__refresh-button,
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__account-button {
+  border-radius: 8px;
+}
+.blocklayouts-modal .components-modal__content {
+  overflow: unset;
+}
+.blocklayouts-modal .components-modal__content div:has(> div.blocklayouts-modal__container) {
+  height: 100%;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+  width: 220px;
+  padding-top: 16px;
+  margin-right: 12px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content {
+  flex: 1;
+  height: 100%;
+  padding: 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper {
+  container: dataviews-wrapper/inline-size;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  height: 100%;
+  line-height: 1.4;
+  scroll-padding-bottom: 64px;
+  padding: 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews__view-actions {
+  padding: 16px 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+  container-type: inline-size;
+  grid-template-rows: max-content;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: auto;
+  padding: 24px 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card {
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card:hover {
+  border-color: #d1d5db;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media {
+  aspect-ratio: unset !important;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media:after {
+  display: none !important;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview {
+  height: 280px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  background-color: #f4f4f4;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview .blocklayouts-modal__pattern-license {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+  border-radius: 8px;
+  background-color: #1e1e1e;
+  line-height: 1;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__title-actions {
+  padding: 12px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .blocklayouts-modal__scrollable {
+  padding-left: 4px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__screen-overlay {
+  position: absolute;
+  z-index: 999;
+  top: 72px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable {
+  padding-right: 6px;
+  margin-right: -14px;
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0);
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: #7f7f7f;
+}
+
+.blocklayouts-modal__overlay {
+  z-index: 9999 !important;
+}
+
+.blocklayouts-modal__styling-content {
+  min-width: 240px;
+}
+
+.blocklayouts-modal__spinner {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.blocklayouts-modal__filters-content .components-popover__content {
+  width: auto;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blocklayouts-modal.is-pages .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .blocklayouts-modal__pattern-preview {
+  min-height: 360px;
+}
+
+@media (max-width: 779px) {
+  .blocklayouts-modal .components-modal__content {
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+    display: block;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar h4 {
+    display: none;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__scrollable {
+    overflow: auto hidden !important;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+    display: inline-flex;
+    flex-direction: row;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button {
+    white-space: nowrap;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+@media (min-width: 780px) and (max-width: 1024px) {
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/quick-inserter/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons {
+  display: grid;
+  gap: 2px;
+  padding: 16px 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto !important;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button .icon-title {
+  font-size: 12px;
+  margin-top: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button:hover {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected .icon-title {
+  font-weight: 600;
+  color: #000;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/components/dataview/dataview.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.dataviews-filters__button {
+  position: relative;
+}
+.dataviews-filters__reset-button.dataviews-filters__reset-button[aria-disabled=true] {
+  opacity: 0;
+}
+.dataviews-filters__reset-button.dataviews-filters__reset-button[aria-disabled=true]:hover {
+  opacity: 0;
+}
+.dataviews-filters__reset-button.dataviews-filters__reset-button[aria-disabled=true]:focus {
+  opacity: 1;
+}
+.dataviews-filters__summary-popover {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.dataviews-filters__summary-popover .components-popover__content {
+  width: 230px;
+  border-radius: 4px;
+}
+.dataviews-filters__summary-popover.components-dropdown__content .components-popover__content {
+  padding: 0;
+}
+.dataviews-filters__summary-operators-container {
+  padding: 8px 8px 0;
+}
+.dataviews-filters__summary-operators-container:has(+ .dataviews-filters__search-widget-listbox) {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+.dataviews-filters__summary-operators-container:empty {
+  display: none;
+}
+.dataviews-filters__summary-operators-container .dataviews-filters__summary-operators-filter-name {
+  color: #757575;
+}
+.dataviews-filters__summary-chip-container {
+  position: relative;
+  white-space: pre-wrap;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip {
+  border-radius: 16px;
+  border: 1px solid #757575;
+  cursor: pointer;
+  padding: 4px 12px;
+  min-height: 32px;
+  color: #757575;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip:hover, .dataviews-filters__summary-chip-container .dataviews-filters__summary-chip:focus-visible, .dataviews-filters__summary-chip-container .dataviews-filters__summary-chip[aria-expanded=true] {
+  border-color: #757575;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip.has-reset {
+  padding-inline-end: 36px;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip.has-values {
+  border-color: #757575;
+  color: #1e1e1e;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip .dataviews-filters__summary-filter-text-name {
+  display: none;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove svg {
+  fill: #757575;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove:hover, .dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove:focus {
+  background: #ccc;
+}
+.dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove:hover svg, .dataviews-filters__summary-chip-container .dataviews-filters__summary-chip-remove:focus svg {
+  fill: #757575;
+}
+.dataviews-filters__search-widget-filter-combobox-list {
+  max-height: 184px;
+  padding: 4px;
+  overflow: auto;
+  border-top: 1px solid #e0e0e0;
+}
+.dataviews-filters__search-widget-filter-combobox-list .dataviews-filters__search-widget-filter-combobox-item-value [data-user-value] {
+  font-weight: 600;
+}
+.dataviews-filters__search-widget-listbox {
+  padding: 4px;
+  overflow: auto;
+}
+.dataviews-filters__search-widget-listitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  cursor: default;
+  margin-block-end: 2px;
+}
+.dataviews-filters__search-widget-listitem:last-child {
+  margin-block-end: 0;
+}
+.dataviews-filters__search-widget-listitem:hover, .dataviews-filters__search-widget-listitem[data-active-item], .dataviews-filters__search-widget-listitem:focus {
+  background-color: var(--wp-admin-theme-color);
+  color: #fff;
+}
+.dataviews-filters__search-widget-listitem:hover .dataviews-filters__search-widget-listitem-check, .dataviews-filters__search-widget-listitem[data-active-item] .dataviews-filters__search-widget-listitem-check, .dataviews-filters__search-widget-listitem:focus .dataviews-filters__search-widget-listitem-check {
+  fill: #fff;
+}
+.dataviews-filters__search-widget-listitem:hover .dataviews-filters__search-widget-listitem-description, .dataviews-filters__search-widget-listitem[data-active-item] .dataviews-filters__search-widget-listitem-description, .dataviews-filters__search-widget-listitem:focus .dataviews-filters__search-widget-listitem-description {
+  color: #fff;
+}
+.dataviews-filters__search-widget-listitem .dataviews-filters__search-widget-listitem-check {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.dataviews-filters__search-widget-listitem .dataviews-filters__search-widget-listitem-description {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 16px;
+  color: #757575;
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper {
+  position: relative;
+  padding: 8px;
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  padding: 6px 8px;
+  /* Fonts smaller than 16px causes mobile safari to zoom. */
+  font-size: 16px;
+  /* Override core line-height. To be reviewed. */
+  line-height: normal;
+  box-shadow: 0 0 0 transparent;
+  border-radius: 2px;
+  border: 1px solid #949494;
+  display: block;
+  padding: 0 32px 0 8px;
+  background: #f0f0f0;
+  border: none;
+  width: 100%;
+  height: 32px;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media not (prefers-reduced-motion) {
+  .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input {
+    transition: box-shadow 0.1s linear;
+  }
+}
+@media (min-width: 600px) {
+  .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input {
+    font-size: 13px;
+    /* Override core line-height. To be reviewed. */
+    line-height: normal;
+  }
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input:focus {
+  border-color: var(--wp-admin-theme-color);
+  box-shadow: 0 0 0 0.5px var(--wp-admin-theme-color);
+  outline: 2px solid transparent;
+  background: #fff;
+  box-shadow: inset 0 0 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::-moz-placeholder {
+  color: rgba(30, 30, 30, 0.62);
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::placeholder {
+  color: #757575;
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::-webkit-search-decoration, .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::-webkit-search-cancel-button, .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::-webkit-search-results-button, .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+.dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+.dataviews-filters__container-visibility-toggle {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dataviews-filters__container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.dataviews-filters-toggle__count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background: var(--wp-admin-theme-color, #3858e9);
+  height: 16px;
+  min-width: 16px;
+  line-height: 16px;
+  padding: 0 4px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 11px;
+  outline: var(--wp-admin-border-width-focus) solid #fff;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.dataviews-settings-section:has(.dataviews-view-config__properties) {
+  display: none;
+}
+.dataviews-settings-section__title.dataviews-settings-section__title {
+  line-height: 24px;
+  font-size: 15px;
+}
+.dataviews-settings-section__sidebar {
+  grid-column: span 4;
+}
+.dataviews-settings-section__content {
+  grid-column: span 8;
+}
+.dataviews-settings-section__content > * {
+  grid-column: span 8;
+}
+.dataviews-settings-section__content .is-divided-in-two {
+  display: contents;
+}
+.dataviews-settings-section__content .is-divided-in-two > * {
+  grid-column: span 4;
+}
+.dataviews-settings-section:has(.dataviews-settings-section__content:empty) {
+  display: none;
+}
+@container (max-width: 500px) {
+  .dataviews-settings-section.dataviews-settings-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dataviews-settings-section.dataviews-settings-section .dataviews-settings-section__sidebar {
+    grid-column: span 2;
+  }
+  .dataviews-settings-section.dataviews-settings-section .dataviews-settings-section__content {
+    grid-column: span 2;
+  }
+}
+
+.dataviews-action-modal {
+  z-index: 1000001;
+}
+
+.dataviews-selection-checkbox {
+  --checkbox-input-size: 24px;
+  line-height: 0;
+  flex-shrink: 0;
+}
+@media (min-width: 600px) {
+  .dataviews-selection-checkbox {
+    --checkbox-input-size: 16px;
+  }
+}
+
+.dataviews-view-config {
+  width: 320px;
+  /* stylelint-disable-next-line property-no-unknown */
+  container-type: inline-size;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.dataviews-view-config__sort-direction .components-toggle-group-control-option-base {
+  text-transform: uppercase;
+}
+
+.dataviews-config__popover.is-expanded .dataviews-config__popover-content-wrapper {
+  overflow-y: scroll;
+  height: 100%;
+}
+.dataviews-config__popover.is-expanded .dataviews-config__popover-content-wrapper .dataviews-view-config {
+  width: auto;
+}
+
+.dataviews-field-control__field {
+  height: 32px;
+}
+.dataviews-field-control__field:hover .dataviews-field-control__actions, .dataviews-field-control__field:focus-within .dataviews-field-control__actions, .dataviews-field-control__field.is-interacting .dataviews-field-control__actions {
+  position: unset;
+  top: unset;
+}
+.dataviews-field-control__actions {
+  position: absolute;
+  top: -9999em;
+}
+.dataviews-field-control__actions.dataviews-field-control__actions {
+  gap: 4px;
+}
+.dataviews-field-control__icon {
+  display: flex;
+  width: 24px;
+}
+.dataviews-field-control__label-sub-label-container {
+  flex-grow: 1;
+}
+.dataviews-field-control__label {
+  display: block;
+}
+.dataviews-field-control__sub-label {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 11px;
+  font-style: normal;
+  color: #757575;
+}
+
+.dataviews-column-primary__media {
+  max-width: 60px;
+}
+
+.dataviews-controls__datetime {
+  border: none;
+  padding: 0;
+}
+
+.dataforms-layouts-panel__field {
+  width: 100%;
+  min-height: 32px;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+.dataforms-layouts-panel__field-label {
+  width: 38%;
+  flex-shrink: 0;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  line-height: 20px;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+}
+.dataforms-layouts-panel__field-control {
+  flex-grow: 1;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.dataforms-layouts-panel__field-control .components-button {
+  max-width: 100%;
+  text-align: left;
+  white-space: normal;
+  text-wrap: balance;
+  text-wrap: pretty;
+  min-height: 32px;
+}
+.dataforms-layouts-panel__field-control .components-dropdown {
+  max-width: 100%;
+}
+.dataforms-layouts-panel__field-dropdown .components-popover__content {
+  min-width: 320px;
+  padding: 16px;
+}
+.dataforms-layouts-panel__field-dropdown.components-popover.components-dropdown__content {
+  z-index: 159990;
+}
+.dataforms-layouts-panel__dropdown-header {
+  margin-bottom: 16px;
+}
+
+.dataforms-layouts-regular__field {
+  width: 100%;
+  min-height: 32px;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+.dataforms-layouts-regular__field .components-base-control__label {
+  font-size: inherit;
+  font-weight: normal;
+  text-transform: none;
+}
+.dataforms-layouts-regular__field-label {
+  width: 38%;
+  flex-shrink: 0;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  line-height: 20px;
+  -webkit-hyphens: auto;
+          hyphens: auto;
+}
+.dataforms-layouts-regular__field-control {
+  flex-grow: 1;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=index.css.map*/
