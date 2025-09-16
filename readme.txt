@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks, templates, patterns library
 Tested up to:      6.8
 Requires at least: 6.3
-Stable tag:        0.1.1
+Stable tag:        0.1.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,10 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 
 
 == Changelog ==
+
+= 0.1.2 - 2025-09-16 =
+
+- Added color controls for button icon extension
 
 = 0.1.1 - 2025-09-06 =
 

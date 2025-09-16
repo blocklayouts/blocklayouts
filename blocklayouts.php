@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.3
  * Requires PHP:      7.4
- * Version:           0.1.1
+ * Version:           0.1.2
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -142,34 +142,34 @@ function blocklayouts_add_effects_script_to_footer() {
 	?>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-	const effectsController = {
-		init() {
-			this.setupScrollTriggers();
-		},
-		setupScrollTriggers() {
-			const scrollElements = document.querySelectorAll(
-				".has-animation-effect.animation-trigger-onScroll");
-			if (scrollElements.length === 0) return;
-			const observer = new IntersectionObserver(entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("animation-play");
-					} else {
-						entry.target.classList.remove("animation-play");
-						entry.target.offsetHeight;
-					}
-				});
-			}, {
-				threshold: 0.4,
-				rootMargin: "50px"
-			});
-			scrollElements.forEach(el => observer.observe(el));
-		}
-	};
-	effectsController.init();
+    const effectsController = {
+        init() {
+            this.setupScrollTriggers();
+        },
+        setupScrollTriggers() {
+            const scrollElements = document.querySelectorAll(
+                ".has-animation-effect.animation-trigger-onScroll");
+            if (scrollElements.length === 0) return;
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animation-play");
+                    } else {
+                        entry.target.classList.remove("animation-play");
+                        entry.target.offsetHeight;
+                    }
+                });
+            }, {
+                threshold: 0.4,
+                rootMargin: "50px"
+            });
+            scrollElements.forEach(el => observer.observe(el));
+        }
+    };
+    effectsController.init();
 });
 </script>
-	<?php
+<?php
 }
 add_action( 'wp_footer', __NAMESPACE__ . '\blocklayouts_add_effects_script_to_footer' );
 
