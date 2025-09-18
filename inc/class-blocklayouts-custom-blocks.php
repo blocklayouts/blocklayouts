@@ -45,7 +45,6 @@ class Blocklayouts_Blocks_Registrar {
 				$blocks_path . $block
 			);
 		}
-
 	}
 
 	/**
@@ -61,14 +60,14 @@ class Blocklayouts_Blocks_Registrar {
 
 		foreach ( $blocks as $block ) {
 			$textdomain = 'blocklayouts-' . $block;
-			
+
 			// Try different possible script handle patterns.
 			$possible_handles = array(
 				'blocklayouts-' . $block . '-editor-script',
 				'blocklayouts-' . $block . '-editor',
 				'blocklayouts-' . $block,
 			);
-			
+
 			foreach ( $possible_handles as $handle ) {
 				if ( wp_script_is( $handle, 'registered' ) ) {
 					wp_set_script_translations(
@@ -218,7 +217,7 @@ class Blocklayouts_Blocks_Registrar {
 	 */
 	public function add_wrapper_link_to_block( $block_content, $block ) {
 
-		if ( ! isset( $block['attrs']['wrapperLink']['linkDestination'] ) || ! isset( $block['attrs']['wrapperLink']['href'] ) ) {
+		if ( ! isset( $block['attrs']['wrapperLink']['linkDestination'] ) && ! isset( $block['attrs']['wrapperLink']['href'] ) ) {
 			return $block_content;
 		}
 

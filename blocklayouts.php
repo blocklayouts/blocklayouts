@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.3
  * Requires PHP:      7.4
- * Version:           0.1.2
+ * Version:           0.1.3
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.1.1' );
+define( 'BLOCKLAYOUTS_VERSION', '0.1.3' );
 
 require BLOCKLAYOUTS_PLUGIN_PATH . 'inc/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
