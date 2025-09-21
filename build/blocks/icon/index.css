@@ -58,65 +58,6 @@
   height: 100%;
   padding: 0;
 }
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper {
-  container: dataviews-wrapper/inline-size;
-  display: flex;
-  flex-direction: column;
-  font-size: 13px;
-  height: 100%;
-  line-height: 1.4;
-  scroll-padding-bottom: 64px;
-  padding: 0;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews__view-actions {
-  padding: 16px 0;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
-  container-type: inline-size;
-  grid-template-rows: max-content;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-bottom: auto;
-  padding: 24px 0;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card {
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card:hover {
-  border-color: #d1d5db;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media {
-  aspect-ratio: unset !important;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media:after {
-  display: none !important;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview {
-  height: 280px;
-  overflow: hidden;
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-  margin: 0;
-  border-bottom: 1px solid #e2e8f0;
-  position: relative;
-  background-color: #f4f4f4;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__media .blocklayouts-modal__pattern-preview .blocklayouts-modal__pattern-license {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 999;
-  border-radius: 8px;
-  background-color: #1e1e1e;
-  line-height: 1;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__title-actions {
-  padding: 12px;
-}
 .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .blocklayouts-modal__scrollable {
   padding-left: 4px;
 }
@@ -175,10 +116,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.blocklayouts-modal.is-pages .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .blocklayouts-modal__pattern-preview {
-  min-height: 360px;
 }
 
 @media (max-width: 779px) {

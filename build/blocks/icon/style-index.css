@@ -26,5 +26,9 @@
 .wp-block-blocklayouts-icon.is-line svg path {
   stroke: currentColor;
 }
+.wp-block-blocklayouts-icon .has-padding {
+  width: auto !important;
+  height: auto !important;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

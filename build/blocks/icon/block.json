@@ -72,6 +72,15 @@
     },
     "justifyContent": {
       "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "linkTarget": {
+      "type": "string"
+    },
+    "linkRel": {
+      "type": "string"
     }
   },
   "textdomain": "blocklayouts-icon",
