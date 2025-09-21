@@ -21,7 +21,7 @@ class Blocklayouts_Blocks_Registrar {
 		add_action( 'init', array( $this, 'enqueue_block_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'setup_block_script_translations' ), 20 );
 		add_filter( 'render_block', array( $this, 'apply_custom_css_to_block' ), 10, 2 );
-		add_filter( 'render_block', array( $this, 'add_wrapper_link_to_block' ), 10, 2 );
+		add_filter( 'render_block_core/group', array( $this, 'add_wrapper_link_to_group' ), 10, 2 );
 		add_filter( 'render_block_core/button', array( $this, 'add_inline_icon_to_button' ), 10, 2 );
 		add_action( 'wp_head', array( $this, 'output_custom_css' ) );
 		add_filter( 'load_script_translations', array( $this, 'fix_script_translations_path' ), 10, 3 );
@@ -209,13 +209,13 @@ class Blocklayouts_Blocks_Registrar {
 	}
 
 	/**
-	 * Apply wrapper link to block
+	 * Apply wrapper link to group
 	 *
 	 * @param string $block_content The block content.
 	 * @param array  $block The block data.
 	 * @return string The block content with the wrapper link.
 	 */
-	public function add_wrapper_link_to_block( $block_content, $block ) {
+	public function add_wrapper_link_to_group( $block_content, $block ) {
 
 		if ( ! isset( $block['attrs']['wrapperLink']['linkDestination'] ) && ! isset( $block['attrs']['wrapperLink']['href'] ) ) {
 			return $block_content;
