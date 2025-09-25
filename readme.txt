@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks, templates, patterns library
 Tested up to:      6.8
 Requires at least: 6.3
-Stable tag:        0.1.4
+Stable tag:        0.1.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,7 +110,11 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 
 == Changelog ==
 
-= 0.1.4 - 2025-01-15 =
+= 0.1.5 - 2025-09-25 =
+
+- Improved: Better compatibility with third-party plugins that add inline styles
+
+= 0.1.4 - 2025-09-15 =
 
 - Changed: Group link now uses stretched link instead of wrapper link to avoid nested links
 - Improved: Pattern library functionality and user experience
