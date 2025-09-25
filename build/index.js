@@ -70569,7 +70569,8 @@ const generateInlineStyles = (attributes, isEditor = false, name = undefined) =>
 
     // Typography support check
     const hasTypographySupport = () => {
-      return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getBlockSupport)(blockType, "typography");
+      const typographySupport = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_3__.getBlockSupport)(blockType, "typography");
+      return typographySupport && typographySupport.fontSize !== false;
     };
 
     // Link support check
@@ -70600,7 +70601,7 @@ const generateInlineStyles = (attributes, isEditor = false, name = undefined) =>
             setAttributes: setAttributes,
             clientId: clientId
           })
-        }), hasTypographySupport && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
+        }), hasTypographySupport() && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
           group: "typography",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_typography__WEBPACK_IMPORTED_MODULE_7__.TypographyControls, {
             attributes: attributes,
@@ -70676,6 +70677,7 @@ const generateInlineStyles = (attributes, isEditor = false, name = undefined) =>
           ...props,
           className: classes,
           wrapperProps: {
+            ...props.wrapperProps?.style,
             style: cleanedInlineStyle
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("style", {
@@ -70687,7 +70689,10 @@ const generateInlineStyles = (attributes, isEditor = false, name = undefined) =>
       ...props,
       className: classes,
       wrapperProps: {
-        style: cleanedInlineStyle
+        style: {
+          ...props.wrapperProps?.style,
+          ...cleanedInlineStyle
+        }
       }
     });
   };
@@ -72085,8 +72090,6 @@ const ActivationForm = ({
         });
         return;
       }
-
-      // Check if the license belongs to the correct product
       if (![580294, 567243].includes(validationData.meta?.product_id)) {
         showNotice({
           type: "error",
