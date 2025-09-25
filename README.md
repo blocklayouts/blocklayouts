@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/badge/License-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Version](https://img.shields.io/badge/Version-0.1.5-orange.svg)](https://github.com/blocklayouts/blocklayouts)
 
+![Plugin Banner](https://github.com/blocklayouts/blocklayouts/blob/main/.wordpress-org/banner-1544x500.png)
+
 **Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPress sites faster.**
 
 [Blocklayouts](https://blocklayouts.com/) supercharges WordPress with custom Gutenberg blocks, enhanced core block functionality, and a growing library of professional pre-designed patterns for faster site building.
