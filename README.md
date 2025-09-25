@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-6.3%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-0.1.4-orange.svg)](https://github.com/blocklayouts/blocklayouts)
+[![Version](https://img.shields.io/badge/Version-0.1.5-orange.svg)](https://github.com/blocklayouts/blocklayouts)
 
 **Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPress sites faster.**
 
