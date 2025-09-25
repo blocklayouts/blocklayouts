@@ -23,3 +23,6 @@
 .wp-element-button.has-text-align-right:has(span.wp-blocklayouts-inline-icon) {
 	justify-content: end;
 }
+.wp-block-button.nowrap .wp-element-button {
+	white-space: nowrap;
+}
