@@ -11,6 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Blocklayouts_Blocks_Registrar {
 
+	/**
+	 * Array to store custom CSS for blocks.
+	 *
+	 * @var array
+	 */
 	private $custom_css = array();
 
 	/**
@@ -21,10 +26,12 @@ class Blocklayouts_Blocks_Registrar {
 		add_action( 'init', array( $this, 'enqueue_block_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'setup_block_script_translations' ), 20 );
 		add_filter( 'render_block', array( $this, 'apply_custom_css_to_block' ), 10, 2 );
-		add_filter( 'render_block_core/group', array( $this, 'add_wrapper_link_to_group' ), 10, 2 );
-		add_filter( 'render_block_core/button', array( $this, 'add_inline_icon_to_button' ), 10, 2 );
-		add_action( 'wp_head', array( $this, 'output_custom_css' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_custom_css' ) );
 		add_filter( 'load_script_translations', array( $this, 'fix_script_translations_path' ), 10, 3 );
+
+		// render block filters
+		add_filter( 'render_block_core/button', array( $this, 'add_inline_icon_to_button' ), 10, 2 );
+		add_filter( 'render_block_core/group', array( $this, 'add_wrapper_link_to_group' ), 10, 2 );
 	}
 
 	/**
@@ -265,6 +272,10 @@ class Blocklayouts_Blocks_Registrar {
 
 	/**
 	 * Apply custom css to block
+	 *
+	 * @param string $block_content The block content.
+	 * @param array  $block The block data.
+	 * @return string The modified block content.
 	 */
 	public function apply_custom_css_to_block( $block_content, $block ) {
 		if ( ! empty( $block['attrs']['additionalCSS']['customCSS'] ) && ! empty( $block['attrs']['additionalCSS']['selector'] ) ) {
@@ -289,9 +300,9 @@ class Blocklayouts_Blocks_Registrar {
 	}
 
 	/**
-	 * Output custom CSS in the head
+	 * Enqueue custom CSS using
 	 */
-	public function output_custom_css() {
+	public function enqueue_custom_css() {
 		$output = '
 			 /* Blocklayouts CSS - Hovers */
 			.has-hover__color:not(.wp-block-button):hover {
@@ -321,7 +332,7 @@ class Blocklayouts_Blocks_Registrar {
 
 					$css = str_replace( 'selector', ".{$selector}", $css );
 
-					// Responsive CSS handling
+					// Responsive CSS handling.
 					$css = preg_replace( '/@mobile\s*{([^}]*)}/s', '@media (max-width: 779px) {$1}', $css );
 					$css = preg_replace( '/@tablet\s*{([^}]*)}/s', '@media (min-width: 780px) and (max-width: 1024px) {$1}', $css );
 					$css = preg_replace( '/@desktop\s*{([^}]*)}/s', '@media (min-width: 1025px) {$1}', $css );
@@ -331,21 +342,29 @@ class Blocklayouts_Blocks_Registrar {
 				}
 			}
 		}
-		// Output the CSS if we have any.
+
+		// Only enqueue if we have CSS to output.
 		if ( ! empty( $output ) ) {
-			echo wp_kses(
-				"<style id=\"blocklayouts-blocks-custom-css\">\n{$output}</style>\n",
-				array(
-					'style' => array(
-						'id' => array(),
-					),
-				)
+			// Register and enqueue the custom CSS.
+			wp_register_style(
+				'blocklayouts-custom-css',
+				'', // Empty src since we're using inline CSS.
+				array(), // No dependencies.
+				BLOCKLAYOUTS_VERSION
 			);
+
+			wp_enqueue_style( 'blocklayouts-custom-css' );
+
+			// Add inline CSS using wp_add_inline_style.
+			wp_add_inline_style( 'blocklayouts-custom-css', $output );
 		}
 	}
 
 	/**
 	 * Sanitize CSS content.
+	 *
+	 * @param string $css The CSS content to sanitize.
+	 * @return string The sanitized CSS content.
 	 */
 	private function sanitize_css( $css ) {
 		// Remove potentially dangerous CSS.
