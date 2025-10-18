@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.3
  * Requires PHP:      7.4
- * Version:           0.1.5
+ * Version:           0.1.6
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.1.5' );
+define( 'BLOCKLAYOUTS_VERSION', '0.1.6' );
 
 require BLOCKLAYOUTS_PLUGIN_PATH . 'inc/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
@@ -134,13 +134,24 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_animati
  *
  * @since 0.1.0
  */
-function blocklayouts_add_effects_script_to_footer() {
+function blocklayouts_enqueue_effects_script() {
 	if ( is_admin() ) {
 		return;
 	}
 
-	?>
-<script>
+	// Register and enqueue the effects script.
+	wp_register_script(
+		'blocklayouts-effects-script',
+		'', // Empty src since we're using inline script.
+		array(), // No dependencies.
+		BLOCKLAYOUTS_VERSION,
+		true // Load in footer.
+	);
+
+	wp_enqueue_script( 'blocklayouts-effects-script' );
+
+	// Add inline script using wp_add_inline_script.
+	$inline_script = '
 document.addEventListener("DOMContentLoaded", function() {
 	const effectsController = {
 		init() {
@@ -167,11 +178,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	};
 	effectsController.init();
-});
-</script>
-	<?php
+});';
+
+	wp_add_inline_script( 'blocklayouts-effects-script', $inline_script );
 }
-add_action( 'wp_footer', __NAMESPACE__ . '\blocklayouts_add_effects_script_to_footer' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_effects_script' );
 
 /**
  * Plugin deactivation hook

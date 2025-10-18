@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-6.3%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-0.1.5-orange.svg)](https://github.com/blocklayouts/blocklayouts)
+[![Version](https://img.shields.io/badge/Version-0.1.6-orange.svg)](https://github.com/blocklayouts/blocklayouts)
 
 ![Plugin Banner](https://github.com/blocklayouts/blocklayouts/blob/main/.wordpress-org/banner-1544x500.png)
 
@@ -11,7 +11,7 @@
 
 [Blocklayouts](https://blocklayouts.com/) supercharges WordPress with custom Gutenberg blocks, enhanced core block functionality, and a growing library of professional pre-designed patterns for faster site building.
 
-## 🚀 Features
+## Features
 
 **Improve what WordPress already has, add what it doesn't, make everything feel native.**
 
@@ -39,7 +39,7 @@ Blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 - **Category Organization** - Patterns organized by industry and category
 - **Regular Updates** - New patterns added regularly
 
-## 🎯 Why Choose Blocklayouts
+## Why Choose Blocklayouts
 
 ### Built for WordPress Developers & Designers
 
@@ -60,13 +60,13 @@ Blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 - **Block Extensions** - Enhance existing blocks without learning new interfaces
 - **Custom CSS Support** - Advanced styling without leaving the editor
 
-## 📋 Requirements
+## Requirements
 
 - **WordPress**: 6.3 or higher
 - **PHP**: 7.4 or higher
 - **Tested up to**: WordPress 6.8
 
-## 🔧 Installation
+## Installation
 
 ### From WordPress Admin
 
@@ -81,7 +81,7 @@ Blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 2. Upload the plugin folder to your `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 
-## 🔒 Privacy
+## Privacy
 
 Blocklayouts is a SaaS (software as a service) connector plugin that uses a custom API to fetch WordPress patterns and page templates from our servers. API requests are only made when a user clicks on the Library button.
 
@@ -89,7 +89,7 @@ We only collect the website URL when you activate a license key. This helps us v
 
 By using Blocklayouts and accessing our pattern library, you agree to our [privacy policy](https://blocklayouts.com/privacy-policy/) and [terms of service](https://blocklayouts.com/terms-of-service/).
 
-## ❓ FAQ
+## FAQ
 
 ### Is Blocklayouts free?
 
@@ -111,7 +111,7 @@ Not at all! Blocklayouts is designed for users of all skill levels. However, the
 
 Yes! We provide support through the WordPress.org support forums. For premium support options, please visit [our website](https://blocklayouts.com/support/).
 
-## 🔗 Links
+## Links
 
 - [Website](https://blocklayouts.com/)
 - [Pattern Library](https://blocklayouts.com/patterns)
@@ -119,7 +119,7 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 - [Privacy Policy](https://blocklayouts.com/privacy-policy/)
 - [Terms of Service](https://blocklayouts.com/terms-of-service/)
 
-## 👥 Contributors
+## Contributors
 
 - [blocklayouts](https://github.com/blocklayouts)
 - [qarayahya](https://github.com/qarayahya)

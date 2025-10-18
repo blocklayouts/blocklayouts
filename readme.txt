@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks, templates, patterns library
 Tested up to:      6.8
 Requires at least: 6.3
-Stable tag:        0.1.5
+Stable tag:        0.1.6
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,10 @@ By using Blocklayouts and accessing our pattern library, you agree to our [priva
 3. Press **Install Now**.
 4. Once installed, click **Activate Plugin**.
 
+== Development ==
+
+Source code and development tools are available at: https://github.com/blocklayouts/blocklayouts
+
 == Frequently Asked Questions ==
 
 = Is Blocklayouts free? =
@@ -109,6 +113,11 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 
 
 == Changelog ==
+
+= 0.1.6 - 2025-10-18 =
+
+- Security: Prevented direct file access.
+- Improved: Fix the modal pattern library layout.
 
 = 0.1.5 - 2025-09-25 =
 
