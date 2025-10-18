@@ -197,8 +197,8 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/modal/editor.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
-  width: 300px;
-  margin-right: 20px;
+  min-width: 240px;
+  margin-right: 36px;
 }
 .blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs {
   display: flex;
@@ -212,9 +212,8 @@
   box-shadow: none;
   outline: none;
 }
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__refresh-button,
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__account-button {
-  border-radius: 8px;
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:hover:not(:disabled) {
+  background-color: #f8f9fa;
 }
 .blocklayouts-modal .components-modal__content {
   overflow: unset;
@@ -228,7 +227,7 @@
   gap: 20px;
 }
 .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
-  width: 220px;
+  min-width: 240px;
   padding-top: 16px;
   margin-right: 12px;
   display: flex;
