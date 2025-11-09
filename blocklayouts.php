@@ -5,13 +5,12 @@
  * Plugin URI:        https://blocklayouts.com/
  * Author:            blocklayouts
  * Author URI:        https://github.com/blocklayouts/
- * Requires at least: 6.3
+ * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           0.1.6
+ * Version:           0.2.1
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
- * Domain Path:       /languages
  *
  * @package Blocklayouts
  */
@@ -25,19 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.1.6' );
-
-require BLOCKLAYOUTS_PLUGIN_PATH . 'inc/plugin-update-checker/plugin-update-checker.php';
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
-
-$blocklayouts_update_checker = PucFactory::buildUpdateChecker(
-	'https://github.com/blocklayouts/blocklayouts',
-	__FILE__,
-	'blocklayouts'
-);
-
-$blocklayouts_update_checker->setBranch( 'main' );
-$blocklayouts_update_checker->getVcsApi()->enableReleaseAssets();
+define( 'BLOCKLAYOUTS_VERSION', '0.2.1' );
 
 /**
  * Initialize.
@@ -49,20 +36,6 @@ require_once __DIR__ . '/inc/class-blocklayouts-cron.php';
 require_once __DIR__ . '/inc/class-blocklayouts-custom-blocks.php';
 
 ( new Blocklayouts_Cron() )->init();
-
-/**
- * Load plugin textdomain.
- *
- * @since 0.1.0
- */
-function blocklayouts_load_textdomain() {
-	load_plugin_textdomain(
-		'blocklayouts',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
-	);
-}
-add_action( 'init', __NAMESPACE__ . '\blocklayouts_load_textdomain' );
 
 /**
  * Enqueue editor assets.
@@ -115,74 +88,52 @@ function blocklayouts_enqueue_editor_assets() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\blocklayouts_enqueue_editor_assets' );
 
 /**
- * Enqueue animation CSS file.
+ * Enqueue CSS & JavaScript files.
  *
  * @since 0.1.0
  */
-function blocklayouts_enqueue_animation_css() {
-	wp_enqueue_style(
-		'blocklayouts-animation-css',
-		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/animation.min.css',
-		array(),
-		BLOCKLAYOUTS_VERSION
-	);
-}
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_animation_css' );
+function blocklayouts_enqueue_css_and_js() {
 
-/**
- * Enqueue effects frontend JavaScript
- *
- * @since 0.1.0
- */
-function blocklayouts_enqueue_effects_script() {
 	if ( is_admin() ) {
 		return;
 	}
 
-	// Register and enqueue the effects script.
-	wp_register_script(
-		'blocklayouts-effects-script',
-		'', // Empty src since we're using inline script.
-		array(), // No dependencies.
-		BLOCKLAYOUTS_VERSION,
-		true // Load in footer.
+	wp_enqueue_style(
+		'blocklayouts-main-styles',
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/blocklayouts.css', // TODO: minify this file
+		array(),
+		BLOCKLAYOUTS_VERSION
 	);
 
-	wp_enqueue_script( 'blocklayouts-effects-script' );
+	// JS.
+	wp_register_script(
+		'blocklayouts-main-scripts',
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/js/blocklayouts.js', // TODO: minify this file
+		array(),
+		BLOCKLAYOUTS_VERSION,
+		true
+	);
 
-	// Add inline script using wp_add_inline_script.
-	$inline_script = '
-document.addEventListener("DOMContentLoaded", function() {
-	const effectsController = {
-		init() {
-			this.setupScrollTriggers();
-		},
-		setupScrollTriggers() {
-			const scrollElements = document.querySelectorAll(
-				".has-animation-effect.animation-trigger-onScroll");
-			if (scrollElements.length === 0) return;
-			const observer = new IntersectionObserver(entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("animation-play");
-					} else {
-						entry.target.classList.remove("animation-play");
-						entry.target.offsetHeight;
-					}
-				});
-			}, {
-				threshold: 0.4,
-				rootMargin: "50px"
-			});
-			scrollElements.forEach(el => observer.observe(el));
-		}
-	};
-	effectsController.init();
-});';
-
-	wp_add_inline_script( 'blocklayouts-effects-script', $inline_script );
+	wp_enqueue_script( 'blocklayouts-main-scripts' );
 }
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_effects_script' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_css_and_js' );
+
+/**
+ * Register new block category
+ *
+ * @param array $block_categories Block categories.
+ * @return array Block categories.
+ */
+function blocklayouts_register_block_category( $block_categories ) {
+
+	$block_categories[] = array(
+		'slug'  => 'blocklayouts',
+		'title' => __( 'Blocklayouts', 'blocklayouts' ),
+	);
+
+	return $block_categories;
+}
+add_filter( 'block_categories_all', __NAMESPACE__ . '\blocklayouts_register_block_category', 10, 2 );
 
 /**
  * Plugin deactivation hook
