@@ -8,9 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Blocklayouts_Api {
 
-	private static $instance                   = null;
-	private const BLOCKLAYOUTS_API_URL         = 'https://patterns.blocklayouts.com/api/v2';
-	private const BLOCKLAYOUTS_LICENSE_API_URL = 'https://api.lemonsqueezy.com/v1/licenses';
+	private static $instance           = null;
+	private const BLOCKLAYOUTS_API_URL = 'https://patterns.blocklayouts.com/api/v2';
 
 	public function get_patterns( array $args = array() ) {
 		return $this->request( 'GET', self::BLOCKLAYOUTS_API_URL . '/patterns', $args );
@@ -29,15 +28,15 @@ class Blocklayouts_Api {
 	}
 
 	public function activate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_LICENSE_API_URL . '/activate', $args );
+		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/activate', $args );
 	}
 
 	public function deactivate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_LICENSE_API_URL . '/deactivate', $args );
+		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/deactivate', $args );
 	}
 
 	public function validate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_LICENSE_API_URL . '/validate', $args );
+		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/validate', $args );
 	}
 
 	private function request( string $method, string $path, array $body ): array|\WP_Error {
@@ -49,11 +48,10 @@ class Blocklayouts_Api {
 		$response = wp_remote_request(
 			$path,
 			array(
-				'body'      => $body,
-				'method'    => $method,
-				'timeout'   => 20,
-				'sslverify' => false,
-				'headers'   => array(
+				'body'    => $body,
+				'method'  => $method,
+				'timeout' => 20,
+				'headers' => array(
 					'Referer' => home_url(),
 					'Accept'  => 'application/json',
 				),
