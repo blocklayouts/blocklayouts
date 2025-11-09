@@ -221,7 +221,7 @@ class Blocklayouts_REST_API {
 
 		$response = Blocklayouts_Api::get_instance()->activate_license( $args );
 
-		if ( ! empty( $response['activated'] && $response['activated'] ) ) {
+		if ( ! empty( $response['activated'] ) && $response['activated'] ) {
 			$result = License::get_instance()->save_license_data( $response );
 			if ( $result ) {
 				return rest_ensure_response(
@@ -248,8 +248,8 @@ class Blocklayouts_REST_API {
 
 	public function rest_deactivate_license( $request ) {
 
-		$license_key = $request->get_param( 'license_key' );
-		$instance_id = $request->get_param( 'instance_id' );
+		$license_key = sanitize_text_field( $request->get_param( 'license_key' ) );
+		$instance_id = sanitize_text_field( $request->get_param( 'instance_id' ) );
 
 		if ( empty( $license_key ) ) {
 			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
@@ -382,7 +382,7 @@ class Blocklayouts_REST_API {
 	 * Generate cache key
 	 */
 	private function get_cache_key( string $endpoint, array $params = array() ): string {
-		return $this->cache_prefix . $endpoint . '_' . md5( serialize( $params ) );
+		return $this->cache_prefix . $endpoint . '_' . md5( wp_json_encode( $params ) );
 	}
 
 	/**
