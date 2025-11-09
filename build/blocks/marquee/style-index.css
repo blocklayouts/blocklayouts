@@ -39,11 +39,9 @@
   margin: 0;
   white-space: nowrap;
 }
-
 .pause-on-hover:hover {
   animation-play-state: paused;
 }
-
 @keyframes marquee-scroll-left {
   from {
     transform: translateX(0);

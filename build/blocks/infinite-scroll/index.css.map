@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/infinite-scroll/index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://blocklayouts/./src/blocks/infinite-scroll/editor.scss"],"sourcesContent":[".blocklayouts-infinite-scroll__preview {\r\n\tborder: 2px dashed #ddd;\r\n}\r\n"],"names":[],"sourceRoot":""}

@@ -1,3 +1,24 @@
+/* Hovers */
+.has-hover__color:not(.wp-block-button):hover {
+	color: var(--hover-color) !important;
+}
+.has-hover__background-color:not(.wp-block-button):hover {
+	background-color: var(--hover-background-color) !important;
+}
+.has-hover__border-color:not(.wp-block-button):hover {
+	border-color: var(--hover-border-color) !important;
+}
+.wp-block-button.has-hover__color:hover .wp-element-button {
+	color: var(--hover-color) !important;
+}
+.wp-block-button.has-hover__background-color:hover .wp-element-button {
+	background-color: var(--hover-background-color) !important;
+}
+.wp-block-button.has-hover__border-color:hover .wp-element-button {
+	border-color: var(--hover-border-color) !important;
+}
+
+/* Animations */
 @keyframes fadeIn {
 	from {
 		opacity: 0;

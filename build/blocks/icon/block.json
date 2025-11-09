@@ -2,9 +2,9 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "blocklayouts/icon",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "title": "Icon",
-  "category": "design",
+  "category": "blocklayouts",
   "icon": "star-filled",
   "description": "Add a customizable icon to your content.",
   "supports": {
@@ -83,7 +83,7 @@
       "type": "string"
     }
   },
-  "textdomain": "blocklayouts-icon",
+  "textdomain": "blocklayouts",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

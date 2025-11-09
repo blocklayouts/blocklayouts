@@ -1,398 +1,41 @@
-/*!****************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/hover-colors/editor.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************/
-.has-hover__color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__color:not(.wp-block-button):hover {
-  color: var(--hover-color) !important;
-}
-
-.has-hover__background-color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__background-color:not(.wp-block-button):hover {
-  background-color: var(--hover-background-color) !important;
-}
-
-.has-hover__border-color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__border-color:not(.wp-block-button):hover {
-  border-color: var(--hover-border-color) !important;
-}
-
-.wp-block-button.has-hover__color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__color:hover .wp-element-button {
-  color: var(--hover-color) !important;
-}
-
-.wp-block-button.has-hover__background-color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__background-color:hover .wp-element-button {
-  background-color: var(--hover-background-color) !important;
-}
-
-.wp-block-button.has-hover__border-color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__border-color:hover .wp-element-button {
-  border-color: var(--hover-border-color) !important;
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/additional-css/editor.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************/
-.blocklayouts-css-editor {
-  border: 1px solid #e2e4e7;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-.blocklayouts-css-editor .CodeMirror {
-  height: auto;
-  min-height: 100px;
-}
-.blocklayouts-css-editor .CodeMirror-scroll {
-  min-height: 100px;
-}
-
-.blocklayouts-css-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.blocklayouts-css-help {
-  font-style: italic;
-  margin-top: 8px;
-}
-
-.blocklayouts-css-example {
-  margin-top: 16px;
-  padding: 12px;
-  background: #f0f0f0;
-  border-radius: 4px;
-}
-.blocklayouts-css-example h4 {
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-.blocklayouts-css-example pre {
-  background: #fff;
-  padding: 8px;
-  border-radius: 4px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/effects/editor.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
-.blocklayouts-tools-panel-effects-settings__item {
-  border: 1px solid #ddd;
-  border-radius: 2px;
-}
-
-.blocklayouts-effects-settings {
-  width: 100%;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown {
-  position: relative;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-toggle {
-  width: 100%;
-  gap: 12px !important;
-  padding-right: 4px !important;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-reset {
-  transition: opacity 0.1s ease-in-out;
-  margin: auto 8px;
-  opacity: 0;
-  position: absolute;
-  left: 0;
-  top: 8px;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown:hover .blocklayouts-effects-settings__dropdown-reset {
-  opacity: 1;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator {
-  background-color: #f3f3f3;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-  padding: 0;
-}
-.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator.disabled {
-  background: #fff linear-gradient(45deg, rgba(0, 0, 0, 0) 48%, #ddd 0, #ddd 52%, rgba(0, 0, 0, 0) 0);
-  display: inline-block;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-}
-/*!****************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/wrapper-link/editor.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************************/
-.blocklayouts__link-popover .components-popover__content {
-  min-width: 350px;
-  box-shadow: 0 0 0 1px #ccc, 0 2px 3px rgba(0, 0, 0, 0.0509803922), 0 4px 5px rgba(0, 0, 0, 0.0392156863), 0 12px 12px rgba(0, 0, 0, 0.031372549), 0 16px 16px rgba(0, 0, 0, 0.0196078431);
-}
-.blocklayouts__link-popover .block-editor-link-control__field {
-  margin: 8px;
-}
-.blocklayouts__link-popover .block-editor-link-control__search-item {
-  padding: 8px;
-}
-.blocklayouts__link-popover-menu {
-  border-top: 1px solid #ccc;
-  padding: 8px;
-}
-.blocklayouts__link-popover-menu .components-button.has-icon {
-  height: auto;
-  padding-right: 8px;
-  padding-left: 8px;
-  text-align: right;
-}
-.blocklayouts__link-popover-menu .components-button.has-icon > svg {
-  margin-left: 8px;
-}
-.blocklayouts__link-popover-post-selected {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  padding: 16px;
-}
-.blocklayouts__link-popover-post-selected-label {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-}
-.blocklayouts__link-popover-post-selected-icon {
-  background-color: #f0f0f0;
-  border-radius: 2px;
-  height: 32px;
-  width: 32px;
-  align-items: center;
-  display: flex;
-  flex-shrink: 0;
-  justify-content: center;
-  position: relative;
-}
-/*!*********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/modal/editor.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************************/
-.blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
-  min-width: 240px;
-  margin-left: 36px;
-}
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs {
-  display: flex;
-  gap: 8px;
-}
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button.is-selected {
-  background-color: #f3f4f6;
-  font-weight: 500;
-}
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:focus:not(:disabled) {
-  box-shadow: none;
-  outline: none;
-}
-.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:hover:not(:disabled) {
-  background-color: #f8f9fa;
-}
-.blocklayouts-modal .components-modal__content {
-  overflow: unset;
-}
-.blocklayouts-modal .components-modal__content div:has(> div.blocklayouts-modal__container) {
-  height: 100%;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
-  height: 100%;
-  display: flex;
-  gap: 20px;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
-  min-width: 240px;
-  padding-top: 16px;
-  margin-left: 12px;
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button.is-selected {
-  background-color: #f3f4f6;
-  font-weight: 500;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button:focus:not(:disabled) {
-  box-shadow: none;
-  outline: none;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content {
-  flex: 1;
-  height: 100%;
-  padding: 0;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .blocklayouts-modal__scrollable {
-  padding-right: 4px;
-}
-.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__screen-overlay {
-  position: absolute;
-  z-index: 999;
-  top: 72px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable {
-  padding-left: 6px;
-  margin-left: -14px;
-  scrollbar-width: auto;
-  -ms-overflow-style: auto;
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-track {
-  background: transparent;
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0);
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable:hover::-webkit-scrollbar-thumb {
-  background-color: #7f7f7f;
-}
-
-.blocklayouts-modal__overlay {
-  z-index: 9999 !important;
-}
-
-.blocklayouts-modal__styling-content {
-  min-width: 240px;
-}
-
-.blocklayouts-modal__spinner {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-}
-
-.blocklayouts-modal__filters-content .components-popover__content {
-  width: auto;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-@media (max-width: 779px) {
-  .blocklayouts-modal .components-modal__content {
-    width: 100%;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
-    display: block;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
-    flex-direction: row;
-    gap: 16px;
-    width: 100%;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar h4 {
-    display: none;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__scrollable {
-    overflow: auto hidden !important;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
-    display: inline-flex;
-    flex-direction: row;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button {
-    white-space: nowrap;
-  }
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-@media (min-width: 780px) and (max-width: 1024px) {
-  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  50% {
-    opacity: 0.5;
-  }
-}
-/*!******************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/quick-inserter/editor.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************/
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons {
-  display: grid;
-  gap: 2px;
-  padding: 16px 0;
-  grid-template-columns: repeat(4, 1fr);
-}
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1/1;
-  width: 100%;
-  height: auto !important;
-}
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button .icon-title {
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/modal/components/dropdown/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-user-account-dropdown__content .components-menu-item__button > svg {
+  color: #4b5563;
+}
+.blocklayouts-user-account-dropdown__content .license-status {
+  border-radius: 999px;
+  padding: 4px 8px;
+  line-height: 1;
   font-size: 12px;
-  margin-top: 12px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
 }
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button:hover {
-  background-color: #f9fafb;
+.blocklayouts-user-account-dropdown__content .license-status.inactive {
+  background-color: #fefce8;
+  color: #eab308;
+  border: 1px solid #eab308;
 }
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected {
-  background-color: #f9fafb;
+.blocklayouts-user-account-dropdown__content .license-status.active {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #16a34a;
 }
-.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected .icon-title {
-  font-weight: 600;
-  color: #000;
+.blocklayouts-user-account-dropdown__content .license-status.expired {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #dc2626;
 }
-/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/components/dataview/dataview.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-user-account-dropdown__content .license-status.disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #6b7280;
+}
+.blocklayouts-user-account-dropdown__content .license-details-item {
+  color: #9ca3af;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/modal/components/content/dataview.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 .dataviews-filters__button {
   position: relative;
 }
@@ -598,12 +241,10 @@
   position: relative;
   flex-shrink: 0;
 }
-
 .dataviews-filters__container {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-
 .dataviews-filters-toggle__count {
   position: absolute;
   top: 0;
@@ -621,7 +262,6 @@
   color: #fff;
   box-sizing: border-box;
 }
-
 .dataviews-settings-section:has(.dataviews-view-config__properties) {
   display: none;
 }
@@ -658,11 +298,9 @@
     grid-column: span 2;
   }
 }
-
 .dataviews-action-modal {
   z-index: 1000001;
 }
-
 .dataviews-selection-checkbox {
   --checkbox-input-size: 24px;
   line-height: 0;
@@ -673,7 +311,6 @@
     --checkbox-input-size: 16px;
   }
 }
-
 .dataviews-view-config {
   width: 320px;
   /* stylelint-disable-next-line property-no-unknown */
@@ -684,7 +321,6 @@
 .dataviews-view-config__sort-direction .components-toggle-group-control-option-base {
   text-transform: uppercase;
 }
-
 .dataviews-config__popover.is-expanded .dataviews-config__popover-content-wrapper {
   overflow-y: scroll;
   height: 100%;
@@ -692,7 +328,6 @@
 .dataviews-config__popover.is-expanded .dataviews-config__popover-content-wrapper .dataviews-view-config {
   width: auto;
 }
-
 .dataviews-field-control__field {
   height: 32px;
 }
@@ -724,16 +359,13 @@
   font-style: normal;
   color: #757575;
 }
-
 .dataviews-column-primary__media {
   max-width: 60px;
 }
-
 .dataviews-controls__datetime {
   border: none;
   padding: 0;
 }
-
 .dataforms-layouts-panel__field {
   width: 100%;
   min-height: 32px;
@@ -748,8 +380,7 @@
   align-items: center;
   padding: 6px 0;
   line-height: 20px;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
 }
 .dataforms-layouts-panel__field-control {
   flex-grow: 1;
@@ -778,7 +409,6 @@
 .dataforms-layouts-panel__dropdown-header {
   margin-bottom: 16px;
 }
-
 .dataforms-layouts-regular__field {
   width: 100%;
   min-height: 32px;
@@ -798,8 +428,7 @@
   align-items: center;
   padding: 6px 0;
   line-height: 20px;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  hyphens: auto;
 }
 .dataforms-layouts-regular__field-control {
   flex-grow: 1;
@@ -807,7 +436,6 @@
   display: flex;
   align-items: center;
 }
-
 .dataviews-wrapper {
   container: dataviews-wrapper/inline-size;
   display: flex;
@@ -867,7 +495,416 @@
 .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .dataviews-view-grid__title-actions {
   padding: 12px;
 }
-
 .blocklayouts-modal.is-pages .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid .dataviews-view-grid__card .blocklayouts-modal__pattern-preview {
   aspect-ratio: 3/3;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/additional-css/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-css-editor {
+  border: 1px solid #e2e4e7;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.blocklayouts-css-editor .CodeMirror {
+  height: auto;
+  min-height: 100px;
+}
+.blocklayouts-css-editor .CodeMirror-scroll {
+  min-height: 100px;
+}
+.blocklayouts-css-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.blocklayouts-css-help {
+  font-style: italic;
+  margin-top: 8px;
+}
+.blocklayouts-css-example {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+.blocklayouts-css-example h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.blocklayouts-css-example pre {
+  background: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/effects/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-effects-panel__inner-wrapper {
+  row-gap: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
+  grid-column: 1/-1;
+}
+
+.blocklayouts-tools-panel-effects-settings__item {
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.blocklayouts-tools-panel-effects-settings__item:nth-child(1 of .blocklayouts-tools-panel-effects-settings__item) {
+  border-top: 1px solid #ddd;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.blocklayouts-tools-panel-effects-settings__item:nth-last-child(1 of .blocklayouts-tools-panel-effects-settings__item) {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.blocklayouts-effects-settings {
+  width: 100%;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown {
+  position: relative;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-toggle {
+  width: 100%;
+  gap: 12px !important;
+  padding-right: 4px !important;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown-reset {
+  transition: opacity 0.1s ease-in-out;
+  margin: auto 8px;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown:hover .blocklayouts-effects-settings__dropdown-reset {
+  opacity: 1;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator {
+  background-color: #f3f3f3;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+}
+
+.blocklayouts-effects-settings .blocklayouts-effects-settings__dropdown .blocklayouts-effects-settings__indicator.disabled {
+  background: #fff linear-gradient(45deg, rgba(0, 0, 0, 0) 48%, #ddd 0, #ddd 52%, rgba(0, 0, 0, 0) 0);
+  display: inline-block;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/hover-colors/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.has-hover__color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__color:not(.wp-block-button):hover {
+  color: var(--hover-color) !important;
+}
+.has-hover__background-color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__background-color:not(.wp-block-button):hover {
+  background-color: var(--hover-background-color) !important;
+}
+.has-hover__border-color:not(.wp-block-button) {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.has-hover__border-color:not(.wp-block-button):hover {
+  border-color: var(--hover-border-color) !important;
+}
+.wp-block-button.has-hover__color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__color:hover .wp-element-button {
+  color: var(--hover-color) !important;
+}
+.wp-block-button.has-hover__background-color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__background-color:hover .wp-element-button {
+  background-color: var(--hover-background-color) !important;
+}
+.wp-block-button.has-hover__border-color .wp-element-button {
+  transition-duration: 200ms;
+  transition-property: color, background-color, border-color;
+  transition-timing-function: ease-in-out;
+}
+.wp-block-button.has-hover__border-color:hover .wp-element-button {
+  border-color: var(--hover-border-color) !important;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/wrapper-link/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts__link-popover .components-popover__content {
+  min-width: 350px;
+  box-shadow: 0 0 0 1px #ccc, 0 2px 3px rgba(0, 0, 0, 0.0509803922), 0 4px 5px rgba(0, 0, 0, 0.0392156863), 0 12px 12px rgba(0, 0, 0, 0.031372549), 0 16px 16px rgba(0, 0, 0, 0.0196078431);
+}
+.blocklayouts__link-popover .block-editor-link-control__field {
+  margin: 8px;
+}
+.blocklayouts__link-popover .block-editor-link-control__search-item {
+  padding: 8px;
+}
+.blocklayouts__link-popover-menu {
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+.blocklayouts__link-popover-menu .components-button.has-icon {
+  height: auto;
+  padding-right: 8px;
+  padding-left: 8px;
+  text-align: right;
+}
+.blocklayouts__link-popover-menu .components-button.has-icon > svg {
+  margin-left: 8px;
+}
+.blocklayouts__link-popover-post-selected {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+}
+.blocklayouts__link-popover-post-selected-label {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.blocklayouts__link-popover-post-selected-icon {
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  position: relative;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon/components/quick-inserter/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons {
+  display: grid;
+  gap: 2px;
+  padding: 16px 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  width: 100%;
+  height: auto !important;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button .icon-title {
+  font-size: 12px;
+  margin-top: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button:hover {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected {
+  background-color: #f9fafb;
+}
+.blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons .blocklayouts-icon-settings__icons-button.is-selected .icon-title {
+  font-weight: 600;
+  color: #000;
+}
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
+  min-width: 240px;
+  margin-left: 36px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs {
+  display: flex;
+  gap: 8px;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__header .blocklayouts-modal__tabs .blocklayouts-modal__tabs-button:hover:not(:disabled) {
+  background-color: #f8f9fa;
+}
+.blocklayouts-modal .components-modal__content {
+  overflow: unset;
+}
+.blocklayouts-modal .components-modal__content div:has(> div.blocklayouts-modal__container) {
+  height: 100%;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+  width: 240px;
+  padding-top: 16px;
+  margin-left: 12px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content {
+  flex: 1;
+  height: 100%;
+  padding: 0;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .blocklayouts-modal__scrollable {
+  padding-right: 4px;
+}
+.blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__screen-overlay {
+  position: absolute;
+  z-index: 999;
+  top: 72px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable {
+  padding-left: 6px;
+  margin-left: -14px;
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0);
+}
+.blocklayouts-modal .blocklayouts-modal__scrollable:hover::-webkit-scrollbar-thumb {
+  background-color: #7f7f7f;
+}
+.blocklayouts-modal__overlay {
+  z-index: 9999 !important;
+}
+.blocklayouts-modal__spinner {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+@media (max-width: 779px) {
+  .blocklayouts-modal .components-modal__content {
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
+    display: block;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar {
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar h4 {
+    display: none;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__scrollable {
+    overflow: auto hidden !important;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons {
+    display: inline-flex;
+    flex-direction: row;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__sidebar .blocklayouts-modal__sidebar-buttons .blocklayouts-modal__sidebar-button {
+    white-space: nowrap;
+  }
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+@media (min-width: 780px) and (max-width: 1024px) {
+  .blocklayouts-modal .components-modal__content .blocklayouts-modal__container .blocklayouts-modal__content .dataviews-wrapper .dataviews-view-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+/* Preferences */
+.blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs {
+  padding: 16px 0;
+}
+.blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs .blocklayouts-preferences-modal__sidebar-tab.is-selected {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+.blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs .blocklayouts-preferences-modal__sidebar-tab:focus:not(:disabled) {
+  box-shadow: none;
+  outline: none;
+}
+.blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs .blocklayouts-preferences-modal__sidebar-tab:hover:not(:disabled) {
+  background-color: #f8f9fa;
 }

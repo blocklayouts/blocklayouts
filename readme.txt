@@ -1,9 +1,9 @@
 === Blocklayouts ===
 Contributors:      blocklayouts, qarayahya
-Tags:              gutenberg, blocks, patterns, block editor, custom blocks, templates, patterns library
+Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
 Tested up to:      6.8
-Requires at least: 6.3
-Stable tag:        0.1.6
+Requires at least: 6.5
+Stable tag:        0.2.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,10 +114,18 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 
 == Changelog ==
 
+= 0.2.1 - 2025-11-05 =
+
+- Added: Preference Settings
+- Added: Infinite Scroll block for seamless content loading
+- Added: Related Posts block for displaying posts related by categories, tags, or custom taxonomies
+- Removed: Plugin updater to comply with WordPress.org submission requirements
+- Various minor fixes and improvements
+
 = 0.1.6 - 2025-10-18 =
 
-- Security: Prevented direct file access.
-- Improved: Fix the modal pattern library layout.
+- Security: Prevented direct file access
+- Improved: Fix the modal pattern library layout
 
 = 0.1.5 - 2025-09-25 =
 
