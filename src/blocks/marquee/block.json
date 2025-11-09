@@ -1,0 +1,83 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocklayouts/marquee",
+	"version": "0.1.0",
+	"title": "Marquee",
+	"category": "blocklayouts",
+	"icon": "slides",
+	"description": "Display content in a horizontal scrolling marquee.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"color": {
+			"enableContrastChecker": false,
+			"background": true,
+			"gradients": true,
+			"text": true,
+			"__experimentalDefaultControls": {
+				"text": true,
+				"background": true
+			}
+		},
+		"spacing": {
+			"blockGap": ["horizontal", "vertical"],
+			"margin": true,
+			"padding": true,
+			"units": ["px", "em", "rem", "vh", "vw"],
+			"__experimentalDefaultControls": {
+				"blockGap": true,
+				"margin": false,
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"color": true,
+			"width": true,
+			"style": true,
+			"__experimentalDefaultControls": {
+				"radius": true,
+				"color": true,
+				"width": true,
+				"style": true
+			}
+		}
+	},
+	"attributes": {
+		"speed": {
+			"type": "number",
+			"default": 30
+		},
+		"direction": {
+			"type": "string",
+			"default": "left"
+		},
+		"pauseOnHover": {
+			"type": "boolean",
+			"default": false
+		},
+		"gap": {
+			"type": "number",
+			"default": 40
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
+		}
+	},
+	"styles": [
+		{
+			"name": "horizontal-fade",
+			"label": "Horizontal fade"
+		}
+	],
+	"example": {},
+	"textdomain": "blocklayouts",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

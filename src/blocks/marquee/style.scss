@@ -1,0 +1,84 @@
+/**
+ * Front-end styles for the marquee block
+ */
+.wp-block-blocklayouts-marquee {
+	overflow: hidden;
+
+	&.is-style-horizontal-fade {
+		mask-image: linear-gradient(
+			to right,
+			transparent 0,
+			black 128px,
+			black calc(100% - 200px),
+			transparent 100%
+		);
+	}
+	.marquee-container {
+		will-change: transform;
+		display: flex;
+		width: 200%;
+		animation-duration: var(--animation-duration, 30s);
+		animation-name: var(--animation-name, marquee-scroll-left);
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+
+		// Style inner marquee content
+		.marquee-content {
+			display: flex;
+			width: 100%;
+			align-items: center;
+
+			// Style the items inside marquee
+			> * {
+				flex: 1;
+				margin: 0;
+			}
+			> p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				margin: 0;
+				white-space: nowrap;
+			}
+		}
+	}
+}
+
+.pause-on-hover:hover {
+	animation-play-state: paused;
+}
+
+@keyframes marquee-scroll-left {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@keyframes marquee-scroll-right {
+	from {
+		transform: translateX(-50%);
+	}
+	to {
+		transform: translateX(0%);
+	}
+}
+
+/* Mobile devices (up to 779px) */
+@media (max-width: 779px) {
+	.wp-block-blocklayouts-marquee {
+		.marquee-container {
+			width: 400%;
+
+			// Style inner marquee content
+			.marquee-content {
+				width: 200%;
+			}
+		}
+	}
+}

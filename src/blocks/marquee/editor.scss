@@ -1,0 +1,40 @@
+/**
+ * Editor styles for the marquee block
+ */
+
+.wp-block-blocklayouts-marquee {
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	&.is-style-horizontal-fade {
+		mask-image: linear-gradient(
+			to right,
+			transparent 0,
+			black 128px,
+			black calc(100% - 200px),
+			transparent 100%
+		);
+	}
+
+	.blocklayouts-marquee-items {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+
+		& > * {
+			flex: 1;
+			margin: 0;
+		}
+		> p,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0;
+			white-space: nowrap;
+		}
+	}
+}
