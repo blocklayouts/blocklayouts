@@ -1,0 +1,69 @@
+.blocklayouts-effects-panel__inner-wrapper {
+	row-gap: 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0px, 1fr));
+	grid-column: 1 / -1;
+}
+
+.blocklayouts-tools-panel-effects-settings__item {
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	max-width: 100%;
+	padding: 0;
+	position: relative;
+}
+.blocklayouts-tools-panel-effects-settings__item:nth-child(
+		1 of .blocklayouts-tools-panel-effects-settings__item
+	) {
+	border-top: 1px solid #ddd;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+.blocklayouts-tools-panel-effects-settings__item:nth-last-child(
+		1 of .blocklayouts-tools-panel-effects-settings__item
+	) {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.blocklayouts-effects-settings {
+	width: 100%;
+	.blocklayouts-effects-settings__dropdown {
+		position: relative;
+		&-toggle {
+			width: 100%;
+			gap: 12px !important;
+			padding-left: 4px !important;
+		}
+		&-reset {
+			transition: opacity 0.1s ease-in-out;
+			margin: auto 8px;
+			opacity: 0;
+			position: absolute;
+			right: 0;
+			top: 8px;
+		}
+		&:hover {
+			.blocklayouts-effects-settings__dropdown-reset {
+				opacity: 1;
+			}
+		}
+		.blocklayouts-effects-settings__indicator {
+			background-color: #f3f3f3;
+			border-radius: 2px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 32px;
+			width: 32px;
+			padding: 0;
+			&.disabled {
+				background: #fff
+					linear-gradient(-45deg, #0000 48%, #ddd 0, #ddd 52%, #0000 0);
+				display: inline-block;
+				box-shadow: inset 0 0 0 1px #0003;
+			}
+		}
+	}
+}

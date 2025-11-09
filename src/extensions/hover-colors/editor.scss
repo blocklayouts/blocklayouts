@@ -1,0 +1,70 @@
+// Variables
+$hover-color: var(--hover-color);
+$hover-background-color: var(--hover-background-color);
+$hover-border-color: var(--hover-border-color);
+
+// Mixin for hover transitions
+@mixin hover-transition() {
+	transition-duration: 200ms;
+	transition-property: color, background-color, border-color;
+	transition-timing-function: ease-in-out;
+}
+
+// Base color hover styles
+.has-hover__color:not(.wp-block-button) {
+	@include hover-transition();
+	&:hover {
+		color: $hover-color !important;
+	}
+}
+
+.has-hover__background-color:not(.wp-block-button) {
+	@include hover-transition();
+	&:hover {
+		background-color: $hover-background-color !important;
+	}
+}
+
+.has-hover__border-color:not(.wp-block-button) {
+	@include hover-transition();
+	&:hover {
+		border-color: $hover-border-color !important;
+	}
+}
+
+// WordPress block editor buttons require special handling because the hover styles
+// need to be applied to the inner .wp-element-button class rather than the button
+// wrapper itself. This ensures proper hover effects on button elements while
+// maintaining compatibility with the block editor structure.
+.wp-block-button.has-hover__color {
+	.wp-element-button {
+		@include hover-transition();
+	}
+	&:hover {
+		.wp-element-button {
+			color: $hover-color !important;
+		}
+	}
+}
+
+.wp-block-button.has-hover__background-color {
+	.wp-element-button {
+		@include hover-transition();
+	}
+	&:hover {
+		.wp-element-button {
+			background-color: $hover-background-color !important;
+		}
+	}
+}
+
+.wp-block-button.has-hover__border-color {
+	.wp-element-button {
+		@include hover-transition();
+	}
+	&:hover {
+		.wp-element-button {
+			border-color: $hover-border-color !important;
+		}
+	}
+}

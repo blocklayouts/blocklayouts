@@ -1,0 +1,36 @@
+.blocklayouts-user-account-dropdown__content {
+	.components-menu-item__button {
+		& > svg {
+			color: #4b5563;
+		}
+	}
+	.license-status {
+		border-radius: 999px;
+		padding: 4px 8px;
+		line-height: 1;
+		font-size: 12px;
+		&.inactive {
+			background-color: #fefce8;
+			color: #eab308;
+			border: 1px solid #eab308;
+		}
+		&.active {
+			background-color: #f0fdf4;
+			color: #16a34a;
+			border: 1px solid #16a34a;
+		}
+		&.expired {
+			background-color: #fef2f2;
+			color: #dc2626;
+			border: 1px solid #dc2626;
+		}
+		&.disabled {
+			background-color: #f3f4f6;
+			color: #6b7280;
+			border: 1px solid #6b7280;
+		}
+	}
+	.license-details-item {
+		color: #9ca3af;
+	}
+}
