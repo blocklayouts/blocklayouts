@@ -11,7 +11,6 @@ class License {
 	private const OPTION_NAME = 'blocklayouts_license_data';
 
 	private static $instance = null;
-	private $error           = '';
 
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -63,7 +62,6 @@ class License {
 		$license_data = $this->get_license_data();
 
 		if ( ! $license_data || empty( $license_data['license_key'] ) ) {
-			$this->set_error( 'No license data found' );
 			return false;
 		}
 
@@ -128,14 +126,6 @@ class License {
 
 		// Check if not expired
 		return ! $this->is_license_expired( $license_data );
-	}
-
-	public function set_error( $error ) {
-		$this->error = $error;
-	}
-
-	public function get_error() {
-		return $this->error;
 	}
 
 	public function get_license_config() {
