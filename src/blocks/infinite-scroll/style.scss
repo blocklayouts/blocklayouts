@@ -1,0 +1,63 @@
+// Frontend Styles
+.wp-block-blocklayouts-infinite-scroll {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	&.justify-center {
+		justify-content: center;
+	}
+	&.justify-left {
+		justify-content: flex-start;
+	}
+	&.justify-right {
+		justify-content: flex-end;
+	}
+
+	&__trigger {
+		margin: 40px 0;
+	}
+
+	&__loading {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+
+		&.is-visible {
+			display: flex;
+			opacity: 1;
+		}
+
+		&-spinner {
+			width: 20px;
+			height: 20px;
+			border: 3px solid rgba(0, 0, 0, 0.1);
+			border-top-color: currentColor;
+			border-radius: 50%;
+			animation: spin 0.8s linear infinite;
+		}
+
+		span {
+			color: currentColor;
+		}
+	}
+
+	&__no-more-content {
+		text-align: center;
+		color: #666;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+}
+
+// Animations
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocklayouts/infinite-scroll",
+	"version": "0.1.0",
+	"title": "Infinite Scroll",
+	"category": "blocklayouts",
+	"ancestor": ["core/query"],
+	"icon": "update",
+	"description": "Automatically load more posts as you scroll.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"color": {
+			"enableContrastChecker": false,
+			"text": true,
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"units": ["px", "em", "rem", "vh", "vw"],
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": true
+			}
+		},
+		"interactivity": true
+	},
+	"attributes": {
+		"loadingText": {
+			"type": "string",
+			"default": "Loading more posts..."
+		},
+		"noMoreText": {
+			"type": "string",
+			"default": "No more posts to load"
+		},
+		"triggerDistance": {
+			"type": "number",
+			"default": 200
+		},
+		"justifyContent": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"textdomain": "blocklayouts",
+	"usesContext": ["queryId", "query"],
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js"
+}
