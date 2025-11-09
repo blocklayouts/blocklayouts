@@ -1,0 +1,37 @@
+.blocklayouts-icon-settings__quick-inserter {
+	.blocklayouts-icon-settings__icons {
+		display: grid;
+		gap: 2px;
+		padding: 16px 0;
+		grid-template-columns: repeat(4, 1fr);
+
+		.blocklayouts-icon-settings__icons-button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			aspect-ratio: 1 / 1;
+			width: 100%;
+			height: auto !important;
+			.icon-title {
+				font-size: 12px;
+				margin-top: 12px;
+				text-align: center;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100%;
+			}
+
+			&:hover {
+				background-color: #f9fafb;
+			}
+
+			&.is-selected {
+				background-color: #f9fafb;
+				.icon-title {
+					font-weight: 600;
+					color: #000;
+				}
+			}
+		}
+	}
+}
