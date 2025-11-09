@@ -24,14 +24,15 @@ class Blocklayouts_Blocks_Registrar {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_custom_blocks' ) );
 		add_action( 'init', array( $this, 'enqueue_block_styles' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'setup_block_script_translations' ), 20 );
 		add_filter( 'render_block', array( $this, 'apply_custom_css_to_block' ), 10, 2 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_custom_css' ) );
-		add_filter( 'load_script_translations', array( $this, 'fix_script_translations_path' ), 10, 3 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_custom_css' ), 20 );
 
-		// render block filters
 		add_filter( 'render_block_core/button', array( $this, 'add_inline_icon_to_button' ), 10, 2 );
 		add_filter( 'render_block_core/group', array( $this, 'add_wrapper_link_to_group' ), 10, 2 );
+
+		// Related posts.
+		add_filter( 'query_loop_block_query_vars', array( $this, 'modify_related_posts_query_vars' ), 10, 2 );
+		add_filter( 'render_block_context', array( $this, 'add_related_posts_context' ), 10, 3 );
 	}
 
 	/**
@@ -42,6 +43,7 @@ class Blocklayouts_Blocks_Registrar {
 		$blocks = array(
 			'icon',
 			'marquee',
+			'infinite-scroll',
 			// TODO: Slider, Content Toggle...
 		);
 
@@ -52,63 +54,6 @@ class Blocklayouts_Blocks_Registrar {
 				$blocks_path . $block
 			);
 		}
-	}
-
-	/**
-	 * Set up script translations for block scripts
-	 */
-	public function setup_block_script_translations() {
-		// This method is called after block editor assets are enqueued.
-		// The individual block scripts should be registered by now.
-		$blocks = array(
-			'icon',
-			'marquee',
-		);
-
-		foreach ( $blocks as $block ) {
-			$textdomain = 'blocklayouts-' . $block;
-
-			// Try different possible script handle patterns.
-			$possible_handles = array(
-				'blocklayouts-' . $block . '-editor-script',
-				'blocklayouts-' . $block . '-editor',
-				'blocklayouts-' . $block,
-			);
-
-			foreach ( $possible_handles as $handle ) {
-				if ( wp_script_is( $handle, 'registered' ) ) {
-					wp_set_script_translations(
-						$handle,
-						$textdomain,
-						BLOCKLAYOUTS_PLUGIN_PATH . 'languages'
-					);
-					break; // Only set up translations for the first matching handle.
-				}
-			}
-		}
-	}
-
-	/**
-	 * Fix script translations path issues
-	 *
-	 * @param string $file   Translation file path.
-	 * @param string $handle Script handle.
-	 * @param string $domain Text domain.
-	 * @return string Fixed file path.
-	 */
-	public function fix_script_translations_path( $file, $handle, $domain ) {
-		// Only handle our plugin's text domains.
-		if ( strpos( $domain, 'blocklayouts' ) === 0 ) {
-			// Ensure the file path is valid.
-			if ( empty( $file ) || ! file_exists( $file ) ) {
-				$file = BLOCKLAYOUTS_PLUGIN_PATH . 'languages/' . $domain . '-' . get_locale() . '.json';
-				if ( ! file_exists( $file ) ) {
-					$file = BLOCKLAYOUTS_PLUGIN_PATH . 'languages/' . $domain . '.json';
-				}
-			}
-		}
-
-		return $file;
 	}
 
 	/**
@@ -136,6 +81,93 @@ class Blocklayouts_Blocks_Registrar {
 				'ver'    => BLOCKLAYOUTS_VERSION,
 			)
 		);
+	}
+
+	/**
+	 * Modify related posts query vars
+	 *
+	 * @param array $query_vars The query vars.
+	 * @param mixed $block The block instance.
+	 * @return array The modified query vars.
+	 */
+	public function modify_related_posts_query_vars( $query_vars, $block ) {
+		$parsed_block = $block->parsed_block;
+
+		if ( ! isset( $parsed_block['attrs']['namespace'] ) || 'blocklayouts/related-posts-template' !== $parsed_block['attrs']['namespace'] ) {
+			return $query_vars;
+		}
+
+		// Ensure we have a valid post ID (we're on a single post).
+		$current_post_id = get_the_ID();
+		if ( ! $current_post_id || ! is_singular() ) {
+			return $query_vars;
+		}
+
+		$context = $block->context;
+
+		$query_vars['inherit']      = false;
+		$query_vars['post_type']    = get_post_type();
+		$query_vars['post__not_in'] = array( $current_post_id );
+
+		// Get the selected taxonomies from block attributes.
+		$selected_taxonomies = isset( $context['relatedPostsTaxonomies'] )
+			? $context['relatedPostsTaxonomies']
+			: array();
+
+		// Get current post's taxonomy terms.
+		$tax_query = array( 'relation' => 'AND' ); // All selected taxonomies must match.
+
+		// If no specific taxonomies are selected, use current post type's taxonomies.
+		if ( empty( $selected_taxonomies ) ) {
+			$selected_taxonomies = get_object_taxonomies( get_post_type(), 'names' );
+			$tax_query           = array( 'relation' => 'OR' ); // Any of the taxonomies in the current post type can match.
+		}
+
+		// Build tax_query based on selected taxonomies.
+		foreach ( $selected_taxonomies as $taxonomy ) {
+			// Check if taxonomy exists.
+			if ( ! taxonomy_exists( $taxonomy ) ) {
+				continue;
+			}
+
+			// Get terms for this taxonomy for the current post.
+			$terms = wp_get_post_terms( $current_post_id, $taxonomy, array( 'fields' => 'ids' ) );
+
+			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+				$tax_query[] = array(
+					'taxonomy' => $taxonomy,
+					'field'    => 'term_id',
+					'terms'    => $terms,
+				);
+			}
+		}
+
+		// Only apply tax_query if we have valid taxonomy queries.
+		if ( count( $tax_query ) > 1 ) {
+			$query_vars['tax_query'] = $tax_query;
+		}
+
+		return $query_vars;
+	}
+
+	/**
+	 * Add related posts context
+	 *
+	 * @param array $context The context.
+	 * @param array $block The block data.
+	 * @return array The modified context.
+	 */
+	public function add_related_posts_context( $context, $parsed_block, $parent_block ) {
+
+		if ( ! isset( $parsed_block['attrs']['namespace'] ) || 'blocklayouts/related-posts-template' !== $parsed_block['attrs']['namespace'] ) {
+			return $context;
+		}
+
+		$parsed_parent_block = $parent_block->parsed_block;
+
+		$context['relatedPostsTaxonomies'] = $parsed_parent_block['attrs']['relatedPostsTaxonomies'] ?? array();
+
+		return $context;
 	}
 
 	/**
@@ -300,29 +332,10 @@ class Blocklayouts_Blocks_Registrar {
 	}
 
 	/**
-	 * Enqueue custom CSS using
+	 * Enqueue custom CSS.
 	 */
 	public function enqueue_custom_css() {
-		$output = '
-			 /* Blocklayouts CSS - Hovers */
-			.has-hover__color:not(.wp-block-button):hover {
-				color: var(--hover-color) !important;
-			}
-			.has-hover__background-color:not(.wp-block-button):hover {
-				background-color: var(--hover-background-color) !important;
-			}
-			.has-hover__border-color:not(.wp-block-button):hover {
-				border-color: var(--hover-border-color) !important;
-			}
-			.wp-block-button.has-hover__color:hover .wp-element-button {
-				color: var(--hover-color) !important;
-			}
-			.wp-block-button.has-hover__background-color:hover .wp-element-button {
-				background-color: var(--hover-background-color) !important;
-			}
-			.wp-block-button.has-hover__border-color:hover .wp-element-button {
-				border-color: var(--hover-border-color) !important;
-			}';
+		$output = '';
 
 		// Add block-specific CSS.
 		if ( ! empty( $this->custom_css ) ) {
@@ -345,18 +358,9 @@ class Blocklayouts_Blocks_Registrar {
 
 		// Only enqueue if we have CSS to output.
 		if ( ! empty( $output ) ) {
-			// Register and enqueue the custom CSS.
-			wp_register_style(
-				'blocklayouts-custom-css',
-				'', // Empty src since we're using inline CSS.
-				array(), // No dependencies.
-				BLOCKLAYOUTS_VERSION
-			);
-
-			wp_enqueue_style( 'blocklayouts-custom-css' );
 
 			// Add inline CSS using wp_add_inline_style.
-			wp_add_inline_style( 'blocklayouts-custom-css', $output );
+			wp_add_inline_style( 'blocklayouts-main-styles', $output );
 		}
 	}
 
