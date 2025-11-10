@@ -62,13 +62,6 @@ function blocklayouts_enqueue_editor_assets() {
 		false
 	);
 
-	// Set up script translations for JavaScript localization.
-	wp_set_script_translations(
-		'blocklayouts-library-editor',
-		'blocklayouts',
-		BLOCKLAYOUTS_PLUGIN_PATH . 'languages'
-	);
-
 	$config = array(
 		'license'       => $license->get_license_config(),
 		'instance_name' => $license->get_instance_name(),
