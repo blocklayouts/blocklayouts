@@ -109,7 +109,7 @@ Not at all! Blocklayouts is designed for users of all skill levels. However, the
 
 = Is there support available? =
 
-Yes! We provide support through the WordPress.org support forums. For premium support options, please visit [our website](https://blocklayouts.com/support/).
+For premium support options, please visit [our website](https://blocklayouts.com/support/).
 
 
 == Changelog ==
@@ -119,7 +119,6 @@ Yes! We provide support through the WordPress.org support forums. For premium su
 - Added: Preference Settings
 - Added: Infinite Scroll block for seamless content loading
 - Added: Related Posts block for displaying posts related by categories, tags, or custom taxonomies
-- Removed: Plugin updater to comply with WordPress.org submission requirements
 - Various minor fixes and improvements
 
 = 0.1.6 - 2025-10-18 =
