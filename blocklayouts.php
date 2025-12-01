@@ -26,6 +26,20 @@ define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BLOCKLAYOUTS_VERSION', '0.2.1' );
 
+
+// Check for updates.
+require BLOCKLAYOUTS_PLUGIN_PATH . 'inc/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$blocklayouts_update_checker = PucFactory::buildUpdateChecker(
+	'https://github.com/blocklayouts/blocklayouts',
+	__FILE__,
+	'blocklayouts'
+);
+
+$blocklayouts_update_checker->setBranch( 'main' );
+$blocklayouts_update_checker->getVcsApi()->enableReleaseAssets();
+
 /**
  * Initialize.
  */
@@ -36,6 +50,20 @@ require_once __DIR__ . '/inc/class-blocklayouts-cron.php';
 require_once __DIR__ . '/inc/class-blocklayouts-custom-blocks.php';
 
 ( new Blocklayouts_Cron() )->init();
+
+/**
+ * Load plugin textdomain.
+ *
+ * @since 0.1.0
+ */
+function blocklayouts_load_textdomain() {
+	load_plugin_textdomain(
+		'blocklayouts',
+		false,
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+	);
+}
+add_action( 'init', __NAMESPACE__ . '\blocklayouts_load_textdomain' );
 
 /**
  * Enqueue editor assets.
@@ -93,7 +121,7 @@ function blocklayouts_enqueue_css_and_js() {
 
 	wp_enqueue_style(
 		'blocklayouts-main-styles',
-		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/blocklayouts.css', // TODO: minify this file
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/blocklayouts.css', // TODO: minify this file.
 		array(),
 		BLOCKLAYOUTS_VERSION
 	);
@@ -101,7 +129,7 @@ function blocklayouts_enqueue_css_and_js() {
 	// JS.
 	wp_register_script(
 		'blocklayouts-main-scripts',
-		BLOCKLAYOUTS_PLUGIN_URL . 'assets/js/blocklayouts.js', // TODO: minify this file
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/js/blocklayouts.js', // TODO: minify this file.
 		array(),
 		BLOCKLAYOUTS_VERSION,
 		true
