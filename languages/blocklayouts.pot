@@ -1,0 +1,87 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blocklayouts\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-29 13:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.2.27\n"
+"X-Domain: blocklayouts"
+
+#: build/blocks/icon/block.json:1 src/blocks/icon/block.json:1
+msgctxt "block description"
+msgid "Add a customizable icon to your content."
+msgstr ""
+
+#: build/blocks/infinite-scroll/block.json:1
+#: src/blocks/infinite-scroll/block.json:1
+msgctxt "block description"
+msgid "Automatically load more posts as you scroll."
+msgstr ""
+
+#: build/blocks/marquee/block.json:1 src/blocks/marquee/block.json:1
+msgctxt "block description"
+msgid "Display content in a horizontal scrolling marquee."
+msgstr ""
+
+#: build/blocks/marquee/block.json:1 src/blocks/marquee/block.json:1
+msgctxt "block style label"
+msgid "Horizontal fade"
+msgstr ""
+
+#: build/blocks/icon/block.json:1 src/blocks/icon/block.json:1
+msgctxt "block title"
+msgid "Icon"
+msgstr ""
+
+#: build/blocks/infinite-scroll/block.json:1
+#: src/blocks/infinite-scroll/block.json:1
+msgctxt "block title"
+msgid "Infinite Scroll"
+msgstr ""
+
+#: build/blocks/marquee/block.json:1 src/blocks/marquee/block.json:1
+msgctxt "block title"
+msgid "Marquee"
+msgstr ""
+
+#. Name of the plugin
+#: blocklayouts.php:152
+msgid "Blocklayouts"
+msgstr ""
+
+#. Author of the plugin
+msgid "blocklayouts"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Custom blocks, enhanced core blocks, and pre-designed patterns to build "
+"WordPress sites faster"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://blocklayouts.com/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/blocklayouts/"
+msgstr ""
+
+#: build/blocks/infinite-scroll/render.php:17
+#: src/blocks/infinite-scroll/render.php:17
+msgid "Loading more posts..."
+msgstr ""
+
+#: build/blocks/infinite-scroll/render.php:18
+#: src/blocks/infinite-scroll/render.php:18
+msgid "No more posts to load"
+msgstr ""
