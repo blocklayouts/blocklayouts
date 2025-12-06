@@ -119,7 +119,7 @@ For premium support options, please visit [our website](https://blocklayouts.com
 = 0.1.7 - 2025-11-05 =
 
 - Added: Preference Settings
-- Added: Infinite Scroll block
+- Added: Infinite Scroll block (Beta)
 - Added: Related Posts block
 - Various minor fixes and improvements
 

@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "blocklayouts/infinite-scroll",
   "version": "0.1.0",
-  "title": "Infinite Scroll",
+  "title": "Infinite Scroll (Beta)",
   "category": "blocklayouts",
   "ancestor": [
     "core/query"
