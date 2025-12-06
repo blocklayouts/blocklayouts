@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-6.5%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-0.2.1-orange.svg)](https://github.com/blocklayouts/blocklayouts)
+[![Version](https://img.shields.io/badge/Version-0.1.7-orange.svg)](https://github.com/blocklayouts/blocklayouts)
 
 ![Plugin Banner](https://github.com/blocklayouts/blocklayouts/blob/main/.wordpress-org/banner-1544x500.png)
 

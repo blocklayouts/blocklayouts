@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
 Tested up to:      6.9
 Requires at least: 6.5
-Stable tag:        0.2.1
+Stable tag:        0.1.7
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,8 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 
 * **Icon Block** - Add beautiful, scalable icons with extensive icon library, custom SVG support, and advanced styling options
 * **Marquee Block** - Create eye-catching scrolling text and content with customizable speed, direction, and hover effects
+* **Infinite Scroll** - Automatically load more posts as you scroll
+* **Related Posts** - Display posts related to the current post based on categories, tags, or custom taxonomies
 * **More blocks coming soon**: Slider, Content Toggle, and many more!
 
 = Block Extensions & Enhancements =
@@ -114,11 +116,11 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 == Changelog ==
 
-= 0.2.1 - 2025-11-05 =
+= 0.1.7 - 2025-11-05 =
 
 - Added: Preference Settings
-- Added: Infinite Scroll block for seamless content loading
-- Added: Related Posts block for displaying posts related by categories, tags, or custom taxonomies
+- Added: Infinite Scroll block
+- Added: Related Posts block
 - Various minor fixes and improvements
 
 = 0.1.6 - 2025-10-18 =
