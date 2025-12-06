@@ -1,7 +1,7 @@
 === Blocklayouts ===
 Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
-Tested up to:      6.8
+Tested up to:      6.9
 Requires at least: 6.5
 Stable tag:        0.2.1
 License:           GPL-2.0-or-later
