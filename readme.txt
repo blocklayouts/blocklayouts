@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
 Tested up to:      6.9
 Requires at least: 6.5
-Stable tag:        0.1.7
+Stable tag:        0.1.9
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 
 * **Icon Block** - Add beautiful, scalable icons with extensive icon library, custom SVG support, and advanced styling options
 * **Marquee Block** - Create eye-catching scrolling text and content with customizable speed, direction, and hover effects
+* **Table of Contents** - Automatically generate a navigable table of contents from headings in your content
 * **Infinite Scroll** - Automatically load more posts as you scroll
 * **Related Posts** - Display posts related to the current post based on categories, tags, or custom taxonomies
 * **More blocks coming soon**: Slider, Content Toggle, and many more!
@@ -32,6 +33,7 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 * **Custom CSS** - Add custom CSS with responsive breakpoints (@mobile, @tablet, @desktop)
 * **Link Controls** - Add link functionality to core/group block
 * **Icon Button** - Enable icon selection and positioning for core/button block
+* **Masonry** - Transform gallery and group (grid) blocks into beautiful masonry layouts
 
 = Pattern Library =
 
@@ -115,6 +117,21 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 
 == Changelog ==
+
+= 0.1.9 - 2025-12-29 =
+
+- Added: Admin menu dashboard for centralized plugin management
+- Added: Ability to activate or deactivate individual blocks
+- Enhanced: Pattern library with improved UI
+- Various minor fixes and improvements
+
+= 0.1.8 - 2025-12-20 =
+
+- Added: Table of Contents block
+- Added: Masonry extension to core/gallery block
+- Added: Masonry extension to core/group (grid) block
+- Enhanced: Infinite Scroll block now supports two types (button and infinite)
+- Fixed: Icon library styles
 
 = 0.1.7 - 2025-11-05 =
 
