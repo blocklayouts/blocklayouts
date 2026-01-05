@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/table-of-contents/style-index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://blocklayouts/./src/blocks/table-of-contents/style.scss"],"sourcesContent":[".wp-block-blocklayouts-table-of-contents__title {\r\n\tmargin: 0;\r\n}\r\n"],"names":[],"sourceRoot":""}

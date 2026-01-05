@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocklayouts/table-of-contents",
+  "version": "0.1.0",
+  "title": "Table of Contents",
+  "category": "blocklayouts",
+  "icon": "list-view",
+  "description": "Display a table of contents based on headings in your content.",
+  "keywords": [
+    "toc",
+    "outline",
+    "headings",
+    "navigation"
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true,
+        "link": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    }
+  },
+  "attributes": {
+    "ordered": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingTitle": {
+      "type": "string",
+      "default": "Table of Contents"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowedHeadings": {
+      "type": "array",
+      "default": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "items": {
+        "type": "number"
+      }
+    },
+    "smoothScroll": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "blocklayouts",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
