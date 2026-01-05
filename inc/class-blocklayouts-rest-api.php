@@ -106,6 +106,49 @@ class Blocklayouts_REST_API {
 				),
 			)
 		);
+
+		register_rest_route(
+			'blocklayouts/v1',
+			'/license',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'rest_get_license' ),
+				'permission_callback' => array( $this, 'check_editor_permission' ),
+			)
+		);
+
+		// Blocks preferences endpoints
+		register_rest_route(
+			'blocklayouts/v1',
+			'/blocks',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'rest_get_blocks' ),
+				'permission_callback' => array( $this, 'check_editor_permission' ),
+			)
+		);
+
+		register_rest_route(
+			'blocklayouts/v1',
+			'/blocks',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'rest_update_blocks' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+				'args'                => array(
+					'nonce'  => array(
+						'required'          => true,
+						'validate_callback' => array( $this, 'validate_nonce' ),
+					),
+					'blocks' => array(
+						'required'          => true,
+						'validate_callback' => function ( $param ) {
+							return is_array( $param );
+						},
+					),
+				),
+			)
+		);
 	}
 
 
@@ -227,7 +270,7 @@ class Blocklayouts_REST_API {
 				return rest_ensure_response(
 					array(
 						'success' => true,
-						'data'    => License::get_instance()->get_license_data(),
+						'data'    => License::get_instance()->get_license_config(),
 					)
 				);
 			} else {
@@ -241,7 +284,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => ! empty( $response['error'] ) ? $response['error'] : 'License activation failed!',
+				'error' => ! empty( $response['message'] ) ? $response['message'] : 'License activation failed!',
 			)
 		);
 	}
@@ -292,6 +335,119 @@ class Blocklayouts_REST_API {
 				'error' => ! empty( $response['error'] ) ? $response['error'] : 'Failed to remove license information. Please try again or contact support.',
 			)
 		);
+	}
+
+	/**
+	 * Get license data
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_get_license( $request ) {
+		$license_data = License::get_instance()->get_license_config();
+
+		return rest_ensure_response(
+			array(
+				'success' => true,
+				'data'    => $license_data,
+			)
+		);
+	}
+
+	/**
+	 * Get blocks preferences
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_get_blocks( $request ) {
+		$blocks = $this->get_available_blocks();
+
+		// Convert associative array to indexed array with id included.
+		$blocks_array = array();
+		foreach ( $blocks as $name => $details ) {
+			$blocks_array[] = array_merge(
+				array( 'name' => $name ),
+				$details
+			);
+		}
+
+		return rest_ensure_response(
+			array(
+				'success' => true,
+				'data'    => $blocks_array,
+			)
+		);
+	}
+
+	/**
+	 * Update blocks preferences
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_update_blocks( $request ) {
+		$blocks = $request->get_param( 'blocks' );
+
+		if ( ! is_array( $blocks ) ) {
+			return new \WP_Error( 'invalid_blocks', 'Blocks must be an array.', array( 'status' => 400 ) );
+		}
+
+		// Get current settings.
+		$blocklayouts_settings = get_option( 'blocklayouts_settings', array() );
+
+		// Initialize blocks array if it doesn't exist.
+		if ( ! isset( $blocklayouts_settings['blocks'] ) ) {
+			$blocklayouts_settings['blocks'] = array();
+		}
+
+		// Only update the active status for each block.
+		foreach ( $blocks as $block_name => $block_data ) {
+			$sanitized_block_name = sanitize_text_field( $block_name );
+
+			// Only store the active status.
+			$blocklayouts_settings['blocks'][ $sanitized_block_name ] = array(
+				'active' => isset( $block_data['active'] ) ? (bool) $block_data['active'] : true,
+			);
+		}
+
+		// Save updated settings.
+		$result = update_option( 'blocklayouts_settings', $blocklayouts_settings );
+
+		if ( $result ) {
+			// Return the merged blocks with all data.
+			$all_blocks = Blocks_Registrar::get_blocks();
+
+			$blocks_array = array();
+			foreach ( $all_blocks as $block_id => $block_data ) {
+				$blocks_array[] = array_merge(
+					array( 'id' => $block_id ),
+					$block_data
+				);
+			}
+
+			return rest_ensure_response(
+				array(
+					'success' => true,
+					'data'    => $blocks_array,
+				)
+			);
+		}
+
+		return rest_ensure_response(
+			array(
+				'error' => 'Failed to save block preferences.',
+			)
+		);
+	}
+
+	/**
+	 * Get available blocks
+	 * Fetches block metadata from WordPress Block Type Registry
+	 */
+	private function get_available_blocks(): array {
+		$all_blocks = Blocks_Registrar::get_blocks();
+		return $all_blocks;
 	}
 
 	/**
@@ -424,7 +580,7 @@ class Blocklayouts_REST_API {
 	 * Get singleton instance
 	 */
 	public static function get_instance(): static {
-		if ( self::$instance === null ) {
+		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
 		return self::$instance;
