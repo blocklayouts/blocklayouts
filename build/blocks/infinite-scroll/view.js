@@ -134,6 +134,47 @@ const loadNewPosts = (queryEl, dom, context, state, ref) => {
   queryEl.querySelector(".wp-block-post-template").appendChild(fragment);
   return true;
 };
+
+/**
+ * Shared function to handle loading more posts.
+ * @param {HTMLElement} ref - Reference element
+ * @param {Object} context - Interactivity API context
+ * @param {Object} state - Store state
+ * @returns {Promise<void>}
+ */
+const handleLoadMore = async (ref, context, state) => {
+  if (!state.hasMore || context.isLoading) {
+    return;
+  }
+  const queryId = context.queryId;
+  const queryEl = ref.closest(`[data-blocklayouts-router-region="query-${queryId}"]`);
+  if (!queryEl) {
+    console.error("Query block container not found.");
+    return;
+  }
+
+  // Set loading state
+  context.isLoading = true;
+  const paged = state.paged + 1;
+  const pageId = `query-${queryId}-page`;
+
+  // Build URL with updated page parameter
+  const url = new URL(window.location);
+  url.searchParams.set(pageId, paged);
+  try {
+    const dom = await fetchNextPage(url.toString());
+    if (dom) {
+      loadNewPosts(queryEl, dom, context, state, ref);
+    } else {
+      state.hasMore = false;
+    }
+  } catch (error) {
+    console.error("Error loading next page:", error);
+    state.hasMore = false;
+  } finally {
+    context.isLoading = false;
+  }
+};
 const {
   state,
   actions
@@ -151,9 +192,34 @@ const {
         intersectionObserver.disconnect();
         intersectionObserver = null;
       }
+    },
+    /**
+     * Load more posts (triggered by button click).
+     */
+    *loadMore() {
+      const {
+        ref
+      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getElement)();
+      const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
+      if (!ref) return;
+      yield handleLoadMore(ref, context, state);
     }
   },
   callbacks: {
+    /**
+     * Initialize button type (no observer needed).
+     */
+    initButton() {
+      const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
+
+      // No intersection observer needed for button type
+      if (context.infiniteType === "button") {
+        actions.cleanup();
+      }
+    },
+    /**
+     * Initialize infinite scroll with intersection observer.
+     */
     infiniteScroll() {
       const {
         ref
@@ -167,39 +233,13 @@ const {
       // Get trigger distance from data attribute
       const triggerDistance = parseInt(ref.dataset.triggerDistance, 10) || 100;
 
-      // Create intersection observer with debounced handler
+      // Create intersection observer
       intersectionObserver = new IntersectionObserver(entries => {
         const entry = entries[0];
         if (!entry.isIntersecting || !state.hasMore || context.isLoading) {
           return;
         }
-        const queryEl = ref.closest(".wp-block-query");
-        if (!queryEl) {
-          console.error("Query block container not found.");
-          return;
-        }
-
-        // Set loading state
-        context.isLoading = true;
-        const queryId = context.queryId;
-        const paged = state.paged + 1;
-        const pageId = `query-${queryId}-page`;
-
-        // Build URL with updated page parameter
-        const url = new URL(window.location);
-        url.searchParams.set(pageId, paged);
-        fetchNextPage(url.toString()).then(dom => {
-          if (dom) {
-            loadNewPosts(queryEl, dom, context, state, ref);
-          } else {
-            state.hasMore = false;
-          }
-        }).catch(error => {
-          console.error("Error loading next page:", error);
-          state.hasMore = false;
-        }).finally(() => {
-          context.isLoading = false;
-        });
+        handleLoadMore(ref, context, state);
       }, {
         rootMargin: `${triggerDistance}px`,
         threshold: 0.1

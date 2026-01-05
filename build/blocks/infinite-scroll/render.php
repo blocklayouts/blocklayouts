@@ -14,10 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get block attributes with defaults.
+$blocklayouts_infinite_scroll_infinite_type    = $attributes['infiniteType'] ?? 'infinite';
+$blocklayouts_infinite_scroll_button_text      = $attributes['buttonText'] ?? __( 'Load More', 'blocklayouts' );
 $blocklayouts_infinite_scroll_loading_text     = $attributes['loadingText'] ?? __( 'Loading more posts...', 'blocklayouts' );
 $blocklayouts_infinite_scroll_no_more_text     = $attributes['noMoreText'] ?? __( 'No more posts to load', 'blocklayouts' );
 $blocklayouts_infinite_scroll_trigger_distance = $attributes['triggerDistance'] ?? 100;
-$blocklayouts_infinite_scroll_justify_content  = $attributes['justifyContent'] ?? 'center';
+$blocklayouts_infinite_scroll_justify_content  = $attributes['justifyContent'] ?? '';
 
 // Get query context.
 $blocklayouts_infinite_scroll_query     = $block->context['query'] ?? array();
@@ -35,8 +37,9 @@ wp_interactivity_state(
 
 // Context for the interactive elements.
 $blocklayouts_infinite_scroll_context = array(
-	'queryId'   => $block->context['queryId'] ?? 0,
-	'isLoading' => false,
+	'queryId'      => $block->context['queryId'] ?? 0,
+	'infiniteType' => $blocklayouts_infinite_scroll_infinite_type,
+	'isLoading'    => false,
 );
 
 // Build wrapper attributes.
@@ -50,14 +53,27 @@ $blocklayouts_infinite_scroll_wrapper_attributes = get_block_wrapper_attributes(
 ?>
 
 <div <?php echo wp_kses_post( $blocklayouts_infinite_scroll_wrapper_attributes ); ?>>
-    <div class="wp-block-blocklayouts-infinite-scroll__trigger" data-wp-watch="callbacks.infiniteScroll"
-        data-trigger-distance="<?php echo esc_attr( $blocklayouts_infinite_scroll_trigger_distance ); ?>"
+    <?php if ( 'button' === $blocklayouts_infinite_scroll_infinite_type ) : ?>
+    <div class="wp-block-blocklayouts-infinite-scroll__button-container" data-wp-init="callbacks.initButton"
         data-wp-bind--hidden="!state.hasMore">
+        <?php echo wp_kses_post( $content ); ?>
         <div class="wp-block-blocklayouts-infinite-scroll__loading" data-wp-class--is-visible="context.isLoading">
             <div class="wp-block-blocklayouts-infinite-scroll__loading-spinner"></div>
             <span><?php echo esc_html( $blocklayouts_infinite_scroll_loading_text ); ?></span>
         </div>
     </div>
+    <?php else : ?>
+    <div class="wp-block-blocklayouts-infinite-scroll__trigger" data-wp-watch="callbacks.infiniteScroll"
+        data-trigger-distance="<?php echo esc_attr( $blocklayouts_infinite_scroll_trigger_distance ); ?>"
+        data-wp-bind--hidden="!state.hasMore">
+        <?php echo wp_kses_post( $content ); ?>
+
+        <div class="wp-block-blocklayouts-infinite-scroll__loading" data-wp-class--is-visible="context.isLoading">
+            <div class="wp-block-blocklayouts-infinite-scroll__loading-spinner"></div>
+            <span><?php echo esc_html( $blocklayouts_infinite_scroll_loading_text ); ?></span>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <p class="wp-block-blocklayouts-infinite-scroll__no-more-content" data-wp-bind--hidden="state.hasMore">
         <?php echo esc_html( $blocklayouts_infinite_scroll_no_more_text ); ?>
