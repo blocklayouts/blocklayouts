@@ -1,6 +1,6 @@
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/modal/components/dropdown/editor.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dashboard/components/dropdown/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-user-account-dropdown__content .components-menu-item__button > svg {
   color: #4b5563;
 }
@@ -33,9 +33,9 @@
 .blocklayouts-user-account-dropdown__content .license-details-item {
   color: #9ca3af;
 }
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/modal/components/content/dataview.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/library/modal/components/content/dataview.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 .dataviews-filters__button {
   position: relative;
 }
@@ -499,9 +499,9 @@
   aspect-ratio: 3/3;
   justify-content: flex-start;
 }
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/additional-css/editor.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/additional-css/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-css-editor {
   border: 1px solid #e2e4e7;
   border-radius: 4px;
@@ -539,9 +539,9 @@
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/effects/editor.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/effects/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-effects-panel__inner-wrapper {
   row-gap: 0;
   display: grid;
@@ -612,60 +612,13 @@
   display: inline-block;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
 }
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/hover-colors/editor.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-.has-hover__color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__color:not(.wp-block-button):hover {
-  color: var(--hover-color) !important;
-}
-.has-hover__background-color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__background-color:not(.wp-block-button):hover {
-  background-color: var(--hover-background-color) !important;
-}
-.has-hover__border-color:not(.wp-block-button) {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.has-hover__border-color:not(.wp-block-button):hover {
-  border-color: var(--hover-border-color) !important;
-}
-.wp-block-button.has-hover__color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__color:hover .wp-element-button {
-  color: var(--hover-color) !important;
-}
-.wp-block-button.has-hover__background-color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__background-color:hover .wp-element-button {
-  background-color: var(--hover-background-color) !important;
-}
-.wp-block-button.has-hover__border-color .wp-element-button {
-  transition-duration: 200ms;
-  transition-property: color, background-color, border-color;
-  transition-timing-function: ease-in-out;
-}
-.wp-block-button.has-hover__border-color:hover .wp-element-button {
-  border-color: var(--hover-border-color) !important;
-}
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/wrapper-link/editor.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/hover-colors/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/wrapper-link/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts__link-popover .components-popover__content {
   min-width: 350px;
   box-shadow: 0 0 0 1px #ccc, 0 2px 3px rgba(0, 0, 0, 0.0509803922), 0 4px 5px rgba(0, 0, 0, 0.0392156863), 0 12px 12px rgba(0, 0, 0, 0.031372549), 0 16px 16px rgba(0, 0, 0, 0.0196078431);
@@ -714,9 +667,13 @@
   justify-content: center;
   position: relative;
 }
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon/components/quick-inserter/editor.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/extensions/masonry/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon/components/quick-inserter/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-icon-settings__quick-inserter .blocklayouts-icon-settings__icons {
   display: grid;
   gap: 2px;
@@ -749,9 +706,9 @@
   font-weight: 600;
   color: #000;
 }
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.102.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.5.6_webpack@5.102.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@16.0.6_sass@1.93.3_webpack@5.102.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 .blocklayouts-modal .components-modal__header .components-modal__header-heading-container {
   min-width: 240px;
   margin-right: 36px;
@@ -838,9 +795,6 @@
   background: transparent;
 }
 .blocklayouts-modal .blocklayouts-modal__scrollable::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0);
-}
-.blocklayouts-modal .blocklayouts-modal__scrollable:hover::-webkit-scrollbar-thumb {
   background-color: #7f7f7f;
 }
 .blocklayouts-modal__overlay {
@@ -886,14 +840,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes pulse {
-  50% {
-    opacity: 0.5;
-  }
-}
 /* Preferences */
 .blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs {
   padding: 16px 0;
@@ -908,6 +854,15 @@
 }
 .blocklayouts-preferences-modal__container .blocklayouts-preferences-modal__sidebar-tabs .blocklayouts-preferences-modal__sidebar-tab:hover:not(:disabled) {
   background-color: #f8f9fa;
+}
+/* Animations */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /*# sourceMappingURL=index.css.map*/

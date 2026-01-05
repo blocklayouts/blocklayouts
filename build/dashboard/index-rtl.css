@@ -1,0 +1,377 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dashboard/components/dropdown/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.blocklayouts-user-account-dropdown__content .components-menu-item__button > svg {
+  color: #4b5563;
+}
+.blocklayouts-user-account-dropdown__content .license-status {
+  border-radius: 999px;
+  padding: 4px 8px;
+  line-height: 1;
+  font-size: 12px;
+}
+.blocklayouts-user-account-dropdown__content .license-status.inactive {
+  background-color: #fefce8;
+  color: #eab308;
+  border: 1px solid #eab308;
+}
+.blocklayouts-user-account-dropdown__content .license-status.active {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #16a34a;
+}
+.blocklayouts-user-account-dropdown__content .license-status.expired {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+}
+.blocklayouts-user-account-dropdown__content .license-status.disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #6b7280;
+}
+.blocklayouts-user-account-dropdown__content .license-details-item {
+  color: #9ca3af;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dashboard/components/tabs/home.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Colors
+ */
+.blocklayouts-dashboard__home {
+  display: flex;
+  gap: 32px;
+}
+.blocklayouts-dashboard__home-content {
+  flex: 1;
+}
+.blocklayouts-dashboard__home-sidebar {
+  width: 360px;
+}
+.blocklayouts-dashboard__home-sidebar-item {
+  padding: 24px;
+  background-color: #f5f5f7;
+  border-radius: 8px;
+}
+.blocklayouts-dashboard__home-sidebar-item a {
+  text-decoration: none !important;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dashboard/components/tabs/blocks.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Colors
+ */
+/**
+ * SCSS Variables.
+ *
+ * Please use variables from this sheet to ensure consistency across the UI.
+ * Don't add to this sheet unless you're pretty sure the value will be reused in many places.
+ * For example, don't add rules to this sheet that affect block visuals. It's purely for UI.
+ */
+/**
+ * Fonts & basic variables.
+ */
+/**
+ * Typography
+ */
+/**
+ * Grid System.
+ * https://make.wordpress.org/design/2019/10/31/proposal-a-consistent-spacing-system-for-wordpress/
+ */
+/**
+ * Radius scale.
+ */
+/**
+ * Elevation scale.
+ */
+/**
+ * Dimensions.
+ */
+/**
+ * Mobile specific styles
+ */
+/**
+ * Editor styles.
+ */
+/**
+ * Block & Editor UI.
+ */
+/**
+ * Block paddings.
+ */
+/**
+ * React Native specific.
+ * These variables do not appear to be used anywhere else.
+ */
+.blocklayouts-dashboard__blocks .blocklayouts-dashboard__grid,
+.blocklayouts-dashboard__extensions .blocklayouts-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.blocklayouts-dashboard__blocks .blocklayouts-dashboard__card,
+.blocklayouts-dashboard__extensions .blocklayouts-dashboard__card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.blocklayouts-dashboard__blocks .blocklayouts-dashboard__card-item__content,
+.blocklayouts-dashboard__extensions .blocklayouts-dashboard__card-item__content {
+  flex: 1;
+  min-width: 0;
+}
+.blocklayouts-dashboard__blocks .blocklayouts-dashboard__card-item__title,
+.blocklayouts-dashboard__extensions .blocklayouts-dashboard__card-item__title {
+  font-size: 15px;
+}
+.blocklayouts-dashboard__blocks .blocklayouts-dashboard__card-item__description,
+.blocklayouts-dashboard__extensions .blocklayouts-dashboard__card-item__description {
+  margin: 6px 0 0 0;
+  color: #949494;
+}
+@media (max-width: 1280px) {
+  .blocklayouts-dashboard__blocks .blocklayouts-dashboard__grid,
+  .blocklayouts-dashboard__extensions .blocklayouts-dashboard__grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+@media (max-width: 960px) {
+  .blocklayouts-dashboard__blocks .blocklayouts-dashboard__grid,
+  .blocklayouts-dashboard__extensions .blocklayouts-dashboard__grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .blocklayouts-dashboard__blocks .blocklayouts-dashboard__grid,
+  .blocklayouts-dashboard__extensions .blocklayouts-dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dashboard/index.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Colors
+ */
+/**
+ * SCSS Variables.
+ *
+ * Please use variables from this sheet to ensure consistency across the UI.
+ * Don't add to this sheet unless you're pretty sure the value will be reused in many places.
+ * For example, don't add rules to this sheet that affect block visuals. It's purely for UI.
+ */
+/**
+ * Fonts & basic variables.
+ */
+/**
+ * Typography
+ */
+/**
+ * Grid System.
+ * https://make.wordpress.org/design/2019/10/31/proposal-a-consistent-spacing-system-for-wordpress/
+ */
+/**
+ * Radius scale.
+ */
+/**
+ * Elevation scale.
+ */
+/**
+ * Dimensions.
+ */
+/**
+ * Mobile specific styles
+ */
+/**
+ * Editor styles.
+ */
+/**
+ * Block & Editor UI.
+ */
+/**
+ * Block paddings.
+ */
+/**
+ * React Native specific.
+ * These variables do not appear to be used anywhere else.
+ */
+/**
+ * Typography
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Focus styles.
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Styles that are reused verbatim in a few places
+ */
+/**
+ * Allows users to opt-out of animations via OS-level preferences.
+ */
+/**
+ * Reset default styles for JavaScript UI based pages.
+ * This is a WP-admin agnostic reset
+ */
+/**
+ * Reset the WP Admin page styles for Gutenberg-like pages.
+ */
+:root {
+  --wp-block-synced-color: #7a00df;
+  --wp-block-synced-color--rgb: 122, 0, 223;
+  --wp-bound-block-color: var(--wp-block-synced-color);
+  --wp-editor-canvas-background: #ddd;
+  --wp-admin-theme-color: #007cba;
+  --wp-admin-theme-color--rgb: 0, 124, 186;
+  --wp-admin-theme-color-darker-10: rgb(0, 107, 160.5);
+  --wp-admin-theme-color-darker-10--rgb: 0, 107, 160.5;
+  --wp-admin-theme-color-darker-20: #005a87;
+  --wp-admin-theme-color-darker-20--rgb: 0, 90, 135;
+  --wp-admin-border-width-focus: 2px;
+}
+@media (min-resolution: 192dpi) {
+  :root {
+    --wp-admin-border-width-focus: 1.5px;
+  }
+}
+.settings_page_blocklayouts #wpcontent,
+.settings_page_blocklayouts #wpbody-content {
+  padding: 0 !important;
+  min-height: calc(100vh - 32px);
+  position: relative;
+}
+#blocklayouts-dashboard {
+  display: grid;
+  background-color: #fff;
+  grid-template-columns: 250px auto;
+}
+#blocklayouts-dashboard h2,
+#blocklayouts-dashboard h3,
+#blocklayouts-dashboard h4,
+#blocklayouts-dashboard h5,
+#blocklayouts-dashboard h6 {
+  margin: 0;
+}
+#blocklayouts-dashboard h2 {
+  font-size: 20px;
+}
+#blocklayouts-dashboard h3 {
+  font-size: 15px;
+}
+#blocklayouts-dashboard h4 {
+  font-size: 13px;
+}
+#blocklayouts-dashboard h5 {
+  font-size: 12px;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__notice {
+  margin-bottom: 32px;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar {
+  border-left: 1px solid #ddd;
+  padding: 32px 16px;
+  height: calc(100vh - 32px);
+  position: sticky;
+  top: 32px;
+  overflow-y: auto;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-header {
+  margin-bottom: 32px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-header .version {
+  color: #949494;
+  font-weight: 500;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__sidebar-nav-item.is-active {
+  background: #f0f0f0;
+  font-weight: 500;
+}
+#blocklayouts-dashboard .wrapper {
+  height: 100%;
+  background-color: #fff;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__header {
+  padding: 16px 32px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  position: sticky;
+  top: 32px;
+  z-index: 10;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__header-description {
+  margin-bottom: 0;
+  margin-top: 8px;
+  color: #757575;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__header-version {
+  margin: 0;
+  padding: 4px 8px;
+  color: #757575;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__header-tab {
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__header-tab.is-active {
+  border-bottom-color: var(--wp-admin-theme-color, #3858e9);
+}
+#blocklayouts-dashboard .blocklayouts-dashboard__main {
+  padding: 32px;
+}
+.blocklayouts-dashboard__extensions h3,
+.blocklayouts-dashboard__preferences h3 {
+  margin-bottom: 12px !important;
+}
+/* Animations */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
