@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           0.1.7
+ * Version:           0.1.9
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -24,32 +24,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.1.7' );
+define( 'BLOCKLAYOUTS_VERSION', '0.1.9' );
 
+// Initialize plugin updater.
+require plugin_dir_path( __FILE__ ) . 'inc/class-plugin-updater.php';
 
-// Check for updates.
-require BLOCKLAYOUTS_PLUGIN_PATH . 'inc/plugin-update-checker/plugin-update-checker.php';
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
-
-$blocklayouts_update_checker = PucFactory::buildUpdateChecker(
-	'https://github.com/blocklayouts/blocklayouts',
-	__FILE__,
-	'blocklayouts'
+new \Blocklayouts_Plugin_Updater(
+	plugin_basename( __FILE__ ),
+	'blocklayouts',
+	BLOCKLAYOUTS_VERSION,
+	'https://blocklayouts.com/wp-json/lsq/v1'
 );
-
-$blocklayouts_update_checker->setBranch( 'main' );
-$blocklayouts_update_checker->getVcsApi()->enableReleaseAssets();
 
 /**
  * Initialize.
  */
 require_once __DIR__ . '/inc/class-blocklayouts-license.php';
+require_once __DIR__ . '/inc/blocks/class-blocklayouts-block-registry.php';
+require_once __DIR__ . '/inc/extensions/extensions.php';
 require_once __DIR__ . '/inc/class-blocklayouts-api.php';
 require_once __DIR__ . '/inc/class-blocklayouts-rest-api.php';
 require_once __DIR__ . '/inc/class-blocklayouts-cron.php';
-require_once __DIR__ . '/inc/class-blocklayouts-custom-blocks.php';
+
 
 ( new Blocklayouts_Cron() )->init();
+
+// Initialize Dashboard UI (admin only).
+if ( is_admin() ) {
+	require_once __DIR__ . '/inc/class-blocklayouts-dashboard.php';
+}
 
 /**
  * Load plugin textdomain.
@@ -74,6 +77,22 @@ function blocklayouts_enqueue_editor_assets() {
 
 	$asset_file = include BLOCKLAYOUTS_PLUGIN_PATH . 'build/index.asset.php';
 	$license    = License::get_instance();
+
+	// Ensure asset file is valid array with expected keys.
+	if ( ! is_array( $asset_file ) ) {
+		$asset_file = array(
+			'dependencies' => array(),
+			'version'      => BLOCKLAYOUTS_VERSION,
+		);
+	}
+
+	$asset_file = wp_parse_args(
+		$asset_file,
+		array(
+			'dependencies' => array(),
+			'version'      => BLOCKLAYOUTS_VERSION,
+		)
+	);
 
 	wp_enqueue_style(
 		'blocklayouts-core-extensions-editor-styles',
@@ -121,7 +140,7 @@ function blocklayouts_enqueue_css_and_js() {
 
 	wp_enqueue_style(
 		'blocklayouts-main-styles',
-		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/blocklayouts.css', // TODO: minify this file.
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/css/blocklayouts.css',
 		array(),
 		BLOCKLAYOUTS_VERSION
 	);
@@ -129,7 +148,7 @@ function blocklayouts_enqueue_css_and_js() {
 	// JS.
 	wp_register_script(
 		'blocklayouts-main-scripts',
-		BLOCKLAYOUTS_PLUGIN_URL . 'assets/js/blocklayouts.js', // TODO: minify this file.
+		BLOCKLAYOUTS_PLUGIN_URL . 'assets/js/blocklayouts.min.js',
 		array(),
 		BLOCKLAYOUTS_VERSION,
 		true
@@ -138,23 +157,6 @@ function blocklayouts_enqueue_css_and_js() {
 	wp_enqueue_script( 'blocklayouts-main-scripts' );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\blocklayouts_enqueue_css_and_js' );
-
-/**
- * Register new block category
- *
- * @param array $block_categories Block categories.
- * @return array Block categories.
- */
-function blocklayouts_register_block_category( $block_categories ) {
-
-	$block_categories[] = array(
-		'slug'  => 'blocklayouts',
-		'title' => __( 'Blocklayouts', 'blocklayouts' ),
-	);
-
-	return $block_categories;
-}
-add_filter( 'block_categories_all', __NAMESPACE__ . '\blocklayouts_register_block_category', 10, 2 );
 
 /**
  * Plugin deactivation hook
