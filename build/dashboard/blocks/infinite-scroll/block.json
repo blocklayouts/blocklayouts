@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocklayouts/infinite-scroll",
+  "version": "0.1.0",
+  "title": "Infinite Scroll",
+  "category": "blocklayouts",
+  "ancestor": [
+    "core/query"
+  ],
+  "icon": "update",
+  "description": "Load more posts automatically on scroll or with a button.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "__experimentalSkipSerialization": true,
+      "gradients": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "typography": {
+      "__experimentalSkipSerialization": [
+        "fontSize",
+        "lineHeight",
+        "textAlign",
+        "fontFamily",
+        "fontWeight",
+        "fontStyle",
+        "textTransform",
+        "textDecoration",
+        "letterSpacing"
+      ],
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalWritingMode": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "spacing": {
+      "__experimentalSkipSerialization": true,
+      "padding": [
+        "horizontal",
+        "vertical"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalSkipSerialization": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "interactivity": true
+  },
+  "attributes": {
+    "infiniteType": {
+      "type": "string",
+      "default": "infinite"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Load More"
+    },
+    "loadingText": {
+      "type": "string",
+      "default": "Loading more posts..."
+    },
+    "noMoreText": {
+      "type": "string",
+      "default": "No more posts to load"
+    },
+    "triggerDistance": {
+      "type": "number",
+      "default": 200
+    },
+    "justifyContent": {
+      "type": "string"
+    }
+  },
+  "textdomain": "blocklayouts",
+  "usesContext": [
+    "queryId",
+    "query"
+  ],
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js"
+}
