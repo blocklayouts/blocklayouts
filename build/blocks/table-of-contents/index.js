@@ -240,52 +240,7 @@ function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else i
   \*************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocklayouts/table-of-contents","version":"0.1.0","title":"Table of Contents","category":"blocklayouts","icon":"list-view","description":"Display a table of contents based on headings in your content.","keywords":["toc","outline","headings","navigation"],"supports":{"html":false,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true,"link":true}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalDefaultControls":{"fontSize":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"padding":true}},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true,"__experimentalDefaultControls":{"color":true,"radius":true,"style":true,"width":true}}},"attributes":{"ordered":{"type":"boolean","default":false},"headingTitle":{"type":"string","default":"Table of Contents"},"showTitle":{"type":"boolean","default":true},"allowedHeadings":{"type":"array","default":[1,2,3,4,5,6],"items":{"type":"number"}},"smoothScroll":{"type":"boolean","default":false}},"textdomain":"blocklayouts","editorScript":"file:./index.js","render":"file:./render.php","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
-
-/***/ }),
-
-/***/ "./src/blocks/table-of-contents/check.js":
-/*!***********************************************!*\
-  !*** ./src/blocks/table-of-contents/check.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TableOfContentsCheck)
-/* harmony export */ });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * WordPress dependencies
- */
-
-
-
-/**
- * Component check if there are any headings (core/heading blocks) present in the table of contents.
- *
- * @param {Object}          props          Props.
- * @param {React.ReactNode} props.children Children to be rendered.
- *
- * @return {React.ReactNode} The component to be rendered or null if there are headings.
- */
-function TableOfContentsCheck({
-  children
-}) {
-  const hasHeadings = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
-    const {
-      getGlobalBlockCount
-    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.store);
-    return getGlobalBlockCount("core/heading") > 0;
-  });
-  if (!hasHeadings) {
-    return null;
-  }
-  return children;
-}
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocklayouts/table-of-contents","version":"0.1.0","title":"Table of Contents","category":"blocklayouts","icon":"list-view","description":"Display a table of contents based on headings in your content.","keywords":["toc","outline","headings","navigation"],"supports":{"html":false,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"__experimentalDefaultControls":{"background":true,"text":true,"link":true}},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalDefaultControls":{"fontSize":true}},"spacing":{"margin":true,"padding":true,"__experimentalDefaultControls":{"padding":true}},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true,"__experimentalDefaultControls":{"color":true,"radius":true,"style":true,"width":true}}},"attributes":{"ordered":{"type":"boolean","default":false},"headingTitle":{"type":"string","default":"Table of Contents"},"showTitle":{"type":"boolean","default":true},"allowedHeadings":{"type":"array","default":[1,2,3,4,5,6],"items":{"type":"number"}},"smoothScroll":{"type":"boolean","default":false}},"styles":[{"name":"plain-links","label":"Plain Links"}],"textdomain":"blocklayouts","editorScript":"file:./index.js","render":"file:./render.php","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -319,9 +274,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-list-numbered.js");
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/format-list-numbered-rtl.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/table-of-contents/editor.scss");
-/* harmony import */ var _check__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./check */ "./src/blocks/table-of-contents/check.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__);
 /**
  * External dependencies.
  */
@@ -342,7 +296,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies.
  */
-
 
 
 /**
@@ -407,15 +360,15 @@ const buildNestedList = (headings, ListTag) => {
 
   // Recursive function to render nested items
   const renderItems = items => {
-    return items.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("li", {
+    return items.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("li", {
       className: (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])("wp-block-blocklayouts-table-of-contents__item", {
         "is-empty": item.isEmpty
       }),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("a", {
         href: `#block-${item.clientId}`,
         className: "wp-block-blocklayouts-table-of-contents__link",
         children: item.text
-      }), item.children.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(ListTag, {
+      }), item.children.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(ListTag, {
         className: "wp-block-blocklayouts-table-of-contents__list",
         children: renderItems(item.children)
       })]
@@ -454,10 +407,10 @@ function Edit({
     className: (0,clsx__WEBPACK_IMPORTED_MODULE_0__["default"])(className, "wp-block-blocklayouts-table-of-contents")
   });
   const ListTag = ordered ? "ol" : "ul";
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
       group: "block",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToolbarButton, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToolbarButton, {
         icon: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.isRTL)() ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Unordered"),
         description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Convert to unordered list"),
@@ -467,7 +420,7 @@ function Edit({
             ordered: false
           });
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToolbarButton, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToolbarButton, {
         icon: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.isRTL)() ? _wordpress_icons__WEBPACK_IMPORTED_MODULE_12__["default"] : _wordpress_icons__WEBPACK_IMPORTED_MODULE_11__["default"],
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Ordered"),
         description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Convert to ordered list"),
@@ -478,14 +431,14 @@ function Edit({
           });
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings", "blocklayouts"),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           style: {
             marginBottom: "16px"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
             style: {
               fontSize: "11px",
               fontWeight: 500,
@@ -493,7 +446,7 @@ function Edit({
               textTransform: "uppercase"
             },
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Heading Levels", "blocklayouts")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Dropdown, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Dropdown, {
             popoverProps: {
               placement: "left-start"
             },
@@ -503,7 +456,7 @@ function Edit({
             renderToggle: ({
               isOpen,
               onToggle
-            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
               onClick: onToggle,
               "aria-expanded": isOpen
               // variant="secondary"
@@ -519,29 +472,29 @@ function Edit({
               iconPosition: "right",
               iconSize: 20,
               __next40pxDefaultSize: true,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
                 children: allowedHeadings.length === 6 ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("All (H1-H6)", "blocklayouts") : allowedHeadings.sort((a, b) => a - b).map(l => `H${l}`).join(", ")
               })
             }),
-            renderContent: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.MenuGroup, {
+            renderContent: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.MenuGroup, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Select Heading Levels", "blocklayouts"),
               children: [1, 2, 3, 4, 5, 6].map(level => {
                 const isChecked = allowedHeadings.includes(level);
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.MenuItem, {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.MenuItem, {
                   onClick: () => {
                     const newAllowedHeadings = isChecked ? allowedHeadings.filter(l => l !== level) : [...allowedHeadings, level].sort((a, b) => a - b);
                     setAttributes({
                       allowedHeadings: newAllowedHeadings
                     });
                   },
-                  suffix: isChecked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Icon, {
+                  suffix: isChecked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Icon, {
                     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"]
                   }) : null,
                   children: `H${level}`
                 }, level);
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
             style: {
               marginTop: "8px",
               marginBottom: "0px",
@@ -551,14 +504,14 @@ function Edit({
             },
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Select which heading levels (H1-H6) should be included in the table of contents.", "blocklayouts")
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Show Title", "blocklayouts"),
           checked: showTitle,
           onChange: showTitle => setAttributes({
             showTitle
           }),
           __nextHasNoMarginBottom: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Smooth Scroll", "blocklayouts"),
           checked: smoothScroll,
           onChange: smoothScroll => setAttributes({
@@ -568,28 +521,26 @@ function Edit({
           __nextHasNoMarginBottom: true
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
       ...blockProps,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_check__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("nav", {
-          className: "wp-block-blocklayouts-table-of-contents__wrapper",
-          children: [showTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-            tagName: "h2",
-            value: headingTitle,
-            onChange: headingTitle => setAttributes({
-              headingTitle
-            }),
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Table of Contents", "blocklayouts"),
-            className: "wp-block-blocklayouts-table-of-contents__title wp-block-heading",
-            allowedFormats: ["core/bold", "core/italic"]
-          }), headings.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(ListTag, {
-            className: "wp-block-blocklayouts-table-of-contents__list",
-            children: buildNestedList(headings, ListTag)
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
-            className: "wp-block-blocklayouts-table-of-contents__empty",
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No headings found. Add heading blocks to your content to populate the table of contents.", "blocklayouts")
-          })]
-        })
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("nav", {
+        className: "wp-block-blocklayouts-table-of-contents__wrapper",
+        children: [showTitle && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+          tagName: "h2",
+          value: headingTitle,
+          onChange: headingTitle => setAttributes({
+            headingTitle
+          }),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Table of Contents", "blocklayouts"),
+          className: "wp-block-blocklayouts-table-of-contents__title wp-block-heading",
+          allowedFormats: ["core/bold", "core/italic"]
+        }), headings.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(ListTag, {
+          className: "wp-block-blocklayouts-table-of-contents__list",
+          children: buildNestedList(headings, ListTag)
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+          className: "wp-block-blocklayouts-table-of-contents__empty",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("No headings found. Add heading blocks to your content to populate the table of contents.", "blocklayouts")
+        })]
       })
     })]
   });

@@ -5,4 +5,14 @@
   margin: 0;
 }
 
+.wp-block-blocklayouts-table-of-contents.is-style-plain-links .wp-block-blocklayouts-table-of-contents__list {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.wp-block-blocklayouts-table-of-contents.is-style-plain-links .wp-block-blocklayouts-table-of-contents__list .wp-block-blocklayouts-table-of-contents__link {
+  text-decoration: none;
+  color: inherit;
+}
+
 /*# sourceMappingURL=style-index.css.map*/

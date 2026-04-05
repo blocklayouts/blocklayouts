@@ -734,6 +734,13 @@
 .blocklayouts-modal .components-modal__content div:has(> div.blocklayouts-modal__container) {
   height: 100%;
 }
+.blocklayouts-modal .components-modal__content .components-notice-list .components-notice {
+  margin-bottom: 16px;
+}
+.blocklayouts-modal .components-modal__content .components-notice-list .components-notice .components-notice__content {
+  margin-bottom: 0;
+  margin-top: 0;
+}
 .blocklayouts-modal .components-modal__content .blocklayouts-modal__container {
   height: 100%;
   display: flex;

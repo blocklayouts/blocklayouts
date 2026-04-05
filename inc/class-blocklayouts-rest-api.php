@@ -27,7 +27,7 @@ class Blocklayouts_REST_API {
 	 * Register REST API routes
 	 */
 	public function register_rest_routes() {
-		// Patterns
+		// Patterns.
 		register_rest_route(
 			'blocklayouts/v1',
 			'/patterns',
@@ -40,6 +40,17 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
+			'/patterns/categories',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'rest_get_patterns_categories' ),
+				'permission_callback' => array( $this, 'check_editor_permission' ),
+			)
+		);
+
+		// Page templates.
+		register_rest_route(
+			'blocklayouts/v1',
 			'/page-templates',
 			array(
 				'methods'             => 'GET',
@@ -50,17 +61,11 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/categories',
+			'/page-templates/categories',
 			array(
 				'methods'             => 'GET',
-				'callback'            => array( $this, 'rest_get_categories' ),
+				'callback'            => array( $this, 'rest_get_page_templates_categories' ),
 				'permission_callback' => array( $this, 'check_editor_permission' ),
-				'args'                => array(
-					'layout_type' => array(
-						'default'           => '',
-						'sanitize_callback' => 'sanitize_text_field',
-					),
-				),
 			)
 		);
 
@@ -74,78 +79,44 @@ class Blocklayouts_REST_API {
 			)
 		);
 
-		// License endpoints
-		register_rest_route(
-			'blocklayouts/v1',
-			'/license/activate',
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( $this, 'rest_activate_license' ),
-				'permission_callback' => array( $this, 'check_admin_permission' ),
-				'args'                => array(
-					'nonce' => array(
-						'required'          => true,
-						'validate_callback' => array( $this, 'validate_nonce' ),
-					),
-				),
-			)
-		);
-
-		register_rest_route(
-			'blocklayouts/v1',
-			'/license/deactivate',
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( $this, 'rest_deactivate_license' ),
-				'permission_callback' => array( $this, 'check_admin_permission' ),
-				'args'                => array(
-					'nonce' => array(
-						'required'          => true,
-						'validate_callback' => array( $this, 'validate_nonce' ),
-					),
-				),
-			)
-		);
-
+		// License endpoints.
 		register_rest_route(
 			'blocklayouts/v1',
 			'/license',
 			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'rest_get_license' ),
-				'permission_callback' => array( $this, 'check_editor_permission' ),
+				array(
+					'methods'             => 'GET',
+					'callback'            => array( $this, 'rest_get_license' ),
+					'permission_callback' => array( $this, 'check_editor_permission' ),
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( $this, 'rest_update_license' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'args'                => array(
+						'nonce' => array(
+							'required'          => true,
+							'validate_callback' => array( $this, 'validate_nonce' ),
+						),
+					),
+				),
 			)
 		);
 
-		// Blocks preferences endpoints
+		// Blocks preferences endpoints.
 		register_rest_route(
 			'blocklayouts/v1',
 			'/blocks',
 			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'rest_get_blocks' ),
-				'permission_callback' => array( $this, 'check_editor_permission' ),
-			)
-		);
-
-		register_rest_route(
-			'blocklayouts/v1',
-			'/blocks',
-			array(
-				'methods'             => 'POST',
-				'callback'            => array( $this, 'rest_update_blocks' ),
-				'permission_callback' => array( $this, 'check_admin_permission' ),
-				'args'                => array(
-					'nonce'  => array(
-						'required'          => true,
-						'validate_callback' => array( $this, 'validate_nonce' ),
-					),
-					'blocks' => array(
-						'required'          => true,
-						'validate_callback' => function ( $param ) {
-							return is_array( $param );
-						},
-					),
+				array(
+					'methods'             => 'GET',
+					'callback'            => array( $this, 'rest_get_blocks' ),
+					'permission_callback' => array( $this, 'check_editor_permission' ),
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( $this, 'rest_update_blocks' ),
+					'permission_callback' => array( $this, 'check_admin_permission' ),
 				),
 			)
 		);
@@ -210,12 +181,39 @@ class Blocklayouts_REST_API {
 	}
 
 
-	public function rest_get_categories( $request ) {
-		$params = $request->get_params();
+	public function rest_get_patterns_categories( $request ) {
+		$params = array(
+			'post_type' => 'component',
+		);
 
 		$cache_key = $this->get_cache_key( 'categories', $params );
 
 		$cached_data = $this->get_cached_data( $cache_key );
+
+		if ( $cached_data !== false ) {
+			return rest_ensure_response( $cached_data );
+		}
+
+		$response = Blocklayouts_Api::get_instance()->get_categories( $params );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+
+		$this->set_cached_data( $cache_key, $response );
+
+		return rest_ensure_response( $response );
+	}
+
+	public function rest_get_page_templates_categories( $request ) {
+		$params = array(
+			'post_type' => 'page-template',
+		);
+
+		$cache_key = $this->get_cache_key( 'page_templates_categories', $params );
+
+		$cached_data = $this->get_cached_data( $cache_key );
+
 		if ( $cached_data !== false ) {
 			return rest_ensure_response( $cached_data );
 		}
@@ -251,12 +249,56 @@ class Blocklayouts_REST_API {
 		return rest_ensure_response( $response );
 	}
 
-	public function rest_activate_license( $request ) {
+
+	/**
+	 * Get license data
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_get_license( $request ) {
+		$license_data = License::get_instance()->get_license_config();
+
+		return rest_ensure_response(
+			array(
+				'success' => true,
+				'data'    => $license_data,
+			)
+		);
+	}
+	/**
+	 * Update license data (handles both activation and deactivation)
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_update_license( $request ) {
+		$action = sanitize_text_field( $request->get_param( 'action' ) );
+
+		if ( empty( $action ) || ! in_array( $action, array( 'activate', 'deactivate' ), true ) ) {
+			return new \WP_Error( 'invalid_action', 'Action must be either "activate" or "deactivate".', array( 'status' => 400 ) );
+		}
+
+		if ( 'activate' === $action ) {
+			return $this->handle_license_activation( $request );
+		} else {
+			return $this->handle_license_deactivation( $request );
+		}
+	}
+
+	/**
+	 * Handle license activation
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	private function handle_license_activation( $request ) {
 		$license_key = sanitize_text_field( $request->get_param( 'license_key' ) );
 
 		if ( empty( $license_key ) || strlen( $license_key ) < 8 ) {
 			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
 		}
+
 		$args = array(
 			'license_key'   => $license_key,
 			'instance_name' => License::get_instance()->get_instance_name(),
@@ -289,8 +331,13 @@ class Blocklayouts_REST_API {
 		);
 	}
 
-	public function rest_deactivate_license( $request ) {
-
+	/**
+	 * Handle license deactivation
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	private function handle_license_deactivation( $request ) {
 		$license_key = sanitize_text_field( $request->get_param( 'license_key' ) );
 		$instance_id = sanitize_text_field( $request->get_param( 'instance_id' ) );
 
@@ -298,7 +345,7 @@ class Blocklayouts_REST_API {
 			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
 		}
 		if ( empty( $instance_id ) ) {
-			return new \WP_Error( 'missing_instance_id', 'Instance id key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_instance_id', 'Instance id is required.', array( 'status' => 400 ) );
 		}
 
 		$args = array(
@@ -338,23 +385,6 @@ class Blocklayouts_REST_API {
 	}
 
 	/**
-	 * Get license data
-	 *
-	 * @param \WP_REST_Request $request Request object.
-	 * @return \WP_REST_Response
-	 */
-	public function rest_get_license( $request ) {
-		$license_data = License::get_instance()->get_license_config();
-
-		return rest_ensure_response(
-			array(
-				'success' => true,
-				'data'    => $license_data,
-			)
-		);
-	}
-
-	/**
 	 * Get blocks preferences
 	 *
 	 * @param \WP_REST_Request $request Request object.
@@ -387,7 +417,11 @@ class Blocklayouts_REST_API {
 	 * @return \WP_REST_Response
 	 */
 	public function rest_update_blocks( $request ) {
-		$blocks = $request->get_param( 'blocks' );
+
+		$blocks = $request->get_params();
+
+		// The locale is often appended to the request. We don't need this.
+		unset( $blocks['_locale'] );
 
 		if ( ! is_array( $blocks ) ) {
 			return new \WP_Error( 'invalid_blocks', 'Blocks must be an array.', array( 'status' => 400 ) );
@@ -401,14 +435,43 @@ class Blocklayouts_REST_API {
 			$blocklayouts_settings['blocks'] = array();
 		}
 
-		// Only update the active status for each block.
-		foreach ( $blocks as $block_name => $block_data ) {
-			$sanitized_block_name = sanitize_text_field( $block_name );
+		// Check if blocks is an indexed array (from JS) or already in the correct format.
+		$is_indexed = isset( $blocks[0] ) && is_array( $blocks[0] ) && isset( $blocks[0]['name'] );
 
-			// Only store the active status.
-			$blocklayouts_settings['blocks'][ $sanitized_block_name ] = array(
-				'active' => isset( $block_data['active'] ) ? (bool) $block_data['active'] : true,
-			);
+		if ( $is_indexed ) {
+			// Process indexed array from JavaScript.
+			// Convert from: [ { name: 'blocklayouts/icon', active: true, ... }, ... ]
+			// To: [ 'blocklayouts/icon' => [ 'active' => true ], ... ]
+			foreach ( $blocks as $block_data ) {
+				// Skip invalid entries (like the one with name => 0 in debug log).
+				if ( ! is_array( $block_data ) || ! isset( $block_data['name'] ) || empty( $block_data['name'] ) ) {
+					continue;
+				}
+
+				$block_name = sanitize_text_field( $block_data['name'] );
+
+				// Only store the active status.
+				$blocklayouts_settings['blocks'][ $block_name ] = array(
+					'active' => isset( $block_data['active'] ) ? (bool) $block_data['active'] : true,
+				);
+			}
+		} else {
+			// Handle other possible formats or direct associative array.
+			// This is a fallback in case the data comes in a different format.
+			foreach ( $blocks as $block_name => $block_data ) {
+				// Skip non-block entries like '_locale'.
+				if ( ! is_string( $block_name ) || strpos( $block_name, 'blocklayouts/' ) !== 0 ) {
+					continue;
+				}
+
+				$sanitized_block_name = sanitize_text_field( $block_name );
+
+				if ( is_array( $block_data ) && isset( $block_data['active'] ) ) {
+					$blocklayouts_settings['blocks'][ $sanitized_block_name ] = array(
+						'active' => (bool) $block_data['active'],
+					);
+				}
+			}
 		}
 
 		// Save updated settings.
@@ -419,9 +482,9 @@ class Blocklayouts_REST_API {
 			$all_blocks = Blocks_Registrar::get_blocks();
 
 			$blocks_array = array();
-			foreach ( $all_blocks as $block_id => $block_data ) {
+			foreach ( $all_blocks as $block_name => $block_data ) {
 				$blocks_array[] = array_merge(
-					array( 'id' => $block_id ),
+					array( 'name' => $block_name ),
 					$block_data
 				);
 			}

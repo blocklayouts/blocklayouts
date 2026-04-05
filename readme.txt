@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
 Tested up to:      6.9
 Requires at least: 6.5
-Stable tag:        0.1.9
+Stable tag:        0.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,12 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 
 == Changelog ==
+
+= 0.2.0 - 2026-01-15 =
+
+- Improved: Speed of loading the patterns library
+- Added: Style to the table of contents block
+- Various minor fixes and improvements
 
 = 0.1.9 - 2025-12-29 =
 

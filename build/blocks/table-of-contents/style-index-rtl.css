@@ -4,3 +4,13 @@
 .wp-block-blocklayouts-table-of-contents__title {
   margin: 0;
 }
+
+.wp-block-blocklayouts-table-of-contents.is-style-plain-links .wp-block-blocklayouts-table-of-contents__list {
+  list-style: none;
+  padding-right: 1rem;
+}
+
+.wp-block-blocklayouts-table-of-contents.is-style-plain-links .wp-block-blocklayouts-table-of-contents__list .wp-block-blocklayouts-table-of-contents__link {
+  text-decoration: none;
+  color: inherit;
+}

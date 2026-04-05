@@ -285,8 +285,12 @@
 #blocklayouts-dashboard h5 {
   font-size: 12px;
 }
-#blocklayouts-dashboard .blocklayouts-dashboard__notice {
-  margin-bottom: 32px;
+#blocklayouts-dashboard .components-notice-list .components-notice {
+  margin-bottom: 16px;
+}
+#blocklayouts-dashboard .components-notice-list .components-notice .components-notice__content {
+  margin-bottom: 0;
+  margin-top: 0;
 }
 #blocklayouts-dashboard .blocklayouts-dashboard__sidebar {
   border-right: 1px solid #ddd;
