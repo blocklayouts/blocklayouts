@@ -181,7 +181,7 @@ class Blocklayouts_REST_API {
 	}
 
 	public function rest_get_patterns( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'patterns', $params );
 
@@ -208,7 +208,7 @@ class Blocklayouts_REST_API {
 	}
 
 	public function rest_get_page_templates( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'page_templates', $params );
 
@@ -269,7 +269,7 @@ class Blocklayouts_REST_API {
 	}
 
 	public function rest_get_categories( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'categories', $params );
 
@@ -313,7 +313,7 @@ class Blocklayouts_REST_API {
 		$license_key = sanitize_text_field( $request->get_param( 'license_key' ) );
 
 		if ( empty( $license_key ) || strlen( $license_key ) < 8 ) {
-			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_license_key', __( 'License key is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 		$args = array(
 			'license_key'   => $license_key,
@@ -321,6 +321,10 @@ class Blocklayouts_REST_API {
 		);
 
 		$response = Blocklayouts_Api::get_instance()->activate_license( $args );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
 
 		if ( ! empty( $response['activated'] ) && $response['activated'] ) {
 			$result = License::get_instance()->save_license_data( $response );
@@ -334,7 +338,7 @@ class Blocklayouts_REST_API {
 			} else {
 				return rest_ensure_response(
 					array(
-						'error' => 'Failed to save license information. Please try again or contact support.',
+						'error' => __( 'Failed to save license information. Please try again or contact support.', 'blocklayouts' ),
 					)
 				);
 			}
@@ -342,7 +346,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => ! empty( $response['message'] ) ? $response['message'] : 'License activation failed!',
+				'error' => ! empty( $response['message'] ) ? $response['message'] : __( 'License activation failed.', 'blocklayouts' ),
 			)
 		);
 	}
@@ -353,10 +357,10 @@ class Blocklayouts_REST_API {
 		$instance_id = sanitize_text_field( $request->get_param( 'instance_id' ) );
 
 		if ( empty( $license_key ) ) {
-			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_license_key', __( 'License key is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 		if ( empty( $instance_id ) ) {
-			return new \WP_Error( 'missing_instance_id', 'Instance id key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_instance_id', __( 'Instance ID is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 
 		$args = array(
@@ -382,7 +386,7 @@ class Blocklayouts_REST_API {
 			} else {
 				return rest_ensure_response(
 					array(
-						'error' => 'Failed to remove license information. Please try again or contact support.',
+						'error' => __( 'Failed to remove license information. Please try again or contact support.', 'blocklayouts' ),
 					)
 				);
 			}
@@ -390,7 +394,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => ! empty( $response['error'] ) ? $response['error'] : 'Failed to remove license information. Please try again or contact support.',
+				'error' => ! empty( $response['error'] ) ? $response['error'] : __( 'Failed to remove license information. Please try again or contact support.', 'blocklayouts' ),
 			)
 		);
 	}
@@ -477,7 +481,7 @@ class Blocklayouts_REST_API {
 		}
 
 		if ( ! is_array( $blocks ) ) {
-			return new \WP_Error( 'invalid_blocks', 'Blocks must be an array.', array( 'status' => 400 ) );
+			return new \WP_Error( 'invalid_blocks', __( 'Blocks must be an array.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 
 		// Get current settings and the set of real, known blocks.
@@ -542,7 +546,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => 'Failed to save block preferences.',
+				'error' => __( 'Failed to save block preferences.', 'blocklayouts' ),
 			)
 		);
 	}
@@ -614,6 +618,10 @@ class Blocklayouts_REST_API {
 	 * Check if plugin is active
 	 */
 	private function is_plugin_active( string $plugin_slug ): bool {
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
 		$plugin_paths = array(
 			$plugin_slug . '/' . $plugin_slug . '.php',
 			$plugin_slug . '/index.php',
@@ -638,6 +646,40 @@ class Blocklayouts_REST_API {
 		}
 
 		return version_compare( BLOCKLAYOUTS_VERSION, $required_version, '>=' );
+	}
+
+	/**
+	 * Collect the query parameters that are forwarded to the remote API.
+	 *
+	 * Only known parameters are kept, so arbitrary input is never forwarded
+	 * and can't be used to create an unlimited number of cache entries.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return array Sanitized parameters.
+	 */
+	private function get_remote_params( $request ): array {
+		$allowed = array(
+			'page'        => 'absint',
+			'per_page'    => 'absint',
+			'search'      => 'sanitize_text_field',
+			'category'    => 'sanitize_text_field',
+			'industry'    => 'sanitize_text_field',
+			'post_type'   => 'sanitize_key',
+			'layout_type' => 'sanitize_key',
+		);
+
+		$params = array();
+		foreach ( $allowed as $key => $sanitize ) {
+			$value = $request->get_param( $key );
+			if ( null === $value || '' === $value || is_array( $value ) ) {
+				continue;
+			}
+			$params[ $key ] = call_user_func( $sanitize, $value );
+		}
+
+		ksort( $params );
+
+		return $params;
 	}
 
 	/**
@@ -685,7 +727,7 @@ class Blocklayouts_REST_API {
 	/**
 	 * Get singleton instance
 	 */
-	public static function get_instance(): static {
+	public static function get_instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}

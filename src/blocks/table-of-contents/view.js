@@ -12,7 +12,7 @@
 	// Smooth scroll behavior for TOC links
 	document.addEventListener('DOMContentLoaded', function () {
 		const tocLinks = document.querySelectorAll(
-			'.wp-block-blocklayouts-table-of-contents.smooth-scroll .wp-block-blocklayouts-table-of-contents__link'
+			'.wp-block-blocklayouts-table-of-contents__wrapper.smooth-scroll .wp-block-blocklayouts-table-of-contents__link'
 		);
 
 		tocLinks.forEach(function (link) {

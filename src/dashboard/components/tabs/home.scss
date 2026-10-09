@@ -8,6 +8,22 @@
 		flex: 1;
 	}
 
+	&-howto {
+		ol {
+			margin: 0;
+			padding-left: 20px;
+		}
+
+		li {
+			margin-bottom: 16px;
+		}
+
+		p {
+			margin: 4px 0 0;
+			color: #757575;
+		}
+	}
+
 	&-sidebar {
 		width: 360px;
 		&-item {

@@ -135,7 +135,7 @@ class License {
 			$license_data = array();
 		}
 
-		return array(
+		$config = array(
 			'instance'           => $license_data['instance'] ?? '',
 			'license_key'        => $license_data['license_key'] ?? '',
 			'key'                => $license_data['license_key']['key'] ?? '',
@@ -144,5 +144,20 @@ class License {
 			'is_expired'         => $this->is_license_expired( $license_data ),
 			'is_about_to_expire' => $this->is_license_about_to_expire( 7, $license_data ),
 		);
+
+		// Only administrators manage the license, so other users don't receive the key,
+		// the activation instance or the customer details returned by the license server.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$config['instance'] = array();
+			$config['key']      = '';
+			$config['meta']     = array();
+
+			$config['license_key'] = array_intersect_key(
+				(array) $config['license_key'],
+				array_flip( array( 'status', 'expires_at' ) )
+			);
+		}
+
+		return $config;
 	}
 }

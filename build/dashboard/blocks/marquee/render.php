@@ -18,14 +18,6 @@ $blocklayouts_marquee_direction      = ! empty( $attributes['direction'] ) ? san
 $blocklayouts_marquee_pause_on_hover = ! empty( $attributes['pauseOnHover'] );
 $blocklayouts_marquee_gap            = isset( $attributes['gap'] ) ? max( 0, intval( $attributes['gap'] ) ) : 40;
 
-// Render inner blocks.
-$blocklayouts_marquee_inner_blocks_content = '';
-if ( ! empty( $block->inner_blocks ) ) {
-	foreach ( $block->inner_blocks as $blocklayouts_marquee_inner_block ) {
-		$blocklayouts_marquee_inner_blocks_content .= $blocklayouts_marquee_inner_block->render();
-	}
-}
-
 // Build container classes.
 $blocklayouts_marquee_container_classes = array( 'marquee-container' );
 if ( $blocklayouts_marquee_pause_on_hover ) {
@@ -48,8 +40,8 @@ $blocklayouts_marquee_content_style = ' style="gap: ' . esc_attr( $blocklayouts_
     <div class="<?php echo esc_attr( $blocklayouts_marquee_container_class ); ?>"
         <?php echo wp_kses_post( $blocklayouts_marquee_container_style ); ?>>
         <div class="marquee-content" <?php echo wp_kses_post( $blocklayouts_marquee_content_style ); ?>>
-            <?php echo wp_kses_post( $blocklayouts_marquee_inner_blocks_content ); ?></div>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Inner blocks are already rendered by core. ?></div>
         <div class="marquee-content" <?php echo wp_kses_post( $blocklayouts_marquee_content_style ); ?>>
-            <?php echo wp_kses_post( $blocklayouts_marquee_inner_blocks_content ); ?></div>
+            <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Inner blocks are already rendered by core. ?></div>
     </div>
 </div>

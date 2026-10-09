@@ -62,7 +62,7 @@ Blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 
 - **WordPress**: 6.5 or higher
 - **PHP**: 7.4 or higher
-- **Tested up to**: WordPress 6.8
+- **Tested up to**: WordPress 7.1
 
 ## Installation
 

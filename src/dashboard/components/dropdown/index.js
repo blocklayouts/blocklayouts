@@ -168,7 +168,6 @@ export const DropdownMenu = ({
 								</Navigator.Button>
 								<MenuItem
 									disabled={true}
-									onClick={() => console.log("Coming soon")}
 								>
 									{__("Favorites (Coming soon)", "blocklayouts")}
 								</MenuItem>

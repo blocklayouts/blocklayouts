@@ -14,35 +14,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get block attributes with defaults.
-$ordered          = isset( $attributes['ordered'] ) ? $attributes['ordered'] : false;
-$heading_title    = isset( $attributes['headingTitle'] ) ? $attributes['headingTitle'] : __( 'Table of Contents', 'blocklayouts' );
-$show_title       = isset( $attributes['showTitle'] ) ? $attributes['showTitle'] : true;
-$allowed_headings = isset( $attributes['allowedHeadings'] ) ? $attributes['allowedHeadings'] : array( 1, 2, 3, 4, 5, 6 );
-$smooth_scroll    = isset( $attributes['smoothScroll'] ) ? $attributes['smoothScroll'] : true;
+$blocklayouts_toc_ordered          = isset( $attributes['ordered'] ) ? $attributes['ordered'] : false;
+$blocklayouts_toc_heading_title    = isset( $attributes['headingTitle'] ) ? $attributes['headingTitle'] : __( 'Table of Contents', 'blocklayouts' );
+$blocklayouts_toc_show_title       = isset( $attributes['showTitle'] ) ? $attributes['showTitle'] : true;
+$blocklayouts_toc_allowed_headings = isset( $attributes['allowedHeadings'] ) ? $attributes['allowedHeadings'] : array( 1, 2, 3, 4, 5, 6 );
+$blocklayouts_toc_smooth_scroll    = isset( $attributes['smoothScroll'] ) ? $attributes['smoothScroll'] : true;
 
 // Get the post content.
-global $post;
-if ( ! $post ) {
+$blocklayouts_toc_post = get_post();
+if ( ! $blocklayouts_toc_post ) {
 	return;
 }
 
-$content = $post->post_content;
+$blocklayouts_toc_content = $blocklayouts_toc_post->post_content;
 
 // Parse blocks from content.
-$blocks = parse_blocks( $content );
+$blocklayouts_toc_blocks = parse_blocks( $blocklayouts_toc_content );
 
 // Define anonymous function to recursively extract heading blocks.
-$extract_headings = function ( $blocks ) use ( &$extract_headings ) {
+$blocklayouts_toc_extract_headings = function ( $blocklayouts_toc_blocks ) use ( &$blocklayouts_toc_extract_headings ) {
 	$headings = array();
 
-	foreach ( $blocks as $block ) {
+	foreach ( $blocklayouts_toc_blocks as $block ) {
 		if ( 'core/heading' === $block['blockName'] ) {
 			$headings[] = $block;
 		}
 
 		// Recursively check inner blocks.
 		if ( ! empty( $block['innerBlocks'] ) ) {
-			$headings = array_merge( $headings, $extract_headings( $block['innerBlocks'] ) );
+			$headings = array_merge( $headings, $blocklayouts_toc_extract_headings( $block['innerBlocks'] ) );
 		}
 	}
 
@@ -51,114 +51,114 @@ $extract_headings = function ( $blocks ) use ( &$extract_headings ) {
 
 
 // Extract all heading blocks.
-$all_headings = $extract_headings( $blocks );
+$blocklayouts_toc_all_headings = $blocklayouts_toc_extract_headings( $blocklayouts_toc_blocks );
 
 
 // Filter headings based on allowed levels.
-$filtered_headings = array_filter(
-	$all_headings,
-	function ( $heading ) use ( $allowed_headings ) {
-		$level = isset( $heading['attrs']['level'] ) ? $heading['attrs']['level'] : 2;
-		return in_array( $level, $allowed_headings, true );
+$blocklayouts_toc_filtered_headings = array_filter(
+	$blocklayouts_toc_all_headings,
+	function ( $blocklayouts_toc_heading ) use ( $blocklayouts_toc_allowed_headings ) {
+		$blocklayouts_toc_level = isset( $blocklayouts_toc_heading['attrs']['level'] ) ? $blocklayouts_toc_heading['attrs']['level'] : 2;
+		return in_array( $blocklayouts_toc_level, $blocklayouts_toc_allowed_headings, true );
 	}
 );
 
 // If no headings found, don't render.
-if ( empty( $filtered_headings ) ) {
+if ( empty( $blocklayouts_toc_filtered_headings ) ) {
 	return;
 }
 
 // Get block wrapper attributes.
-$wrapper_attributes = get_block_wrapper_attributes(
+$blocklayouts_toc_wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'wp-block-blocklayouts-table-of-contents',
 	)
 );
 
-$list_tag = $ordered ? 'ol' : 'ul';
+$blocklayouts_toc_list_tag = $blocklayouts_toc_ordered ? 'ol' : 'ul';
 
 // Add smooth scroll class.
-$nav_class = 'wp-block-blocklayouts-table-of-contents__wrapper';
-if ( $smooth_scroll ) {
-	$nav_class .= ' smooth-scroll';
+$blocklayouts_toc_nav_class = 'wp-block-blocklayouts-table-of-contents__wrapper';
+if ( $blocklayouts_toc_smooth_scroll ) {
+	$blocklayouts_toc_nav_class .= ' smooth-scroll';
 }
 
 ?>
-<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-    <nav class="<?php echo esc_attr( $nav_class ); ?>">
-        <?php if ( $show_title && ! empty( $heading_title ) ) : ?>
+<div <?php echo $blocklayouts_toc_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+    <nav class="<?php echo esc_attr( $blocklayouts_toc_nav_class ); ?>">
+        <?php if ( $blocklayouts_toc_show_title && ! empty( $blocklayouts_toc_heading_title ) ) : ?>
         <h2 class="wp-block-blocklayouts-table-of-contents__title wp-block-heading">
-            <?php echo wp_kses_post( $heading_title ); ?>
+            <?php echo wp_kses_post( $blocklayouts_toc_heading_title ); ?>
         </h2>
         <?php endif; ?>
 
         <?php
 		// Build hierarchical structure.
-		$current_level = 0;
-		$open_lists    = 0;
+		$blocklayouts_toc_current_level = 0;
+		$blocklayouts_toc_open_lists    = 0;
 
-		foreach ( $filtered_headings as $index => $heading ) :
-			$level   = isset( $heading['attrs']['level'] ) ? $heading['attrs']['level'] : 2;
-			$content = isset( $heading['innerHTML'] ) ? $heading['innerHTML'] : '';
-			$anchor  = '';
+		foreach ( $blocklayouts_toc_filtered_headings as $blocklayouts_toc_index => $blocklayouts_toc_heading ) :
+			$blocklayouts_toc_level   = isset( $blocklayouts_toc_heading['attrs']['level'] ) ? $blocklayouts_toc_heading['attrs']['level'] : 2;
+			$blocklayouts_toc_content = isset( $blocklayouts_toc_heading['innerHTML'] ) ? $blocklayouts_toc_heading['innerHTML'] : '';
+			$blocklayouts_toc_anchor  = '';
 
-			$p = new WP_HTML_Tag_Processor( $content );
-			if ( $p->next_tag() ) {
-				$anchor = $p->get_attribute( 'id' );
+			$blocklayouts_toc_p = new WP_HTML_Tag_Processor( $blocklayouts_toc_content );
+			if ( $blocklayouts_toc_p->next_tag() ) {
+				$blocklayouts_toc_anchor = $blocklayouts_toc_p->get_attribute( 'id' );
 			}
 
 			// Generate anchor if not present.
-			if ( empty( $anchor ) ) {
-				$anchor_regex = '/[\s#]/';
-				$anchor       = trim( wp_strip_all_tags( $content ) );
-				$anchor       = strtolower( $anchor );
-				$anchor       = preg_replace( $anchor_regex, '-', $anchor );
+			if ( empty( $blocklayouts_toc_anchor ) ) {
+				$blocklayouts_toc_anchor_regex = '/[\s#]/';
+				$blocklayouts_toc_anchor       = trim( wp_strip_all_tags( $blocklayouts_toc_content ) );
+				$blocklayouts_toc_anchor       = strtolower( $blocklayouts_toc_anchor );
+				$blocklayouts_toc_anchor       = preg_replace( $blocklayouts_toc_anchor_regex, '-', $blocklayouts_toc_anchor );
 			}
 
 			// Clean content for display.
-			$clean_content = wp_strip_all_tags( $content );
+			$blocklayouts_toc_clean_content = wp_strip_all_tags( $blocklayouts_toc_content );
 
 			// Handle level changes.
-			if ( 0 === $current_level ) {
+			if ( 0 === $blocklayouts_toc_current_level ) {
 				// First item - open the main list.
-				echo '<' . esc_attr( $list_tag ) . ' class="wp-block-blocklayouts-table-of-contents__list">';
-				$open_lists    = 1;
-				$current_level = $level;
-			} elseif ( $level > $current_level ) {
+				echo '<' . esc_attr( $blocklayouts_toc_list_tag ) . ' class="wp-block-blocklayouts-table-of-contents__list">';
+				$blocklayouts_toc_open_lists    = 1;
+				$blocklayouts_toc_current_level = $blocklayouts_toc_level;
+			} elseif ( $blocklayouts_toc_level > $blocklayouts_toc_current_level ) {
 				// Going deeper - open nested lists.
-				$depth_diff = $level - $current_level;
-				for ( $i = 0; $i < $depth_diff; ++$i ) {
-					echo '<' . esc_attr( $list_tag ) . ' class="wp-block-blocklayouts-table-of-contents__list">';
-					++$open_lists;
+				$blocklayouts_toc_depth_diff = $blocklayouts_toc_level - $blocklayouts_toc_current_level;
+				for ( $blocklayouts_toc_i = 0; $blocklayouts_toc_i < $blocklayouts_toc_depth_diff; ++$blocklayouts_toc_i ) {
+					echo '<' . esc_attr( $blocklayouts_toc_list_tag ) . ' class="wp-block-blocklayouts-table-of-contents__list">';
+					++$blocklayouts_toc_open_lists;
 				}
-				$current_level = $level;
-			} elseif ( $level < $current_level ) {
+				$blocklayouts_toc_current_level = $blocklayouts_toc_level;
+			} elseif ( $blocklayouts_toc_level < $blocklayouts_toc_current_level ) {
 				// Going up - close nested lists and list items.
-				$depth_diff = $current_level - $level;
-				for ( $i = 0; $i < $depth_diff; ++$i ) {
+				$blocklayouts_toc_depth_diff = $blocklayouts_toc_current_level - $blocklayouts_toc_level;
+				for ( $blocklayouts_toc_i = 0; $blocklayouts_toc_i < $blocklayouts_toc_depth_diff; ++$blocklayouts_toc_i ) {
 					echo '</li>';
-					echo '</' . esc_attr( $list_tag ) . '>';
-					--$open_lists;
+					echo '</' . esc_attr( $blocklayouts_toc_list_tag ) . '>';
+					--$blocklayouts_toc_open_lists;
 				}
 				echo '</li>';
-				$current_level = $level;
+				$blocklayouts_toc_current_level = $blocklayouts_toc_level;
 			} else {
 				// Same level - close previous item.
 				echo '</li>';
 			}
 			?>
         <li class="wp-block-blocklayouts-table-of-contents__item">
-            <a href="#<?php echo esc_attr( $anchor ); ?>" class="wp-block-blocklayouts-table-of-contents__link">
-                <?php echo esc_html( $clean_content ); ?>
+            <a href="#<?php echo esc_attr( $blocklayouts_toc_anchor ); ?>" class="wp-block-blocklayouts-table-of-contents__link">
+                <?php echo esc_html( $blocklayouts_toc_clean_content ); ?>
             </a>
             <?php
 		endforeach;
 
 		// Close all remaining open tags.
-		if ( $open_lists > 0 ) {
+		if ( $blocklayouts_toc_open_lists > 0 ) {
 			echo '</li>'; // Close last item.
-			for ( $i = 0; $i < $open_lists; $i++ ) {
-				echo '</' . esc_attr( $list_tag ) . '>';
+			for ( $blocklayouts_toc_i = 0; $blocklayouts_toc_i < $blocklayouts_toc_open_lists; $blocklayouts_toc_i++ ) {
+				echo '</' . esc_attr( $blocklayouts_toc_list_tag ) . '>';
 			}
 		}
 		?>

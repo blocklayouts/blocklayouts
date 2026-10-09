@@ -1,8 +1,8 @@
 <?php
 /**
- * Icon Button
+ * Wrapper Link
  *
- * Functions for handling icon button.
+ * Functions for handling the group block wrapper link.
  *
  * @version 0.1.9
  */
@@ -27,7 +27,7 @@ function bl_add_wrapper_link_to_group( $block_content, $block ) {
 	$href             = $block['attrs']['wrapperLink']['href'] ?? '';
 	$link_destination = $block['attrs']['wrapperLink']['linkDestination'] ?? '';
 	$link_target      = $block['attrs']['wrapperLink']['linkTarget'] ?? '_self';
-	$link_rel         = '_blank' === $link_target ? 'noopener noreferrer' : 'follow';
+	$link_rel         = '_blank' === $link_target ? 'noopener noreferrer' : '';
 
 	$link = '';
 
@@ -49,10 +49,10 @@ function bl_add_wrapper_link_to_group( $block_content, $block ) {
 	$block_content = $p->get_updated_html();
 
 	$link_markup = sprintf(
-		'<a class="wp-block-group__link" href="%1$s" target="%2$s" rel="%3$s" aria-hidden="true" tabindex="-1">&nbsp;</a>',
+		'<a class="wp-block-group__link" href="%1$s" target="%2$s"%3$s aria-hidden="true" tabindex="-1">&nbsp;</a>',
 		esc_url( $link ),
 		esc_attr( $link_target ),
-		esc_attr( $link_rel )
+		$link_rel ? ' rel="' . esc_attr( $link_rel ) . '"' : ''
 	);
 
 	// Insert the link markup after the opening tag.

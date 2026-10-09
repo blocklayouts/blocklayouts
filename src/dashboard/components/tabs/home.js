@@ -44,6 +44,44 @@ const Home = () => {
 		},
 	];
 
+	const howToSteps = [
+		{
+			title: __("Open the pattern library", "blocklayouts"),
+			description: __(
+				"In the block editor, click the Blocklayouts icon in the top toolbar to browse patterns and page templates.",
+				"blocklayouts",
+			),
+		},
+		{
+			title: __("Insert a pattern", "blocklayouts"),
+			description: __(
+				"Filter by category, preview a design, and click it to add it to your page. Patterns are made of regular blocks, so you can edit everything.",
+				"blocklayouts",
+			),
+		},
+		{
+			title: __("Add custom blocks", "blocklayouts"),
+			description: __(
+				"Open the block inserter and look for the Blocklayouts category to find the Icon, Marquee and Table of Contents blocks. Infinite Scroll is available inside a Query Loop block.",
+				"blocklayouts",
+			),
+		},
+		{
+			title: __("Use the block extensions", "blocklayouts"),
+			description: __(
+				"Select a core block such as Button, Group or Gallery and open the block settings sidebar to find extra controls like effects, hover colors, links, button icons and masonry layouts.",
+				"blocklayouts",
+			),
+		},
+		{
+			title: __("Manage your blocks", "blocklayouts"),
+			description: __(
+				"Use the Blocks tab on this screen to turn individual blocks on or off.",
+				"blocklayouts",
+			),
+		},
+	];
+
 	return (
 		<div className="blocklayouts-dashboard__home">
 			<div className="blocklayouts-dashboard__home-content">
@@ -57,16 +95,17 @@ const Home = () => {
 					)}
 				</p>
 
-				<iframe
-					width="100%"
-					height="420px"
-					src="https://www.youtube.com/embed/nN_pJps0IQk?si=-R3PJaqtba1AEPPE"
-					title="YouTube video player"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					referrerpolicy="strict-origin-when-cross-origin"
-					allowfullscreen
-				></iframe>
+				<div className="blocklayouts-dashboard__home-howto">
+					<h3>{__("How to use Blocklayouts", "blocklayouts")}</h3>
+					<ol>
+						{howToSteps.map((step) => (
+							<li key={step.title}>
+								<strong>{step.title}</strong>
+								<p>{step.description}</p>
+							</li>
+						))}
+					</ol>
+				</div>
 			</div>
 			<div className="blocklayouts-dashboard__home-sidebar">
 				<div className="blocklayouts-dashboard__home-sidebar-item">

@@ -25,7 +25,6 @@ export const Header = ({
 	const isActiveLicense = license?.is_active;
 	const licenseLoading = !licenseData.hasResolved;
 
-	// console.log("licenseData:", licenseData);
 	return (
 		<Flex gap={2}>
 			<FlexBlock>

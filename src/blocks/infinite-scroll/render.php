@@ -56,7 +56,7 @@ $blocklayouts_infinite_scroll_wrapper_attributes = get_block_wrapper_attributes(
     <?php if ( 'button' === $blocklayouts_infinite_scroll_infinite_type ) : ?>
     <div class="wp-block-blocklayouts-infinite-scroll__button-container" data-wp-init="callbacks.initButton"
         data-wp-bind--hidden="!state.hasMore">
-        <?php echo wp_kses_post( $content ); ?>
+        <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Inner blocks are already rendered by core. ?>
         <div class="wp-block-blocklayouts-infinite-scroll__loading" data-wp-class--is-visible="context.isLoading">
             <div class="wp-block-blocklayouts-infinite-scroll__loading-spinner"></div>
             <span><?php echo esc_html( $blocklayouts_infinite_scroll_loading_text ); ?></span>
@@ -66,7 +66,7 @@ $blocklayouts_infinite_scroll_wrapper_attributes = get_block_wrapper_attributes(
     <div class="wp-block-blocklayouts-infinite-scroll__trigger" data-wp-watch="callbacks.infiniteScroll"
         data-trigger-distance="<?php echo esc_attr( $blocklayouts_infinite_scroll_trigger_distance ); ?>"
         data-wp-bind--hidden="!state.hasMore">
-        <?php echo wp_kses_post( $content ); ?>
+        <?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Inner blocks are already rendered by core. ?>
 
         <div class="wp-block-blocklayouts-infinite-scroll__loading" data-wp-class--is-visible="context.isLoading">
             <div class="wp-block-blocklayouts-infinite-scroll__loading-spinner"></div>

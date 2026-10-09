@@ -45,20 +45,6 @@ if ( is_admin() ) {
 }
 
 /**
- * Load plugin textdomain.
- *
- * @since 0.1.0
- */
-function blocklayouts_load_textdomain() {
-	load_plugin_textdomain(
-		'blocklayouts',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
-	);
-}
-add_action( 'init', __NAMESPACE__ . '\blocklayouts_load_textdomain' );
-
-/**
  * Enqueue editor assets.
  *
  * @since 0.1.0
@@ -98,6 +84,8 @@ function blocklayouts_enqueue_editor_assets() {
 		$asset_file['version'],
 		false
 	);
+
+	wp_set_script_translations( 'blocklayouts-library-editor', 'blocklayouts' );
 
 	$config = array(
 		'license'       => $license->get_license_config(),

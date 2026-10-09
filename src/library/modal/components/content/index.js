@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo, useCallback } from "@wordpress/element";
 import { Notice, Spinner } from "@wordpress/components";
 import { isUnmodifiedDefaultBlock } from "@wordpress/blocks";
-import { __ } from "@wordpress/i18n";
+import { __, sprintf } from "@wordpress/i18n";
 import { store as noticesStore } from "@wordpress/notices";
 import { useSelect } from "@wordpress/data";
 import { DataViews, filterSortAndPaginate } from "@wordpress/dataviews/wp";
@@ -140,7 +140,11 @@ export const Content = ({
 					// Show a success notice
 					createNotice(
 						"success",
-						__(`"${pattern.title}" pattern added.`, "blocklayouts"),
+						sprintf(
+							/* translators: %s: Pattern title. */
+							__('"%s" pattern added.', "blocklayouts"),
+							pattern.title,
+						),
 						{
 							isDismissible: true,
 							type: "snackbar",

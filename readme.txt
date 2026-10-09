@@ -1,7 +1,7 @@
 === Blocklayouts ===
 Contributors:      blocklayouts, qarayahya
-Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
-Tested up to:      6.9
+Tags:              gutenberg, blocks, patterns, block editor, custom blocks
+Tested up to:      7.1
 Requires at least: 6.5
 Stable tag:        0.2.1
 License:           GPL-2.0-or-later
@@ -17,7 +17,7 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 
 **Improve what WordPress already has, add what it doesn’t, make everything feel native.**
 
-= Custom Blocks ==
+= Custom Blocks =
 
 * **Icon Block** - Add beautiful, scalable icons with extensive icon library, custom SVG support, and advanced styling options
 * **Marquee Block** - Create eye-catching scrolling text and content with customizable speed, direction, and hover effects
@@ -66,8 +66,9 @@ blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 
 == Privacy ==
 
-Blocklayouts is a SaaS (software as a service) connector plugin that uses a custom API to fetch WordPress patterns and page templates from our servers. API requests are only made when a user clicks on the Library button.
-We only collect the website URL when you activate a license key. This helps us validate your license and provide appropriate access to premium patterns. No other personal or site data is collected or transmitted.
+Blocklayouts doesn't track your visitors, set cookies, or collect personal data on the front end of your site.
+
+The pattern library is a SaaS (software as a service) feature that fetches patterns and page templates from Blocklayouts servers. These requests are only made when a logged-in user opens the library in the editor, and they include your site URL. If you activate a license key, the key, your site URL and your site name are sent to activate it and to re-validate it once a day. No other personal or site data is collected or transmitted. See "External services" below for the full details.
 
 By using Blocklayouts and accessing our pattern library, you agree to our [privacy policy](https://blocklayouts.com/privacy-policy/) and [terms of service](https://blocklayouts.com/terms-of-service/).
 
@@ -80,6 +81,7 @@ This plugin connects to the Blocklayouts pattern library service to provide bloc
 * What it is used for: fetching block patterns, page templates, and their categories for display in the editor's pattern library.
 * When requests are sent: only when a logged-in user with editing permissions opens the Blocklayouts pattern library or browses its tabs and categories.
 * What data is sent: your site URL (as the HTTP Referer header). No post content, user data, or other personal information is transmitted.
+* Pattern preview images, and any images used in the patterns you insert, may be loaded from Blocklayouts servers. As with any image, your browser sends its IP address and user agent when loading them.
 
 **Blocklayouts Licensing API** (https://patterns.blocklayouts.com)
 
@@ -99,10 +101,13 @@ These services are provided by Blocklayouts. By using them you agree to the Bloc
 
 == Installation ==
 
-1. Go to **Plugins** → **Add New** → **Upload Plugin**.
-2. Click **Choose File** and select the `Blocklayouts.zip` from your computer.
-3. Press **Install Now**.
-4. Once installed, click **Activate Plugin**.
+1. In your WordPress admin, go to **Plugins** → **Add New Plugin**.
+2. Search for **Blocklayouts** and click **Install Now**.
+3. Click **Activate**.
+
+To install manually, go to **Plugins** → **Add New Plugin** → **Upload Plugin**, choose the plugin zip file, click **Install Now**, then activate it.
+
+After activation, open the block editor and click the Blocklayouts icon in the top toolbar to open the pattern library. Plugin settings are under **Settings** → **Blocklayouts**.
 
 == Development ==
 
@@ -177,7 +182,7 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 - Improved: Better compatibility with third-party plugins that add inline styles
 
-= 0.1.4 - 2025-09-15 =
+= 0.1.4 - 2025-09-21 =
 
 - Changed: Group link now uses stretched link instead of wrapper link to avoid nested links
 - Improved: Pattern library functionality and user experience
