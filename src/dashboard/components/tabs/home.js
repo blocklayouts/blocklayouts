@@ -40,7 +40,7 @@ const Home = () => {
 		},
 		{
 			label: __("Documentation", "blocklayouts"),
-			url: "https://blocklayouts.com/documentation/",
+			url: "https://blocklayouts.com/docs/",
 			icon: <Icon icon={cover} />,
 		},
 		{
@@ -149,7 +149,7 @@ const Home = () => {
 							</p>
 							<Button
 								variant="secondary"
-								href="https://blocklayouts.com/documentation/"
+								href="https://blocklayouts.com/docs/"
 								target="_blank"
 								rel="noopener noreferrer"
 								icon={external}
