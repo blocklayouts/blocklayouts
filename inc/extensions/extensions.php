@@ -2,7 +2,7 @@
 /**
  * Extensions
  *
- * @version 0.1.9
+ * @version 0.2.0
  */
 
 namespace Blocklayouts;
@@ -13,7 +13,6 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/icon-button.php';
 require_once __DIR__ . '/related-posts.php';
 require_once __DIR__ . '/wrapper-link.php';
-require_once __DIR__ . '/additional-css.php';
 
 /**
  * Add router region data attribute to query block
@@ -51,8 +50,8 @@ add_filter( 'render_block_core/query', __NAMESPACE__ . '\bl_add_router_region_to
  * @return string The block content with the anchor.
  */
 function bl_add_anchor_to_heading( $block_content, $block ) {
-	// Only add anchors on single posts/cpts.
-	if ( ! is_single() ) {
+	// Only add anchors on singular views (posts, pages and custom post types).
+	if ( ! is_singular() ) {
 		return $block_content;
 	}
 

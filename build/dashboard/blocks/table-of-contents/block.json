@@ -91,6 +91,12 @@
       "default": false
     }
   },
+  "styles": [
+    {
+      "name": "plain-links",
+      "label": "Plain Links"
+    }
+  ],
   "textdomain": "blocklayouts",
   "editorScript": "file:./index.js",
   "render": "file:./render.php",

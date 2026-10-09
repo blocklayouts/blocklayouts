@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-6.5%2B-blue.svg)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
-[![Version](https://img.shields.io/badge/Version-0.1.9-orange.svg)](https://github.com/blocklayouts/blocklayouts)
+[![Version](https://img.shields.io/badge/Version-0.2.1-orange.svg)](https://github.com/blocklayouts/blocklayouts)
 
 ![Plugin Banner](https://github.com/blocklayouts/blocklayouts/blob/main/.wordpress-org/banner-1544x500.png)
 
@@ -25,7 +25,6 @@
 
 - **Color Controls** - Enhanced color management with hover effects
 - **Effects Controls** - Animation, transforms, and visual effects
-- **Custom CSS** - Add custom CSS with responsive breakpoints (`@mobile`, `@tablet`, `@desktop`)
 - **Link Controls** - Add link functionality to core/group block
 - **Icon Button** - Enable icon selection and positioning for core/button block
 
@@ -58,13 +57,12 @@ Blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 
 - **Quick Pattern Insertion** - Find and insert patterns in seconds, not minutes
 - **Block Extensions** - Enhance existing blocks without learning new interfaces
-- **Custom CSS Support** - Advanced styling without leaving the editor
 
 ## Requirements
 
 - **WordPress**: 6.5 or higher
 - **PHP**: 7.4 or higher
-- **Tested up to**: WordPress 6.8
+- **Tested up to**: WordPress 7.1
 
 ## Installation
 
@@ -105,7 +103,7 @@ Blocklayouts is specifically designed for the Gutenberg block editor. While it m
 
 ### Do I need coding knowledge to use this plugin?
 
-Not at all! Blocklayouts is designed for users of all skill levels. However, the Custom CSS feature allows advanced users to add their own styling when needed.
+Not at all! Blocklayouts is designed for users of all skill levels.
 
 ### Is there support available?
 

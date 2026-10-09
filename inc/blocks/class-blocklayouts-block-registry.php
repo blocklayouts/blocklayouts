@@ -23,35 +23,37 @@ class Blocks_Registrar {
 	/**
 	 * Default blocks configuration.
 	 *
-	 * @var array
+	 * @return array
 	 */
-	private static $blocks = array(
-		'blocklayouts/icon'              => array(
-			'title'       => 'Icon',
-			'description' => 'Add a customizable icon to your content.',
-			'premium'     => false,
-			'is_core'     => true,
-			'active'      => true,
-		),
-		'blocklayouts/marquee'           => array(
-			'title'       => 'Marquee',
-			'description' => 'Display content in a horizontal scrolling marquee.',
-			'premium'     => false,
-			'active'      => true,
-		),
-		'blocklayouts/infinite-scroll'   => array(
-			'title'       => 'Infinite Scroll',
-			'description' => 'Load more posts automatically on scroll or with a button.',
-			'premium'     => true,
-			'active'      => true,
-		),
-		'blocklayouts/table-of-contents' => array(
-			'title'       => 'Table of Contents',
-			'description' => 'Display a table of contents based on headings in your content.',
-			'premium'     => true,
-			'active'      => true,
-		),
-	);
+	private static function get_default_blocks() {
+		return array(
+			'blocklayouts/icon'              => array(
+				'title'       => __( 'Icon', 'blocklayouts' ),
+				'description' => __( 'Add a customizable icon to your content.', 'blocklayouts' ),
+				'premium'     => false,
+				'is_core'     => true,
+				'active'      => true,
+			),
+			'blocklayouts/marquee'           => array(
+				'title'       => __( 'Marquee', 'blocklayouts' ),
+				'description' => __( 'Display content in a horizontal scrolling marquee.', 'blocklayouts' ),
+				'premium'     => false,
+				'active'      => true,
+			),
+			'blocklayouts/infinite-scroll'   => array(
+				'title'       => __( 'Infinite Scroll', 'blocklayouts' ),
+				'description' => __( 'Load more posts automatically on scroll or with a button.', 'blocklayouts' ),
+				'premium'     => false,
+				'active'      => true,
+			),
+			'blocklayouts/table-of-contents' => array(
+				'title'       => __( 'Table of Contents', 'blocklayouts' ),
+				'description' => __( 'Display a table of contents based on headings in your content.', 'blocklayouts' ),
+				'premium'     => false,
+				'active'      => true,
+			),
+		);
+	}
 
 	/**
 	 * Construct function
@@ -76,17 +78,13 @@ class Blocks_Registrar {
 		$settings_blocks       = isset( $blocklayouts_settings['blocks'] ) ? $blocklayouts_settings['blocks'] : array();
 
 		// Start with default blocks.
-		$merged_blocks = self::$blocks;
+		$merged_blocks = self::get_default_blocks();
 
-		// Merge database settings with defaults.
-		// Settings from database will override defaults.
+		// Merge saved settings into known default blocks only. Unknown keys are
+		// ignored so stale or malformed saved data can never create phantom blocks.
 		foreach ( $settings_blocks as $block_name => $block_settings ) {
-			if ( isset( $merged_blocks[ $block_name ] ) ) {
-				// Merge settings for existing block.
+			if ( isset( $merged_blocks[ $block_name ] ) && is_array( $block_settings ) ) {
 				$merged_blocks[ $block_name ] = wp_parse_args( $block_settings, $merged_blocks[ $block_name ] );
-			} else {
-				// Add new block from database settings.
-				$merged_blocks[ $block_name ] = $block_settings;
 			}
 		}
 

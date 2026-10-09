@@ -31,6 +31,3 @@ pnpm-lock.yaml
 
 # dotenv environment variables file
 .env
-
-# src directory
-src/

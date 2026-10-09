@@ -39,7 +39,15 @@ class Blocklayouts_Api {
 		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/validate', $args );
 	}
 
-	private function request( string $method, string $path, array $body ): array|\WP_Error {
+	/**
+	 * Send a request to the Blocklayouts API.
+	 *
+	 * @param string $method HTTP method.
+	 * @param string $path   Request URL.
+	 * @param array  $body   Request arguments.
+	 * @return array|\WP_Error Decoded response data or an error.
+	 */
+	private function request( string $method, string $path, array $body ) {
 		if ( $method === 'GET' && ! empty( $body ) ) {
 			$path .= '?' . http_build_query( $body );
 			$body  = null;
@@ -69,7 +77,7 @@ class Blocklayouts_Api {
 		if ( json_last_error() !== JSON_ERROR_NONE ) {
 			return new \WP_Error(
 				'api_json_error',
-				'Invalid JSON response from Blocklayouts API',
+				__( 'Invalid JSON response from the Blocklayouts API.', 'blocklayouts' ),
 				array( 'status' => $response_code )
 			);
 		}
@@ -77,7 +85,11 @@ class Blocklayouts_Api {
 		if ( $response_code >= 500 ) {
 			return new \WP_Error(
 				'api_server_error',
-				"API server error with status {$response_code}",
+				sprintf(
+					/* translators: %d: HTTP status code. */
+					__( 'API server error with status %d.', 'blocklayouts' ),
+					$response_code
+				),
 				array(
 					'status'        => $response_code,
 					'response_data' => $data,
@@ -92,7 +104,7 @@ class Blocklayouts_Api {
 		return $data;
 	}
 
-	public static function get_instance(): static {
+	public static function get_instance(): self {
 		if ( self::$instance === null ) {
 			self::$instance = new self();
 		}

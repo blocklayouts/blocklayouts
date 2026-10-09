@@ -66,6 +66,26 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
+			'/patterns/categories',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'rest_get_patterns_categories' ),
+				'permission_callback' => array( $this, 'check_editor_permission' ),
+			)
+		);
+
+		register_rest_route(
+			'blocklayouts/v1',
+			'/page-templates/categories',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'rest_get_page_templates_categories' ),
+				'permission_callback' => array( $this, 'check_editor_permission' ),
+			)
+		);
+
+		register_rest_route(
+			'blocklayouts/v1',
 			'/industries',
 			array(
 				'methods'             => 'GET',
@@ -117,6 +137,22 @@ class Blocklayouts_REST_API {
 			)
 		);
 
+		register_rest_route(
+			'blocklayouts/v1',
+			'/license',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'rest_save_license' ),
+				'permission_callback' => array( $this, 'check_admin_permission' ),
+				'args'                => array(
+					'nonce' => array(
+						'required'          => true,
+						'validate_callback' => array( $this, 'validate_nonce' ),
+					),
+				),
+			)
+		);
+
 		// Blocks preferences endpoints
 		register_rest_route(
 			'blocklayouts/v1',
@@ -135,18 +171,6 @@ class Blocklayouts_REST_API {
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'rest_update_blocks' ),
 				'permission_callback' => array( $this, 'check_admin_permission' ),
-				'args'                => array(
-					'nonce'  => array(
-						'required'          => true,
-						'validate_callback' => array( $this, 'validate_nonce' ),
-					),
-					'blocks' => array(
-						'required'          => true,
-						'validate_callback' => function ( $param ) {
-							return is_array( $param );
-						},
-					),
-				),
 			)
 		);
 	}
@@ -157,7 +181,7 @@ class Blocklayouts_REST_API {
 	}
 
 	public function rest_get_patterns( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'patterns', $params );
 
@@ -184,7 +208,7 @@ class Blocklayouts_REST_API {
 	}
 
 	public function rest_get_page_templates( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'page_templates', $params );
 
@@ -210,8 +234,42 @@ class Blocklayouts_REST_API {
 	}
 
 
+	public function rest_get_patterns_categories( $request ) {
+		return $this->get_categories_by_post_type( 'component' );
+	}
+
+	public function rest_get_page_templates_categories( $request ) {
+		return $this->get_categories_by_post_type( 'page-template' );
+	}
+
+	/**
+	 * Proxy category listing for a given remote post type, with caching.
+	 *
+	 * @param string $post_type Remote post type ('component' or 'page-template').
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	private function get_categories_by_post_type( string $post_type ) {
+		$args      = array( 'post_type' => $post_type );
+		$cache_key = $this->get_cache_key( 'categories', $args );
+
+		$cached_data = $this->get_cached_data( $cache_key );
+		if ( $cached_data !== false ) {
+			return rest_ensure_response( $cached_data );
+		}
+
+		$response = Blocklayouts_Api::get_instance()->get_categories( $args );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+
+		$this->set_cached_data( $cache_key, $response );
+
+		return rest_ensure_response( $response );
+	}
+
 	public function rest_get_categories( $request ) {
-		$params = $request->get_params();
+		$params = $this->get_remote_params( $request );
 
 		$cache_key = $this->get_cache_key( 'categories', $params );
 
@@ -255,7 +313,7 @@ class Blocklayouts_REST_API {
 		$license_key = sanitize_text_field( $request->get_param( 'license_key' ) );
 
 		if ( empty( $license_key ) || strlen( $license_key ) < 8 ) {
-			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_license_key', __( 'License key is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 		$args = array(
 			'license_key'   => $license_key,
@@ -263,6 +321,10 @@ class Blocklayouts_REST_API {
 		);
 
 		$response = Blocklayouts_Api::get_instance()->activate_license( $args );
+
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
 
 		if ( ! empty( $response['activated'] ) && $response['activated'] ) {
 			$result = License::get_instance()->save_license_data( $response );
@@ -276,7 +338,7 @@ class Blocklayouts_REST_API {
 			} else {
 				return rest_ensure_response(
 					array(
-						'error' => 'Failed to save license information. Please try again or contact support.',
+						'error' => __( 'Failed to save license information. Please try again or contact support.', 'blocklayouts' ),
 					)
 				);
 			}
@@ -284,7 +346,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => ! empty( $response['message'] ) ? $response['message'] : 'License activation failed!',
+				'error' => ! empty( $response['message'] ) ? $response['message'] : __( 'License activation failed.', 'blocklayouts' ),
 			)
 		);
 	}
@@ -295,10 +357,10 @@ class Blocklayouts_REST_API {
 		$instance_id = sanitize_text_field( $request->get_param( 'instance_id' ) );
 
 		if ( empty( $license_key ) ) {
-			return new \WP_Error( 'missing_license_key', 'License key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_license_key', __( 'License key is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 		if ( empty( $instance_id ) ) {
-			return new \WP_Error( 'missing_instance_id', 'Instance id key is required.', array( 'status' => 400 ) );
+			return new \WP_Error( 'missing_instance_id', __( 'Instance ID is required.', 'blocklayouts' ), array( 'status' => 400 ) );
 		}
 
 		$args = array(
@@ -324,7 +386,7 @@ class Blocklayouts_REST_API {
 			} else {
 				return rest_ensure_response(
 					array(
-						'error' => 'Failed to remove license information. Please try again or contact support.',
+						'error' => __( 'Failed to remove license information. Please try again or contact support.', 'blocklayouts' ),
 					)
 				);
 			}
@@ -332,9 +394,29 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => ! empty( $response['error'] ) ? $response['error'] : 'Failed to remove license information. Please try again or contact support.',
+				'error' => ! empty( $response['error'] ) ? $response['error'] : __( 'Failed to remove license information. Please try again or contact support.', 'blocklayouts' ),
 			)
 		);
+	}
+
+	/**
+	 * Save the license record (used by the editor and dashboard account dropdown).
+	 *
+	 * The client persists the "license" entity via saveEntityRecord(), which POSTs to
+	 * this route. The desired operation is provided in the payload's "action" field and
+	 * is delegated to the matching activate/deactivate handler.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function rest_save_license( $request ) {
+		$action = sanitize_text_field( (string) $request->get_param( 'action' ) );
+
+		if ( 'deactivate' === $action ) {
+			return $this->rest_deactivate_license( $request );
+		}
+
+		return $this->rest_activate_license( $request );
 	}
 
 	/**
@@ -389,39 +471,67 @@ class Blocklayouts_REST_API {
 	public function rest_update_blocks( $request ) {
 		$blocks = $request->get_param( 'blocks' );
 
+		// The dashboard saves the "blocks" entity as a plain array of block objects,
+		// so fall back to the raw JSON body when there is no explicit "blocks" param.
 		if ( ! is_array( $blocks ) ) {
-			return new \WP_Error( 'invalid_blocks', 'Blocks must be an array.', array( 'status' => 400 ) );
+			$body = $request->get_json_params();
+			if ( is_array( $body ) ) {
+				$blocks = $body;
+			}
 		}
 
-		// Get current settings.
+		if ( ! is_array( $blocks ) ) {
+			return new \WP_Error( 'invalid_blocks', __( 'Blocks must be an array.', 'blocklayouts' ), array( 'status' => 400 ) );
+		}
+
+		// Get current settings and the set of real, known blocks.
 		$blocklayouts_settings = get_option( 'blocklayouts_settings', array() );
+		$known_blocks          = Blocks_Registrar::get_blocks();
 
-		// Initialize blocks array if it doesn't exist.
-		if ( ! isset( $blocklayouts_settings['blocks'] ) ) {
-			$blocklayouts_settings['blocks'] = array();
-		}
+		// Rebuild the saved block preferences from scratch, keeping only real blocks.
+		// The dashboard always sends the full list, so this also purges any stale or
+		// malformed keys (e.g. numeric indexes) that could create phantom blocks.
+		$saved_blocks = array();
+		foreach ( $blocks as $key => $block_data ) {
+			if ( ! is_array( $block_data ) ) {
+				continue;
+			}
 
-		// Only update the active status for each block.
-		foreach ( $blocks as $block_name => $block_data ) {
-			$sanitized_block_name = sanitize_text_field( $block_name );
+			// Accept array-of-objects ( 'name', or legacy 'id' ) and associative maps.
+			if ( isset( $block_data['name'] ) ) {
+				$block_name = $block_data['name'];
+			} elseif ( isset( $block_data['id'] ) ) {
+				$block_name = $block_data['id'];
+			} else {
+				$block_name = $key;
+			}
 
-			// Only store the active status.
-			$blocklayouts_settings['blocks'][ $sanitized_block_name ] = array(
+			$block_name = sanitize_text_field( (string) $block_name );
+
+			// Ignore anything that isn't a real registered block.
+			if ( ! isset( $known_blocks[ $block_name ] ) ) {
+				continue;
+			}
+
+			$saved_blocks[ $block_name ] = array(
 				'active' => isset( $block_data['active'] ) ? (bool) $block_data['active'] : true,
 			);
 		}
 
-		// Save updated settings.
+		$blocklayouts_settings['blocks'] = $saved_blocks;
+
+		// Save updated settings. update_option() returns false when the value is
+		// unchanged, so treat a matching stored value as success too.
 		$result = update_option( 'blocklayouts_settings', $blocklayouts_settings );
 
-		if ( $result ) {
+		if ( $result || get_option( 'blocklayouts_settings', array() ) === $blocklayouts_settings ) {
 			// Return the merged blocks with all data.
 			$all_blocks = Blocks_Registrar::get_blocks();
 
 			$blocks_array = array();
-			foreach ( $all_blocks as $block_id => $block_data ) {
+			foreach ( $all_blocks as $block_name => $block_data ) {
 				$blocks_array[] = array_merge(
-					array( 'id' => $block_id ),
+					array( 'name' => $block_name ),
 					$block_data
 				);
 			}
@@ -436,7 +546,7 @@ class Blocklayouts_REST_API {
 
 		return rest_ensure_response(
 			array(
-				'error' => 'Failed to save block preferences.',
+				'error' => __( 'Failed to save block preferences.', 'blocklayouts' ),
 			)
 		);
 	}
@@ -508,6 +618,10 @@ class Blocklayouts_REST_API {
 	 * Check if plugin is active
 	 */
 	private function is_plugin_active( string $plugin_slug ): bool {
+		if ( ! function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
 		$plugin_paths = array(
 			$plugin_slug . '/' . $plugin_slug . '.php',
 			$plugin_slug . '/index.php',
@@ -532,6 +646,40 @@ class Blocklayouts_REST_API {
 		}
 
 		return version_compare( BLOCKLAYOUTS_VERSION, $required_version, '>=' );
+	}
+
+	/**
+	 * Collect the query parameters that are forwarded to the remote API.
+	 *
+	 * Only known parameters are kept, so arbitrary input is never forwarded
+	 * and can't be used to create an unlimited number of cache entries.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return array Sanitized parameters.
+	 */
+	private function get_remote_params( $request ): array {
+		$allowed = array(
+			'page'        => 'absint',
+			'per_page'    => 'absint',
+			'search'      => 'sanitize_text_field',
+			'category'    => 'sanitize_text_field',
+			'industry'    => 'sanitize_text_field',
+			'post_type'   => 'sanitize_key',
+			'layout_type' => 'sanitize_key',
+		);
+
+		$params = array();
+		foreach ( $allowed as $key => $sanitize ) {
+			$value = $request->get_param( $key );
+			if ( null === $value || '' === $value || is_array( $value ) ) {
+				continue;
+			}
+			$params[ $key ] = call_user_func( $sanitize, $value );
+		}
+
+		ksort( $params );
+
+		return $params;
 	}
 
 	/**
@@ -579,7 +727,7 @@ class Blocklayouts_REST_API {
 	/**
 	 * Get singleton instance
 	 */
-	public static function get_instance(): static {
+	public static function get_instance(): self {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}

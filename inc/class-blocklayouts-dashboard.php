@@ -106,6 +106,8 @@ class Blocklayouts_Dashboard {
 			true
 		);
 
+		wp_set_script_translations( 'blocklayouts-dashboard', 'blocklayouts' );
+
 		// Pass configuration to JavaScript.
 		$this->localize_script();
 	}

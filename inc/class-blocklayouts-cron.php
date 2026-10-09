@@ -38,7 +38,7 @@ class Blocklayouts_Cron {
 		$license      = License::get_instance();
 		$license_data = $license->get_license_data();
 
-		if ( ! is_array( $license_data ) || empty( $license_data['license_key']['key'] || empty( $license_data['instance']['id'] ) ) ) {
+		if ( ! is_array( $license_data ) || empty( $license_data['license_key']['key'] ) || empty( $license_data['instance']['id'] ) ) {
 			return;
 		}
 		$args = array(

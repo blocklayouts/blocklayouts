@@ -1,9 +1,9 @@
 === Blocklayouts ===
 Contributors:      blocklayouts, qarayahya
-Tags:              gutenberg, blocks, patterns, block editor, custom blocks,
-Tested up to:      6.9
+Tags:              gutenberg, blocks, patterns, block editor, custom blocks
+Tested up to:      7.1
 Requires at least: 6.5
-Stable tag:        0.1.9
+Stable tag:        0.2.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 
 **Improve what WordPress already has, add what it doesn’t, make everything feel native.**
 
-= Custom Blocks ==
+= Custom Blocks =
 
 * **Icon Block** - Add beautiful, scalable icons with extensive icon library, custom SVG support, and advanced styling options
 * **Marquee Block** - Create eye-catching scrolling text and content with customizable speed, direction, and hover effects
@@ -30,7 +30,6 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 
 * **Color Controls** - Enhanced color management with hover effects
 * **Effects Controls** - Animation, transforms, and visual effects
-* **Custom CSS** - Add custom CSS with responsive breakpoints (@mobile, @tablet, @desktop)
 * **Link Controls** - Add link functionality to core/group block
 * **Icon Button** - Enable icon selection and positioning for core/button block
 * **Masonry** - Transform gallery and group (grid) blocks into beautiful masonry layouts
@@ -64,30 +63,51 @@ blocklayouts includes access to our [pattern library](https://blocklayouts.com/p
 
 * **Quick Pattern Insertion** - Find and insert patterns in seconds, not minutes
 * **Block Extensions** - Enhance existing blocks without learning new interfaces
-* **Custom CSS Support** - Advanced styling without leaving the editor
 
 == Privacy ==
 
-Blocklayouts is a SaaS (software as a service) connector plugin that uses a custom API to fetch WordPress patterns and page templates from our servers. API requests are only made when a user clicks on the Library button.
-We only collect the website URL when you activate a license key. This helps us validate your license and provide appropriate access to premium patterns. No other personal or site data is collected or transmitted.
+Blocklayouts doesn't track your visitors, set cookies, or collect personal data on the front end of your site.
+
+The pattern library is a SaaS (software as a service) feature that fetches patterns and page templates from Blocklayouts servers. These requests are only made when a logged-in user opens the library in the editor, and they include your site URL. If you activate a license key, the key, your site URL and your site name are sent to activate it and to re-validate it once a day. No other personal or site data is collected or transmitted. See "External services" below for the full details.
 
 By using Blocklayouts and accessing our pattern library, you agree to our [privacy policy](https://blocklayouts.com/privacy-policy/) and [terms of service](https://blocklayouts.com/terms-of-service/).
+
+== External services ==
+
+This plugin connects to the Blocklayouts pattern library service to provide block patterns, page templates, and their categories inside the editor, and to manage an optional premium license. Every custom block and block extension included in the plugin works fully without these requests; only the online pattern/template library and premium-license features rely on them.
+
+**Blocklayouts Pattern Library API** (https://patterns.blocklayouts.com)
+
+* What it is used for: fetching block patterns, page templates, and their categories for display in the editor's pattern library.
+* When requests are sent: only when a logged-in user with editing permissions opens the Blocklayouts pattern library or browses its tabs and categories.
+* What data is sent: your site URL (as the HTTP Referer header). No post content, user data, or other personal information is transmitted.
+* Pattern preview images, and any images used in the patterns you insert, may be loaded from Blocklayouts servers. As with any image, your browser sends its IP address and user agent when loading them.
+
+**Blocklayouts Licensing API** (https://patterns.blocklayouts.com)
+
+* What it is used for: activating, validating, and deactivating an optional premium license that unlocks access to premium patterns and page templates.
+* When requests are sent: only when an administrator activates or deactivates a license key, and periodically (via a scheduled task) to re-validate a license key you have entered. No requests are made if you never enter a license key.
+* What data is sent: the license key you enter and your site URL and site name (used together as the license instance identifier).
+
+These services are provided by Blocklayouts. By using them you agree to the Blocklayouts [terms of service](https://blocklayouts.com/terms-of-service/) and [privacy policy](https://blocklayouts.com/privacy-policy/).
 
 == Screenshots ==
 
 1. Browse our collection of free and premium block patterns to speed up your website building process.
 2. Upgrade button blocks with icon integration for more engaging and professional-looking call-to-action elements.
 3. Add stunning animations and visual effects to any block with our comprehensive effects controls.
-4. Write advanced custom CSS with responsive breakpoint syntax for mobile-optimized designs.
-5. Browse our extensive icon collection with search tools and organized categories for efficient icon selection.
-6. Create and customize icon blocks with full control over size, color, styling, and positioning.
+4. Browse our extensive icon collection with search tools and organized categories for efficient icon selection.
+5. Create and customize icon blocks with full control over size, color, styling, and positioning.
 
 == Installation ==
 
-1. Go to **Plugins** → **Add New** → **Upload Plugin**.
-2. Click **Choose File** and select the `Blocklayouts.zip` from your computer.
-3. Press **Install Now**.
-4. Once installed, click **Activate Plugin**.
+1. In your WordPress admin, go to **Plugins** → **Add New Plugin**.
+2. Search for **Blocklayouts** and click **Install Now**.
+3. Click **Activate**.
+
+To install manually, go to **Plugins** → **Add New Plugin** → **Upload Plugin**, choose the plugin zip file, click **Install Now**, then activate it.
+
+After activation, open the block editor and click the Blocklayouts icon in the top toolbar to open the pattern library. Plugin settings are under **Settings** → **Blocklayouts**.
 
 == Development ==
 
@@ -109,7 +129,7 @@ Blocklayouts is specifically designed for the Gutenberg block editor. While it m
 
 = Do I need coding knowledge to use this plugin? =
 
-Not at all! Blocklayouts is designed for users of all skill levels. However, the Custom CSS feature allows advanced users to add their own styling when needed.
+Not at all! Blocklayouts is designed for users of all skill levels.
 
 = Is there support available? =
 
@@ -117,6 +137,19 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 
 == Changelog ==
+
+= 0.2.1 - 2026-08-01 =
+
+- Removed: Custom CSS block controls
+- Fixed: Pattern preview thumbnail now displays at full width with auto height and centered
+
+= 0.2.0 - 2026-08-01 =
+
+- Changed: All custom blocks and block extensions are now free; the premium tier is now limited to the pattern library
+- Removed: Self-hosted plugin updater
+- Added: External services disclosure in the readme
+- Fixed: Blank plugin dashboard screen
+- Fixed: Empty category list in the pattern library modal
 
 = 0.1.9 - 2025-12-29 =
 
@@ -149,7 +182,7 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 - Improved: Better compatibility with third-party plugins that add inline styles
 
-= 0.1.4 - 2025-09-15 =
+= 0.1.4 - 2025-09-21 =
 
 - Changed: Group link now uses stretched link instead of wrapper link to avoid nested links
 - Improved: Pattern library functionality and user experience

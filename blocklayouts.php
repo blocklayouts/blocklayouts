@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           0.1.9
+ * Version:           0.2.1
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -24,17 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.1.9' );
-
-// Initialize plugin updater.
-require plugin_dir_path( __FILE__ ) . 'inc/class-plugin-updater.php';
-
-new \Blocklayouts_Plugin_Updater(
-	plugin_basename( __FILE__ ),
-	'blocklayouts',
-	BLOCKLAYOUTS_VERSION,
-	'https://blocklayouts.com/wp-json/lsq/v1'
-);
+define( 'BLOCKLAYOUTS_VERSION', '0.2.1' );
 
 /**
  * Initialize.
@@ -53,20 +43,6 @@ require_once __DIR__ . '/inc/class-blocklayouts-cron.php';
 if ( is_admin() ) {
 	require_once __DIR__ . '/inc/class-blocklayouts-dashboard.php';
 }
-
-/**
- * Load plugin textdomain.
- *
- * @since 0.1.0
- */
-function blocklayouts_load_textdomain() {
-	load_plugin_textdomain(
-		'blocklayouts',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
-	);
-}
-add_action( 'init', __NAMESPACE__ . '\blocklayouts_load_textdomain' );
 
 /**
  * Enqueue editor assets.
@@ -97,17 +73,19 @@ function blocklayouts_enqueue_editor_assets() {
 	wp_enqueue_style(
 		'blocklayouts-core-extensions-editor-styles',
 		BLOCKLAYOUTS_PLUGIN_URL . 'build/index.css',
-		array( 'wp-codemirror' ),
+		array(),
 		BLOCKLAYOUTS_VERSION
 	);
 
 	wp_enqueue_script(
 		'blocklayouts-library-editor',
 		BLOCKLAYOUTS_PLUGIN_URL . 'build/index.js',
-		array_merge( $asset_file['dependencies'], array( 'wp-codemirror' ) ),
+		$asset_file['dependencies'],
 		$asset_file['version'],
 		false
 	);
+
+	wp_set_script_translations( 'blocklayouts-library-editor', 'blocklayouts' );
 
 	$config = array(
 		'license'       => $license->get_license_config(),

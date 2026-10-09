@@ -1,0 +1,51 @@
+@use "@wordpress/base-styles/colors";
+@use "@wordpress/base-styles/variables";
+
+.blocklayouts-dashboard__blocks,
+.blocklayouts-dashboard__extensions {
+	.blocklayouts-dashboard__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 20px;
+	}
+
+	.blocklayouts-dashboard__card {
+		padding: 20px;
+		border: 1px solid colors.$gray-300;
+		border-radius: 4px;
+	}
+
+	.blocklayouts-dashboard__card-item {
+		&__content {
+			flex: 1;
+			min-width: 0;
+		}
+
+		&__title {
+			font-size: variables.$font-size-large;
+		}
+
+		&__description {
+			margin: 6px 0 0 0;
+			color: colors.$gray-600;
+		}
+	}
+
+	@media (max-width: 1280px) {
+		.blocklayouts-dashboard__grid {
+			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		}
+	}
+
+	@media (max-width: 960px) {
+		.blocklayouts-dashboard__grid {
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		}
+	}
+
+	@media (max-width: 600px) {
+		.blocklayouts-dashboard__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+// /**
+//  * Table of Contents Block Editor Styles
+//  */
+
+// .wp-block-blocklayouts-table-of-contents {
+// 	// Editor-specific wrapper styles
+// 	.block-editor-rich-text__editable {
+// 		&.wp-block-blocklayouts-table-of-contents__title {
+// 			// Title editing styles
+// 			&[data-is-placeholder-visible="true"] {
+// 				opacity: 0.6;
+// 			}
+// 		}
+// 	}
+
+// 	// Hover states in editor
+// 	&__item {
+// 		transition: background-color 0.2s ease;
+
+// 		&:hover {
+// 			background-color: rgba(0, 0, 0, 0.05);
+// 		}
+// 	}
+
+// 	// Make links non-interactive in editor
+// 	&__link {
+// 		pointer-events: none;
+// 		cursor: default;
+// 	}
+
+// 	// Editor empty state styling
+// 	&__empty {
+// 		border: 1px dashed #ccc;
+// 	}
+// }
+
+// // Block selection styles
+// .wp-block-blocklayouts-table-of-contents.is-selected {
+// 	.wp-block-blocklayouts-table-of-contents__wrapper {
+// 		outline: 2px solid var(--wp-admin-theme-color, #007cba);
+// 		outline-offset: -2px;
+// 	}
+// }
