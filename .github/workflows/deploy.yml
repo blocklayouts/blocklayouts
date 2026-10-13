@@ -1,0 +1,72 @@
+# Publishes the plugin to WordPress.org when a GitHub release is published.
+#
+# Runs on blocklayouts/blocklayouts only (not on forks), and needs these in that
+# repo's Settings → Secrets and variables → Actions:
+# - SVN_USERNAME: your WordPress.org username (a secret or a variable)
+# - SVN_PASSWORD: your SVN password from WordPress.org → Edit profile →
+#   Account & Security (must be a secret)
+name: Deploy to WordPress.org
+
+on:
+  release:
+    # Only full releases; pre-releases are not deployed.
+    types: [released]
+
+permissions:
+  # Needed to attach the zip to the release.
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy to WordPress.org
+    if: github.repository == 'blocklayouts/blocklayouts'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check version numbers match the release tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          HEADER=$(grep -m1 -E '^\s*\*\s*Version:' blocklayouts.php | awk '{print $NF}' | tr -d '\r')
+          CONSTANT=$(grep -m1 "define( 'BLOCKLAYOUTS_VERSION'" blocklayouts.php | sed -E "s/.*'([0-9][^']*)'.*/\1/" | tr -d '\r')
+          STABLE=$(grep -m1 -i '^Stable tag:' readme.txt | awk '{print $NF}' | tr -d '\r')
+          PACKAGE=$(node -p "require('./package.json').version")
+
+          echo "Release tag: $VERSION"
+          echo "Plugin header: $HEADER | BLOCKLAYOUTS_VERSION: $CONSTANT | Stable tag: $STABLE | package.json: $PACKAGE"
+
+          for FOUND in "$HEADER" "$CONSTANT" "$STABLE" "$PACKAGE"; do
+            if [ "$FOUND" != "$VERSION" ]; then
+              echo "::error::The release tag is $VERSION, but the plugin files say $FOUND. Update the version in blocklayouts.php (header and BLOCKLAYOUTS_VERSION), readme.txt (Stable tag) and package.json, then release again."
+              exit 1
+            fi
+          done
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build
+          npm run build:dashboard
+
+      - name: Deploy to WordPress.org
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME || vars.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+
+      - name: Attach the zip to the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.deploy.outputs.zip-path }}
