@@ -1,0 +1,46 @@
+# Updates readme.txt and the .wordpress-org images (banners, icons, screenshots)
+# on WordPress.org without a new release, e.g. after bumping "Tested up to".
+#
+# Runs on blocklayouts/blocklayouts only, with the same SVN credentials as deploy.yml.
+name: Update WordPress.org readme and assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - readme.txt
+      - .wordpress-org/**
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update readme and assets
+    if: github.repository == 'blocklayouts/blocklayouts'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Fetch tags for the check below.
+          fetch-depth: 0
+
+      # A readme whose "Stable tag" points to an unreleased version would break the
+      # WordPress.org page, so wait for that release (deploy.yml updates the readme too).
+      - name: Check the Stable tag has been released
+        id: check
+        run: |
+          STABLE=$(grep -m1 -i '^Stable tag:' readme.txt | awk '{print $NF}' | tr -d '\r')
+          if git rev-parse -q --verify "refs/tags/$STABLE" >/dev/null || git rev-parse -q --verify "refs/tags/v$STABLE" >/dev/null; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Stable tag $STABLE hasn't been released yet. The readme will be published with that release."
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update readme and assets on WordPress.org
+        if: steps.check.outputs.released == 'true'
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME || vars.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          IGNORE_OTHER_FILES: true
