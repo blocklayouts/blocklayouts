@@ -52,6 +52,12 @@ class Blocks_Registrar {
 				'premium'     => false,
 				'active'      => true,
 			),
+			'blocklayouts/category-filter'   => array(
+				'title'       => __( 'Category Filter', 'blocklayouts' ),
+				'description' => __( 'Filter a Query Loop by the terms of any taxonomy.', 'blocklayouts' ),
+				'premium'     => false,
+				'active'      => true,
+			),
 		);
 	}
 

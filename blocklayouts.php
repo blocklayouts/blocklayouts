@@ -7,7 +7,7 @@
  * Author URI:        https://github.com/blocklayouts/
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           0.2.1
+ * Version:           0.2.2
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocklayouts
@@ -24,13 +24,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants.
 define( 'BLOCKLAYOUTS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKLAYOUTS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BLOCKLAYOUTS_VERSION', '0.2.1' );
+define( 'BLOCKLAYOUTS_VERSION', '0.2.2' );
 
 /**
  * Initialize.
  */
 require_once __DIR__ . '/inc/class-blocklayouts-license.php';
 require_once __DIR__ . '/inc/blocks/class-blocklayouts-block-registry.php';
+require_once __DIR__ . '/inc/blocks/category-filter.php';
+require_once __DIR__ . '/inc/blocks/infinite-scroll.php';
 require_once __DIR__ . '/inc/extensions/extensions.php';
 require_once __DIR__ . '/inc/class-blocklayouts-api.php';
 require_once __DIR__ . '/inc/class-blocklayouts-rest-api.php';

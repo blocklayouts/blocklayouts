@@ -1,0 +1,275 @@
+// Category Filter: front end and editor.
+//
+// Every color comes from a custom property set by the block's color settings
+// (see COLOR_SETTINGS in edit.js); each has a theme-aware fallback.
+//
+// --bl-filter-item-border        Item border (Pills, Carousel)
+// --bl-filter-item-background    Item background
+// --bl-filter-hover-background   Item background on hover
+// --bl-filter-count-color        Count text
+// --bl-filter-count-background   Count background
+// --bl-filter-accent             Active border, underline and count background
+// --bl-filter-active-color       Active text
+// --bl-filter-active-background  Active background
+// --bl-filter-active-count-color Active count text
+// --bl-filter-active-count-background Active count background
+
+$block: ".wp-block-blocklayouts-category-filter";
+
+#{$block} {
+	--bl-filter-accent-default: var(--wp--preset--color--primary, var(--wp--preset--color--contrast, currentColor));
+	--bl-filter-border-default: rgba(0, 0, 0, 0.12);
+	--bl-filter-hover-default: rgba(0, 0, 0, 0.04);
+	--bl-filter-count-background-default: rgba(0, 0, 0, 0.06);
+	--bl-filter-muted-default: inherit;
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	font-size: var(--wp--preset--font-size--small, 14px);
+
+	@supports (color: color-mix(in srgb, red 50%, blue)) {
+		--bl-filter-border-default: color-mix(in srgb, currentColor 16%, transparent);
+		--bl-filter-hover-default: color-mix(in srgb, currentColor 6%, transparent);
+		--bl-filter-count-background-default: color-mix(in srgb, currentColor 8%, transparent);
+		--bl-filter-muted-default: color-mix(in srgb, currentColor 60%, transparent);
+	}
+
+	&__viewport {
+		flex: 1;
+		min-width: 0;
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bl-filter-gap, 0.5em 1.5em);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&.is-content-justification-center &__list {
+		justify-content: center;
+	}
+
+	&.is-content-justification-right &__list {
+		justify-content: flex-end;
+	}
+
+	&__item {
+		margin: 0;
+		padding: 0;
+	}
+
+	// List (default style): plain text links.
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		padding: 0.25em 0;
+		border: 1px solid var(--bl-filter-item-border, transparent);
+		border-radius: var(--bl-filter-radius, 0);
+		background-color: var(--bl-filter-item-background, transparent);
+		color: inherit;
+		font: inherit;
+		line-height: 1.2;
+		text-decoration: none;
+		white-space: nowrap;
+		transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+		&:hover {
+			background-color: var(--bl-filter-hover-background, var(--bl-filter-item-background, transparent));
+			color: var(--bl-filter-active-color, var(--bl-filter-accent, var(--bl-filter-accent-default)));
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--bl-filter-accent, var(--bl-filter-accent-default));
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			background-color: var(--bl-filter-active-background, var(--bl-filter-item-background, transparent));
+			color: var(--bl-filter-active-color, inherit);
+			font-weight: 600;
+
+			#{$block}__label {
+				text-decoration: underline;
+				text-decoration-color: var(--bl-filter-accent, var(--bl-filter-accent-default));
+				text-decoration-thickness: 2px;
+				text-underline-offset: 0.4em;
+			}
+
+			#{$block}__count {
+				background-color: var(--bl-filter-active-count-background, var(--bl-filter-count-background, transparent));
+				color: var(--bl-filter-active-count-color, var(--bl-filter-count-color, var(--bl-filter-muted-default)));
+			}
+		}
+	}
+
+	&__count {
+		padding: 0.2em 0.5em;
+		border-radius: 999px;
+		background-color: var(--bl-filter-count-background, transparent);
+		color: var(--bl-filter-count-color, var(--bl-filter-muted-default));
+		font-size: 0.8em;
+		font-weight: 500;
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+
+	&.is-loading &__link {
+		cursor: progress;
+	}
+
+	// Pills and Carousel: bordered chips with count badges.
+	&.is-style-pills,
+	&.is-style-carousel {
+		#{$block}__list {
+			gap: var(--bl-filter-gap, 8px);
+		}
+
+		#{$block}__link {
+			gap: 8px;
+			padding: 0.6em 1em;
+			border-color: var(--bl-filter-item-border, var(--bl-filter-border-default));
+			border-radius: var(--bl-filter-radius, 999px);
+
+			&:has(#{$block}__count) {
+				padding-inline-end: 0.5em;
+			}
+
+			&:hover {
+				background-color: var(--bl-filter-hover-background, var(--bl-filter-hover-default));
+				color: inherit;
+			}
+
+			&.is-active {
+				border-color: var(--bl-filter-accent, var(--bl-filter-accent-default));
+				background-color: var(--bl-filter-active-background, transparent);
+				font-weight: inherit;
+
+				#{$block}__label {
+					text-decoration: none;
+				}
+
+				@supports (color: color-mix(in srgb, red 50%, blue)) {
+					background-color: var(
+						--bl-filter-active-background,
+						color-mix(in srgb, var(--bl-filter-accent, var(--bl-filter-accent-default)) 8%, transparent)
+					);
+				}
+
+				#{$block}__count {
+					background-color: var(--bl-filter-active-count-background, var(--bl-filter-accent, var(--bl-filter-accent-default)));
+					color: var(--bl-filter-active-count-color, #fff);
+				}
+			}
+		}
+
+		#{$block}__count {
+			background-color: var(--bl-filter-count-background, var(--bl-filter-count-background-default));
+			color: var(--bl-filter-count-color, inherit);
+		}
+	}
+
+	// Carousel: one scrollable row.
+	&.is-style-carousel {
+		#{$block}__viewport {
+			overflow-x: auto;
+			overscroll-behavior-x: contain;
+			scrollbar-width: none;
+			// Keep focus outlines visible inside the scroll area.
+			padding: 4px;
+			margin: -4px;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+
+			&.has-next {
+				mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+			}
+
+			&.has-prev {
+				mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent);
+			}
+
+			&.has-prev.has-next {
+				mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+			}
+
+			&.is-dragging {
+				cursor: grabbing;
+				user-select: none;
+
+				#{$block}__link {
+					pointer-events: none;
+				}
+			}
+		}
+
+		#{$block}__list {
+			flex-wrap: nowrap;
+			width: max-content;
+		}
+
+		&.is-content-justification-center #{$block}__list,
+		&.is-content-justification-right #{$block}__list {
+			margin-inline: auto;
+		}
+
+		&.is-content-justification-right #{$block}__list {
+			margin-inline-end: 0;
+		}
+	}
+
+	&__nav {
+		display: inline-flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		transition: background-color 0.15s ease;
+
+		&:hover {
+			background-color: var(--bl-filter-hover-background, var(--bl-filter-hover-default));
+		}
+
+		&[disabled] {
+			display: none;
+		}
+
+		// Touch devices swipe instead.
+		@media (hover: none) {
+			display: none;
+		}
+
+		[dir="rtl"] & svg {
+			transform: scaleX(-1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&__link,
+		&__count,
+		&__nav {
+			transition: none;
+		}
+	}
+}
+
+// Results that are being refreshed by the filter.
+[data-wp-router-region][aria-busy="true"] {
+	opacity: 0.55;
+	transition: opacity 0.2s ease;
+}

@@ -1,190 +1,178 @@
 /**
  * WordPress dependencies.
  */
-import { store, getContext, getElement } from "@wordpress/interactivity";
+import * as interactivity from "@wordpress/interactivity";
 
-// Intersection Observer for infinite scroll
-let intersectionObserver = null;
+const { store, getContext, getElement } = interactivity;
+
+// WP 6.8+: the server state of the page the router last navigated to.
+const { getServerState } = interactivity;
+
+const { state } = store("blocklayouts/infinite-scroll", {
+	state: { queries: {} },
+});
 
 /**
- * Fetches the next page of content.
- * @param {string} url - The URL to fetch
- * @returns {Promise<Document|null>} Parsed HTML document or null on error
+ * Progress of the Query Loop a block belongs to.
+ *
+ * @param {Object} context Block context.
+ * @returns {{loaded: number, hasMore: boolean}} Progress.
  */
-const fetchNextPage = async (url) => {
-	try {
-		const res = await window.fetch(url);
+const getProgress = (context) =>
+	state.queries[context.key] || { loaded: 1, hasMore: false };
 
-		if (!res.ok) {
-			console.error(`Failed to fetch next page. Status: ${res.status}`);
-			return null;
-		}
-
-		const html = await res.text();
-		return new window.DOMParser().parseFromString(html, "text/html");
-	} catch (e) {
-		console.error("Failed to fetch next page.", e);
-		return null;
-	}
+let routerModule;
+const loadRouter = () => {
+	routerModule ??= import("@wordpress/interactivity-router");
+	return routerModule;
 };
 
 /**
- * Handles loading new posts from the fetched page.
- * @param {HTMLElement} queryEl - Query block container element
- * @param {Document} dom - Parsed HTML document
- * @param {Object} context - Interactivity API context
- * @param {Object} state - Store state
- * @param {HTMLElement} ref - Trigger element reference
- * @returns {boolean} Success status
- */
-const loadNewPosts = (queryEl, dom, context, state, ref) => {
-	const postTemplate = dom.querySelector(".wp-block-post-template");
-
-	if (!postTemplate || !postTemplate.children.length) {
-		console.warn("No new post content found.");
-		state.hasMore = false;
-		return false;
-	}
-
-	// Add class to new content for potential animations/styling
-	const fragment = document.createDocumentFragment();
-	Array.from(postTemplate.children).forEach((child) => {
-		child.classList.add("is-inserted-post");
-		fragment.appendChild(child.cloneNode(true));
-	});
-
-	state.paged += 1;
-	queryEl.querySelector(".wp-block-post-template").appendChild(fragment);
-
-	return true;
-};
-
-/**
- * Shared function to handle loading more posts.
- * @param {HTMLElement} ref - Reference element
- * @param {Object} context - Interactivity API context
- * @param {Object} state - Store state
+ * Load the next page of a Query Loop.
+ *
+ * Asks the router for the current URL with one more loaded page; the server
+ * renders pages 1..N (see inc/blocks/infinite-scroll.php) and the router
+ * swaps the Query Loop region. Because the router hydrates the new markup,
+ * interactive blocks inside the loaded posts work like the first ones.
+ *
+ * @param {Object} context Block context.
  * @returns {Promise<void>}
  */
-const handleLoadMore = async (ref, context, state) => {
-	if (!state.hasMore || context.isLoading) {
+const loadMore = async (context) => {
+	const progress = getProgress(context);
+
+	if (!progress.hasMore || context.isLoading) {
 		return;
 	}
 
-	const queryId = context.queryId;
-	const queryEl = ref.closest(
-		`[data-blocklayouts-router-region="query-${queryId}"]`
-	);
-
-	if (!queryEl) {
-		console.error("Query block container not found.");
-		return;
+	const url = new URL(window.location.href);
+	url.searchParams.set(context.param, String(progress.loaded + 1));
+	if (context.pageParam) {
+		url.searchParams.delete(context.pageParam);
 	}
 
-	// Set loading state
 	context.isLoading = true;
-	const paged = state.paged + 1;
-	const pageId = `query-${queryId}-page`;
-
-	// Build URL with updated page parameter
-	const url = new URL(window.location);
-	url.searchParams.set(pageId, paged);
 
 	try {
-		const dom = await fetchNextPage(url.toString());
-		if (dom) {
-			loadNewPosts(queryEl, dom, context, state, ref);
-		} else {
-			state.hasMore = false;
+		const { actions: router } = await loadRouter();
+		const countBefore = countPosts(context);
+
+		// Replace the history entry: "Back" should leave the page, not unload posts.
+		await router.navigate(url.href, {
+			replace: true,
+			loadingAnimation: false,
+			screenReaderAnnouncement: true,
+		});
+
+		// Without getServerState (WP < 6.8), track progress here: stop once a
+		// load adds nothing.
+		if (!getServerState) {
+			progress.loaded += 1;
+			progress.hasMore = countPosts(context) > countBefore;
 		}
 	} catch (error) {
-		console.error("Error loading next page:", error);
-		state.hasMore = false;
+		console.error("Failed to load more posts.", error);
+		progress.hasMore = false;
 	} finally {
 		context.isLoading = false;
 	}
 };
 
-const { state, actions } = store("blocklayouts/infinite-scroll", {
-	state: {
-		hasMore: true,
-		paged: 1,
-	},
+/**
+ * Number of posts currently rendered in the block's Query Loop.
+ *
+ * @param {Object} context Block context.
+ * @returns {number} Post count.
+ */
+const countPosts = (context) =>
+	document.querySelector(`[data-wp-router-region="${context.region}"] .wp-block-post-template`)
+		?.children.length ?? 0;
 
+/**
+ * Whether an element is within `distance` pixels of the viewport.
+ *
+ * @param {HTMLElement} element  Element.
+ * @param {number}      distance Distance in pixels.
+ * @returns {boolean}
+ */
+const isNearViewport = (element, distance) => {
+	const rect = element.getBoundingClientRect();
+	return (
+		rect.width + rect.height > 0 &&
+		rect.top <= window.innerHeight + distance &&
+		rect.bottom >= -distance
+	);
+};
+
+store("blocklayouts/infinite-scroll", {
 	actions: {
 		/**
-		 * Clean up observer on component unmount.
-		 */
-		cleanup() {
-			if (intersectionObserver) {
-				intersectionObserver.disconnect();
-				intersectionObserver = null;
-			}
-		},
-
-		/**
-		 * Load more posts (triggered by button click).
+		 * Load more posts (button type).
 		 */
 		*loadMore() {
-			const { ref } = getElement();
-			const context = getContext();
-
-			if (!ref) return;
-
-			yield handleLoadMore(ref, context, state);
+			yield loadMore(getContext());
 		},
 	},
 
 	callbacks: {
 		/**
-		 * Initialize button type (no observer needed).
+		 * Copy fresh progress from the server after each load. The router merges
+		 * new server state without overwriting existing values, so it has to be
+		 * copied over explicitly.
 		 */
-		initButton() {
-			const context = getContext();
+		syncProgress() {
+			if (!getServerState) {
+				return;
+			}
 
-			// No intersection observer needed for button type
-			if (context.infiniteType === "button") {
-				actions.cleanup();
+			const context = getContext();
+			const serverProgress = getServerState().queries?.[context.key];
+
+			if (serverProgress) {
+				state.queries[context.key] = {
+					...(state.queries[context.key] || {}),
+					...serverProgress,
+				};
 			}
 		},
 
 		/**
-		 * Initialize infinite scroll with intersection observer.
+		 * Load more posts when the trigger gets close to the viewport.
+		 *
+		 * Re-runs whenever `hasMore` or `isLoading` change, so it keeps loading
+		 * while the trigger stays visible (e.g. short pages on tall screens).
 		 */
 		infiniteScroll() {
 			const { ref } = getElement();
 			const context = getContext();
 
-			if (!ref) return;
+			if (!ref || !getProgress(context).hasMore || context.isLoading) {
+				return;
+			}
 
-			// Clean up existing observer
-			actions.cleanup();
+			const distance = parseInt(ref.dataset.triggerDistance, 10) || 100;
 
-			// Get trigger distance from data attribute
-			const triggerDistance = parseInt(ref.dataset.triggerDistance, 10) || 100;
-
-			// Create intersection observer
-			intersectionObserver = new IntersectionObserver(
+			const observer = new window.IntersectionObserver(
 				(entries) => {
-					const entry = entries[0];
-
-					if (!entry.isIntersecting || !state.hasMore || context.isLoading) {
-						return;
+					if (entries.some((entry) => entry.isIntersecting)) {
+						observer.disconnect();
+						loadMore(context);
 					}
-
-					handleLoadMore(ref, context, state);
 				},
-				{
-					rootMargin: `${triggerDistance}px`,
-					threshold: 0.1,
-				}
+				{ rootMargin: `${distance}px 0px` }
 			);
 
-			// Start observing the trigger element
-			intersectionObserver.observe(ref);
+			observer.observe(ref);
+
+			// The observer only reports changes: handle a trigger that is
+			// already in view after the previous load.
+			if (isNearViewport(ref, distance)) {
+				observer.disconnect();
+				// Deferred: loading updates the state this callback depends on.
+				window.queueMicrotask(() => loadMore(context));
+			}
+
+			return () => observer.disconnect();
 		},
 	},
 });
-
-// Export for potential external use
-export { state, actions };
