@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks
 Tested up to:      7.1
 Requires at least: 6.5
-Stable tag:        0.2.1
+Stable tag:        0.2.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ Custom blocks, enhanced core blocks, and pre-designed patterns to build WordPres
 * **Table of Contents** - Automatically generate a navigable table of contents from headings in your content
 * **Infinite Scroll** - Automatically load more posts as you scroll
 * **Related Posts** - Display posts related to the current post based on categories, tags, or custom taxonomies
+* **Category Filter** - Filter a Query Loop by any taxonomy, with instant results and Pills or Carousel styles
 * **More blocks coming soon**: Slider, Content Toggle, and many more!
 
 = Block Extensions & Enhancements =
@@ -137,6 +138,12 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 
 == Changelog ==
+
+= 0.2.2 - 2026-11-13 =
+
+- Added: Category Filter block to filter a Query Loop by any taxonomy, with List, Pills and Carousel styles
+- Fixed: Interactive blocks (such as copy buttons) now work in posts loaded by the Infinite Scroll block
+- Improved: Infinite Scroll keeps the number of loaded pages in the URL and stops when there is nothing left to load
 
 = 0.2.1 - 2026-08-01 =
 

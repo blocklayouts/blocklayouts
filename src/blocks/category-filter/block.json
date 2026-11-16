@@ -1,0 +1,155 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocklayouts/category-filter",
+	"version": "0.1.0",
+	"title": "Category Filter",
+	"category": "blocklayouts",
+	"icon": "filter",
+	"description": "Filter a Query Loop by the terms of any taxonomy, or link to term archive pages.",
+	"keywords": ["filter", "taxonomy", "terms", "tags", "categories", "query"],
+	"textdomain": "blocklayouts",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"enum": ["query", "archive"],
+			"default": "query"
+		},
+		"queryId": {
+			"type": "number"
+		},
+		"postType": {
+			"type": "string",
+			"default": ""
+		},
+		"taxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"showAll": {
+			"type": "boolean",
+			"default": true
+		},
+		"allLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"showCount": {
+			"type": "boolean",
+			"default": true
+		},
+		"hideEmpty": {
+			"type": "boolean",
+			"default": true
+		},
+		"topLevelOnly": {
+			"type": "boolean",
+			"default": false
+		},
+		"orderBy": {
+			"type": "string",
+			"enum": ["name/asc", "name/desc", "count/desc", "count/asc"],
+			"default": "count/desc"
+		},
+		"includeTerms": {
+			"type": "array",
+			"items": {
+				"type": "number"
+			},
+			"default": []
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"justifyContent": {
+			"type": "string"
+		},
+		"itemBackgroundColor": {
+			"type": "string"
+		},
+		"itemBorderColor": {
+			"type": "string"
+		},
+		"hoverBackgroundColor": {
+			"type": "string"
+		},
+		"countColor": {
+			"type": "string"
+		},
+		"countBackgroundColor": {
+			"type": "string"
+		},
+		"activeColor": {
+			"type": "string"
+		},
+		"activeTextColor": {
+			"type": "string"
+		},
+		"activeBackgroundColor": {
+			"type": "string"
+		},
+		"activeCountColor": {
+			"type": "string"
+		},
+		"activeCountBackgroundColor": {
+			"type": "string"
+		}
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "List",
+			"isDefault": true
+		},
+		{
+			"name": "pills",
+			"label": "Pills"
+		},
+		{
+			"name": "carousel",
+			"label": "Carousel"
+		}
+	],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"color": {
+			"background": true,
+			"text": true,
+			"__experimentalDefaultControls": {
+				"text": true
+			}
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		},
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"blockGap": true
+			}
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"radius": true
+			}
+		},
+		"interactivity": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

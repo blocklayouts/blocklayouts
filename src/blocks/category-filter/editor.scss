@@ -1,0 +1,29 @@
+// Category Filter: editor only.
+.wp-block-blocklayouts-category-filter {
+	.components-placeholder {
+		width: 100%;
+	}
+
+	&__link {
+		cursor: default;
+	}
+
+	&__empty {
+		margin: 0;
+		opacity: 0.7;
+	}
+}
+
+// Sidebar notices: match the native control style.
+.blocklayouts-category-filter-notice.components-notice {
+	margin: 0;
+	border-radius: 2px;
+
+	p {
+		margin-top: 0;
+	}
+
+	.components-button {
+		margin-top: 8px;
+	}
+}
