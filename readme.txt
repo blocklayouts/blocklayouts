@@ -3,7 +3,7 @@ Contributors:      blocklayouts, qarayahya
 Tags:              gutenberg, blocks, patterns, block editor, custom blocks
 Tested up to:      7.1
 Requires at least: 6.5
-Stable tag:        0.2.2
+Stable tag:        0.2.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,14 +77,14 @@ By using Blocklayouts and accessing our pattern library, you agree to our [priva
 
 This plugin connects to the Blocklayouts pattern library service to provide block patterns, page templates, and their categories inside the editor, and to manage an optional premium license. Every custom block and block extension included in the plugin works fully without these requests; only the online pattern/template library and premium-license features rely on them.
 
-**Blocklayouts Pattern Library API** (https://patterns.blocklayouts.com)
+**Blocklayouts Pattern Library API** (https://blocklayouts.com)
 
 * What it is used for: fetching block patterns, page templates, and their categories for display in the editor's pattern library.
 * When requests are sent: only when a logged-in user with editing permissions opens the Blocklayouts pattern library or browses its tabs and categories.
-* What data is sent: your site URL (as the HTTP Referer header). No post content, user data, or other personal information is transmitted.
+* What data is sent: your site URL (as the HTTP Referer header) and, if you have activated a premium license, your license key and its activation ID (so premium patterns can be included). No post content, user data, or other personal information is transmitted.
 * Pattern preview images, and any images used in the patterns you insert, may be loaded from Blocklayouts servers. As with any image, your browser sends its IP address and user agent when loading them.
 
-**Blocklayouts Licensing API** (https://patterns.blocklayouts.com)
+**Blocklayouts Licensing API** (https://blocklayouts.com)
 
 * What it is used for: activating, validating, and deactivating an optional premium license that unlocks access to premium patterns and page templates.
 * When requests are sent: only when an administrator activates or deactivates a license key, and periodically (via a scheduled task) to re-validate a license key you have entered. No requests are made if you never enter a license key.
@@ -138,6 +138,12 @@ For premium support options, please visit [our website](https://blocklayouts.com
 
 
 == Changelog ==
+
+= 0.2.3 - 2026-11-21 =
+
+- Changed: The pattern library and license checks now use blocklayouts.com instead of patterns.blocklayouts.com
+- Improved: Premium patterns are only sent to sites with an active license
+- Fixed: The pattern library refreshes as soon as a license is activated or removed
 
 = 0.2.2 - 2026-11-13 =
 
