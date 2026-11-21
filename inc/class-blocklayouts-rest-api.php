@@ -686,6 +686,12 @@ class Blocklayouts_REST_API {
 	 * Generate cache key
 	 */
 	private function get_cache_key( string $endpoint, array $params = array() ): string {
+		// Premium code depends on the license, so a license change refreshes the library.
+		$license            = License::get_instance()->get_license_data();
+		$params['_license'] = ( is_array( $license ) && ! empty( $license['is_active'] ) )
+			? md5( ( $license['license_key']['key'] ?? '' ) . '|' . ( $license['instance']['id'] ?? '' ) )
+			: '';
+
 		return $this->cache_prefix . $endpoint . '_' . md5( wp_json_encode( $params ) );
 	}
 

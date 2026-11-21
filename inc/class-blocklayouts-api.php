@@ -9,45 +9,78 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Blocklayouts_Api {
 
 	private static $instance           = null;
-	private const BLOCKLAYOUTS_API_URL = 'https://patterns.blocklayouts.com/api/v2';
+	private const BLOCKLAYOUTS_API_URL = 'https://blocklayouts.com/wp-json/blocklayouts/v1';
+
+	/**
+	 * Base URL of the Blocklayouts API.
+	 *
+	 * @return string
+	 */
+	private function api_url(): string {
+		/**
+		 * Filters the Blocklayouts API base URL (e.g. to test against a staging site).
+		 *
+		 * @param string $url Base URL, without a trailing slash.
+		 */
+		return untrailingslashit( (string) apply_filters( 'blocklayouts_api_url', self::BLOCKLAYOUTS_API_URL ) );
+	}
 
 	public function get_patterns( array $args = array() ) {
-		return $this->request( 'GET', self::BLOCKLAYOUTS_API_URL . '/patterns', $args );
+		return $this->request( 'GET', $this->api_url() . '/patterns', $args, true );
 	}
 
 	public function get_page_templates( array $args = array() ) {
-		return $this->request( 'GET', self::BLOCKLAYOUTS_API_URL . '/page-templates', $args );
+		return $this->request( 'GET', $this->api_url() . '/page-templates', $args, true );
 	}
 
 	public function get_categories( array $args = array() ) {
-		return $this->request( 'GET', self::BLOCKLAYOUTS_API_URL . '/categories', $args );
+		return $this->request( 'GET', $this->api_url() . '/categories', $args );
 	}
 
 	public function get_industries( array $args = array() ) {
-		return $this->request( 'GET', self::BLOCKLAYOUTS_API_URL . '/industries', $args );
+		return $this->request( 'GET', $this->api_url() . '/industries', $args );
 	}
 
 	public function activate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/activate', $args );
+		return $this->request( 'POST', $this->api_url() . '/licenses/activate', $args );
 	}
 
 	public function deactivate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/deactivate', $args );
+		return $this->request( 'POST', $this->api_url() . '/licenses/deactivate', $args );
 	}
 
 	public function validate_license( array $args = array() ) {
-		return $this->request( 'POST', self::BLOCKLAYOUTS_API_URL . '/licenses/validate', $args );
+		return $this->request( 'POST', $this->api_url() . '/licenses/validate', $args );
+	}
+
+	/**
+	 * License headers, so the library includes the code of premium patterns
+	 * for sites with an active license.
+	 *
+	 * @return array
+	 */
+	private function license_headers(): array {
+		$license = License::get_instance();
+		$data    = $license->get_license_data();
+		if ( ! is_array( $data ) || ! $license->is_license_active( $data ) || empty( $data['license_key']['key'] ) || empty( $data['instance']['id'] ) ) {
+			return array();
+		}
+		return array(
+			'X-Blocklayouts-License'  => (string) $data['license_key']['key'],
+			'X-Blocklayouts-Instance' => (string) $data['instance']['id'],
+		);
 	}
 
 	/**
 	 * Send a request to the Blocklayouts API.
 	 *
-	 * @param string $method HTTP method.
-	 * @param string $path   Request URL.
-	 * @param array  $body   Request arguments.
+	 * @param string $method       HTTP method.
+	 * @param string $path         Request URL.
+	 * @param array  $body         Request arguments.
+	 * @param bool   $with_license Send the license headers.
 	 * @return array|\WP_Error Decoded response data or an error.
 	 */
-	private function request( string $method, string $path, array $body ) {
+	private function request( string $method, string $path, array $body, bool $with_license = false ) {
 		if ( $method === 'GET' && ! empty( $body ) ) {
 			$path .= '?' . http_build_query( $body );
 			$body  = null;
@@ -59,9 +92,12 @@ class Blocklayouts_Api {
 				'body'    => $body,
 				'method'  => $method,
 				'timeout' => 20,
-				'headers' => array(
-					'Referer' => home_url(),
-					'Accept'  => 'application/json',
+				'headers' => array_merge(
+					array(
+						'Referer' => home_url(),
+						'Accept'  => 'application/json',
+					),
+					$with_license ? $this->license_headers() : array()
 				),
 			)
 		);
