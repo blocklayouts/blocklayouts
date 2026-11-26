@@ -25,26 +25,26 @@ dispatch("core").addEntities([
 		label: __("Blocklayouts Patterns", "blocklayouts"),
 		kind: "blocklayouts/v1",
 		name: "patterns",
-		baseURL: "/blocklayouts/v1/patterns",
+		baseURL: "/blocklayouts/v1/library/patterns",
 	},
 	{
 		label: __("Blocklayouts Patterns Categories", "blocklayouts"),
 		kind: "blocklayouts/v1",
 		name: "patterns-categories",
-		baseURL: "/blocklayouts/v1/patterns/categories",
+		baseURL: "/blocklayouts/v1/library/patterns/categories",
 	},
 	{
 		label: __("Blocklayouts Templates", "blocklayouts"),
 		kind: "blocklayouts/v1",
 		name: "page-templates",
-		baseURL: "/blocklayouts/v1/page-templates",
+		baseURL: "/blocklayouts/v1/library/page-templates",
 	},
 
 	{
 		label: __("Blocklayouts Page Templates Categories", "blocklayouts"),
 		kind: "blocklayouts/v1",
 		name: "page-templates-categories",
-		baseURL: "/blocklayouts/v1/page-templates/categories",
+		baseURL: "/blocklayouts/v1/library/page-templates/categories",
 	},
 ]);
 

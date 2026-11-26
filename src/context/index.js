@@ -64,8 +64,8 @@ export const SettingsProvider = ({ children }) => {
 		try {
 			const queryString = new URLSearchParams(params).toString();
 			const path = queryString
-				? `/blocklayouts/v1/patterns?${queryString}`
-				: "/blocklayouts/v1/patterns";
+				? `/blocklayouts/v1/library/patterns?${queryString}`
+				: "/blocklayouts/v1/library/patterns";
 
 			const response = await apiFetch({
 				path,
@@ -123,8 +123,8 @@ export const SettingsProvider = ({ children }) => {
 		try {
 			const queryString = new URLSearchParams(params).toString();
 			const path = queryString
-				? `/blocklayouts/v1/page-templates?${queryString}`
-				: "/blocklayouts/v1/page-templates";
+				? `/blocklayouts/v1/library/page-templates?${queryString}`
+				: "/blocklayouts/v1/library/page-templates";
 
 			const response = await apiFetch({
 				path,
@@ -179,7 +179,7 @@ export const SettingsProvider = ({ children }) => {
 
 		try {
 			const response = await apiFetch({
-				path: `/blocklayouts/v1/categories?post_type=${postType}`,
+				path: `/blocklayouts/v1/library/categories?post_type=${postType}`,
 				method: "GET",
 			});
 
