@@ -620,3 +620,16 @@
 	color: #757575;
 	font-size: 13px;
 }
+
+// Infinite scroll: the modal's scroll area does the scrolling, so the
+// load-more marker under the grid comes into view at the bottom.
+.blocklayouts-modal__content .dataviews-wrapper {
+	height: auto;
+	overflow: visible;
+}
+
+.blocklayouts-modal__load-more {
+	display: flex;
+	justify-content: center;
+	padding: 24px 0 32px;
+}
