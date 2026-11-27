@@ -88,7 +88,9 @@ const Blocks = () => {
 	const licenseData = useEntityRecord("blocklayouts/v1", "license");
 	const license = licenseData?.record?.data;
 	const isActiveLicense = license?.is_active;
-	const licenseLoading = !licenseData.hasResolved;
+	// Only the first load counts: a refresh after activating keeps the old
+	// record until the new one arrives, so the dropdown stays mounted.
+	const licenseLoading = !licenseData.hasResolved && !licenseData.record;
 
 	const [toggling, setToggling] = useState(null);
 

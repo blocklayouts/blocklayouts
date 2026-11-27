@@ -18,6 +18,19 @@ import { chevronLeft } from "@wordpress/icons";
 
 export const ActivationScreen = ({ activateLicense, isLoading }) => {
 	const [licenseKey, setLicenseKey] = useState("");
+	const { goTo } = useNavigator();
+
+	// Stay in the dropdown and show the license details once it's active.
+	const submit = async () => {
+		const key = licenseKey.trim();
+		if (!key || isLoading) {
+			return;
+		}
+		if (await activateLicense(key)) {
+			setLicenseKey("");
+			goTo("/license");
+		}
+	};
 
 	return (
 		<div style={{ padding: "16px" }}>
@@ -40,10 +53,12 @@ export const ActivationScreen = ({ activateLicense, isLoading }) => {
 				value={licenseKey}
 				onChange={(value) => setLicenseKey(value)}
 				placeholder={__("XXXX-XXXX-XXXX-XXXX", "blocklayouts")}
-				disabled={isLoading}
+				// readOnly, not disabled: a disabled field loses focus, which
+				// closes the dropdown.
+				readOnly={isLoading}
 				onKeyDown={(e) => {
-					if (e.key === "Enter" && !isLoading && licenseKey.trim()) {
-						activateLicense(licenseKey.trim());
+					if (e.key === "Enter") {
+						submit();
 					}
 				}}
 			/>
@@ -62,11 +77,10 @@ export const ActivationScreen = ({ activateLicense, isLoading }) => {
 			<Flex justify="flex-end" style={{ marginTop: "16px" }}>
 				<Button
 					variant="primary"
-					onClick={() => {
-						activateLicense(licenseKey.trim());
-					}}
+					onClick={submit}
 					isBusy={isLoading}
 					disabled={!licenseKey.trim() || isLoading}
+					accessibleWhenDisabled
 					__next40pxDefaultSize
 				>
 					{isLoading
