@@ -49,9 +49,17 @@ const ExpiresAt = ({ date }) => (
 );
 
 export const LicenseScreen = ({ license, deactivateLicense, isLoading }) => {
-	const { license_key } = license;
+	const { goTo } = useNavigator();
+	const license_key = license?.license_key;
 
 	if (!license_key) return null;
+
+	// Stay in the dropdown and go back to the upgrade screen once it's off.
+	const deactivate = async () => {
+		if (await deactivateLicense()) {
+			goTo("/upgrade");
+		}
+	};
 
 	return (
 		<div>
@@ -88,8 +96,9 @@ export const LicenseScreen = ({ license, deactivateLicense, isLoading }) => {
 				<Flex justify="start" style={{ width: "auto" }}>
 					<Button
 						isDestructive={true}
-						onClick={deactivateLicense}
+						onClick={deactivate}
 						disabled={isLoading}
+						accessibleWhenDisabled
 						__next40pxDefaultSize
 					>
 						{isLoading

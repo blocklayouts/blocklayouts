@@ -1,7 +1,13 @@
 /**
  * External dependencies
  */
-import { useState, useEffect, useMemo, useCallback } from "@wordpress/element";
+import {
+	useState,
+	useEffect,
+	useMemo,
+	useCallback,
+	useRef,
+} from "@wordpress/element";
 import { Notice, Spinner } from "@wordpress/components";
 import { isUnmodifiedDefaultBlock } from "@wordpress/blocks";
 import { __, sprintf } from "@wordpress/i18n";
@@ -83,16 +89,17 @@ export const Content = ({
 		sort: getSortField(orderBy),
 		showMedia: true,
 		showTitle: true,
-		infiniteScrollEnabled: true,
 	};
 	const [view, setView] = useState(DEFAULT_VIEW);
 
 	const { insertBlocks, replaceBlocks } = useDispatch(blockEditorStore);
 	const { createNotice } = useDispatch(noticesStore);
 
-	// Infinite scroll state management
-	const [allLoadedRecords, setAllLoadedRecords] = useState([]);
-	const [isLoadingMore, setIsLoadingMore] = useState(false);
+	// Infinite scroll: how many "pages" of items are shown. The installed
+	// DataViews version has no infinite scroll, so it's done here: a marker
+	// under the grid loads the next page when it scrolls into view.
+	const [pagesShown, setPagesShown] = useState(1);
+	const sentinelRef = useRef(null);
 
 	useEffect(() => {
 		if (selectedCategory) {
@@ -165,16 +172,44 @@ export const Content = ({
 		[isPremiumUser, insertPattern],
 	);
 
-	// Process data for DataViews
-	const { data: shownData } = useMemo(() => {
-		return filterSortAndPaginate(components, view, fields);
-	}, [components, view, fields]);
+	// Start again from the first page when the list or the view changes.
+	useEffect(() => {
+		setPagesShown(1);
+	}, [components, view.search, view.filters, view.sort, view.perPage]);
 
-	// Infinite scroll pagination logic
-	const totalItems = components.length;
-	const totalPages = Math.ceil(totalItems / (view.perPage || 12));
-	const currentPage = view.page || 1;
-	const hasMoreData = currentPage < totalPages;
+	// Filter and sort everything, and show the first `pagesShown` pages.
+	const perPage = view.perPage || 12;
+	const { data: shownData, paginationInfo: filteredInfo } = useMemo(() => {
+		return filterSortAndPaginate(
+			components || [],
+			{ ...view, page: 1, perPage: perPage * pagesShown },
+			fields,
+		);
+	}, [components, view, fields, perPage, pagesShown]);
+
+	const totalItems = filteredInfo?.totalItems ?? 0;
+	const hasMoreData = shownData.length < totalItems;
+
+	// Load the next page when the marker under the grid comes into view.
+	useEffect(() => {
+		const sentinel = sentinelRef.current;
+		if (!sentinel || !hasMoreData) {
+			return;
+		}
+		const observer = new window.IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) {
+					setPagesShown((n) => n + 1);
+				}
+			},
+			{
+				root: sentinel.closest(".blocklayouts-modal__scrollable"),
+				rootMargin: "0px 0px 600px 0px",
+			},
+		);
+		observer.observe(sentinel);
+		return () => observer.disconnect();
+	}, [hasMoreData, shownData.length]);
 
 	const getItemId = (item) => {
 		return item.id.toString();
@@ -235,57 +270,10 @@ export const Content = ({
 		[insertPattern],
 	);
 
-	// Infinite scroll handler
-	const infiniteScrollHandler = useCallback(() => {
-		if (isLoadingMore || currentPage >= totalPages) {
-			return;
-		}
-		setIsLoadingMore(true);
-		setView({
-			...view,
-			page: currentPage + 1,
-		});
-	}, [isLoadingMore, currentPage, totalPages, view]);
-
-	// Reset data when components change (tab switch)
-	useEffect(() => {
-		setAllLoadedRecords([]);
-		setView((prevView) => ({
-			...prevView,
-			page: 1,
-		}));
-	}, [components]);
-
-	// Initialize data on first load or when view changes significantly
-	useEffect(() => {
-		if (currentPage === 1 || !view.infiniteScrollEnabled) {
-			// First page - replace all data
-			setAllLoadedRecords(shownData);
-		} else {
-			// Subsequent pages - append to existing data
-			setAllLoadedRecords((prev) => {
-				const existingIds = new Set(prev.map(getItemId));
-				const newRecords = shownData.filter(
-					(record) => !existingIds.has(getItemId(record)),
-				);
-				return [...prev, ...newRecords];
-			});
-		}
-		setIsLoadingMore(false);
-	}, [
-		shownData,
-		view.search,
-		view.filters,
-		view.perPage,
-		currentPage,
-		view.infiniteScrollEnabled,
-	]);
-
-	// Pagination info with infinite scroll handler
+	// A single "page", so DataViews doesn't show its own pager.
 	const paginationInfo = {
 		totalItems,
-		totalPages,
-		infiniteScrollHandler,
+		totalPages: 1,
 	};
 
 	return (
@@ -310,17 +298,27 @@ export const Content = ({
 					/>
 				</div>
 			) : (
-				<DataViews
-					getItemId={getItemId}
-					paginationInfo={paginationInfo}
-					data={allLoadedRecords}
-					fields={fields}
-					view={view}
-					onChangeView={setView}
-					actions={actions}
-					isLoading={isLoadingMore}
-					defaultLayouts={DEFAULT_LAYOUTS}
-				/>
+				<>
+					<DataViews
+						getItemId={getItemId}
+						paginationInfo={paginationInfo}
+						data={shownData}
+						fields={fields}
+						view={view}
+						onChangeView={(newView) => setView({ ...newView, page: 1 })}
+						actions={actions}
+						defaultLayouts={DEFAULT_LAYOUTS}
+					/>
+					{hasMoreData && (
+						<div
+							ref={sentinelRef}
+							className="blocklayouts-modal__load-more"
+							aria-hidden="true"
+						>
+							<Spinner />
+						</div>
+					)}
+				</>
 			)}
 		</>
 	);

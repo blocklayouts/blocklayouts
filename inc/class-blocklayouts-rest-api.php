@@ -27,10 +27,13 @@ class Blocklayouts_REST_API {
 	 * Register REST API routes
 	 */
 	public function register_rest_routes() {
+		// Library routes live under /library/ so they never clash with the
+		// public Blocklayouts API (same namespace) on blocklayouts.com itself.
+
 		// Patterns
 		register_rest_route(
 			'blocklayouts/v1',
-			'/patterns',
+			'/library/patterns',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_patterns' ),
@@ -40,7 +43,7 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/page-templates',
+			'/library/page-templates',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_page_templates' ),
@@ -50,7 +53,7 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/categories',
+			'/library/categories',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_categories' ),
@@ -66,7 +69,7 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/patterns/categories',
+			'/library/patterns/categories',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_patterns_categories' ),
@@ -76,7 +79,7 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/page-templates/categories',
+			'/library/page-templates/categories',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_page_templates_categories' ),
@@ -86,7 +89,7 @@ class Blocklayouts_REST_API {
 
 		register_rest_route(
 			'blocklayouts/v1',
-			'/industries',
+			'/library/industries',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'rest_get_industries' ),
@@ -686,6 +689,12 @@ class Blocklayouts_REST_API {
 	 * Generate cache key
 	 */
 	private function get_cache_key( string $endpoint, array $params = array() ): string {
+		// Premium code depends on the license, so a license change refreshes the library.
+		$license            = License::get_instance()->get_license_data();
+		$params['_license'] = ( is_array( $license ) && ! empty( $license['is_active'] ) )
+			? md5( ( $license['license_key']['key'] ?? '' ) . '|' . ( $license['instance']['id'] ?? '' ) )
+			: '';
+
 		return $this->cache_prefix . $endpoint . '_' . md5( wp_json_encode( $params ) );
 	}
 

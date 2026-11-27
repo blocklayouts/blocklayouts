@@ -1,11 +1,36 @@
 // components/PatternPreview.js
-import { useCallback, useMemo } from "@wordpress/element";
+import { useCallback, useMemo, useState } from "@wordpress/element";
 import { Button } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { BlockPreview } from "@wordpress/block-editor";
 import { lock } from "@wordpress/icons";
 import { useSelect } from "@wordpress/data";
 import { parse } from "@wordpress/blocks";
+
+// Thumbnail with lazy loading. A failed image is retried once, then a
+// "Preview not available" box is shown instead of a broken image.
+const Thumbnail = ({ src }) => {
+	const [attempt, setAttempt] = useState(0);
+
+	if (!src || attempt > 1) {
+		return (
+			<div className="blocklayouts-modal__pattern-thumbnail is-missing">
+				<span>{__("Preview not available", "blocklayouts")}</span>
+			</div>
+		);
+	}
+
+	return (
+		<img
+			key={attempt}
+			src={attempt ? `${src}${src.includes("?") ? "&" : "?"}retry=1` : src}
+			alt={__("Preview", "blocklayouts")}
+			loading="lazy"
+			decoding="async"
+			onError={() => setAttempt((n) => n + 1)}
+		/>
+	);
+};
 
 // Memoized premium button
 const PremiumButton = ({ onClick }) => (
@@ -40,7 +65,7 @@ export const PatternPreview = ({
 		return (
 			<div className="blocklayouts-modal__pattern-preview" onClick={onClick}>
 				{showPremiumButton && <PremiumButton onClick={handlePremiumClick} />}
-				<img src={thumbnailUrl} alt={__("Preview", "blocklayouts")} />
+				<Thumbnail src={thumbnailUrl} />
 			</div>
 		);
 	}
